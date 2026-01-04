@@ -1,4 +1,7 @@
 import React from 'react'
+import arrow_1 from '../assets/quiz_section/Space_explorer/arrow_1.svg'
+import planet_13 from '../assets/quiz_section/Space_explorer/planet_13.svg'
+import planet_1 from '../assets/quiz_section/Space_explorer/planet_1.svg'
 
 const Astrolab = () => {
   return (
@@ -58,7 +61,41 @@ const Astrolab = () => {
             </section>
 
             <section id='question_card'>
-              <div></div>
+
+              <div id='horizontal_scroll' className='grid grid-cols-5 border border-b-blue-900'>
+
+                <div id='space_explorers' className='bg-[#FEE440] p-2 border rounded-[30px] w-[200px]'>
+                  <div id='contents' className='flex flex-col gap-4'>
+                      <div id='image_section' className='grid grid-cols-3 h-full items-center bg-[#0C173D] rounded-[30px] p-2'>
+                        <img src={arrow_1} alt="" className='h-full max-h-full w-auto object-contain mx-auto' />
+                        <img src={planet_13} alt="" className='h-full max-h-full w-auto object-contain mx-auto'/>
+                        <img src={planet_1} alt="" className='h-full max-h-full w-auto object-contain mx-auto'/>
+                      </div>
+                      <div id='card_contents'>
+                        <h4>Space Explorers</h4>
+                        <p>Travel beyond earth</p>
+                        <p>Discover Planets,stars, astronauts, and amazing space facts</p>
+                      </div>
+                      <div id='card_actions' className='flex'>
+                        <div id='no_of_questions'>
+                          {/* logo */}
+                          <span>50 Q</span>
+                        </div>
+                        <button className='flex flex-col'>
+                          {/* logo */}
+                          <span>Play</span>
+                        </button>
+                      </div>
+                  </div> 
+                </div>
+
+                <div id='world_wonder'></div>
+                <div id='time_travel'></div>
+                <div id='space_science'></div>
+                <div id='mix_master_quiz'></div>
+
+              </div>
+
             </section>
           </section>
 
