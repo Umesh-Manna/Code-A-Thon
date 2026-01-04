@@ -58,6 +58,7 @@ const Astrolab = () => {
             </section>
 
             <section id='question_card'>
+              <div></div>
             </section>
           </section>
 
