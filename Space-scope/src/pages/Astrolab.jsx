@@ -6,25 +6,32 @@ import planet_1 from '../assets/quiz_section/Space_explorer/planet_1.svg'
 const cardData = [
   {
     title: "Space Explorers",
-    description: "Travel beyond Earth! Discover planets, stars, astronauts, and amazing space facts.",
+    description: "Travel beyond Earth!: Discover planets, stars, astronauts, and amazing space facts.",
     icons: ["🌑", "🪐", "⚛️"],
     coins: 50,
   },
   {
     title: "World Wonder",
-    description: "Explore our amazing earth. Mountains, Oceans, Earth, Countries and Maps await You.",
+    description: "Explore our amazing earth: Mountains, Oceans, Earth, Countries and Maps await You.",
     icons: ["🗺️", "🏛️", "🌍"],
     coins: 50,
   },
   {
     title: "Time Travel",
-    description: "Stories from past. Learn about kings, queens, heroes, and ancient times.",
+    description: "Stories from past: Learn about kings, queens, heroes, and ancient times.",
     icons: ["👑", "🦕", "🚜"],
     coins: 50,
   },
   {
     title: "Space Science",
-    description: "How things work. Rockets, Satellites, and Space inventions.",
+    description: "How things work in Space: Rockets, Satellites, and Space inventions.",
+    icons: ["🚀", "🛰️", "🔭"],
+    coins: 50,
+  },
+
+  {
+    title: "Mix Master Quiz",
+    description: "A little Bit of everything: Space, Planet, Geography, History, and Science.",
     icons: ["🚀", "🛰️", "🔭"],
     coins: 50,
   },
@@ -66,10 +73,10 @@ const Astrolab = () => {
   return (
     //focusing on Page semantics first
     
-    <main className='min-h-screen bg-gradient-to-br from-[#5B7CFA] to-[#9B5DE5] flex items-center justify-center overflow-y-auto'>
+    <main className='min-h-screen bg-gradient-to-br from-[#5B7CFA] to-[#9B5DE5] flex items-center justify-center'>
       
-      <div id='main_content' className='pt-8 bg-gradient-to-br from-[#1D2671] via-[#C33764] to-[#7A306A] w-[85vw] h-[90vh] rounded-[30px] flex flex-col items-center' >
-        <section id='quiz_section' className='w-[90%] flex flex-col gap-4 h-full'>
+      <div id='main_content' className='pt-8 bg-gradient-to-br from-[#1D2671] via-[#C33764] to-[#7A306A] w-[85vw] h-[90vh] rounded-[30px] flex flex-col items-center overflow-y-auto' >
+        <section id='quiz_section' className='w-[90%] flex flex-col gap-4 min-h-full'>
 
           <section id='user_overview_bar' className='flex flex-row justify-between  bg-amber-100 rounded-lg'> 
             
@@ -139,12 +146,41 @@ const Astrolab = () => {
 
         {/* infographic section */}
         <section>
-          
+
           
         </section>
 
         {/* space explorer section */}
-        <section>
+        <section id='space_explorer' className='w-[90%] flex flex-col gap-4 min-h-full'>
+          
+          <section id='info_carousel' className='flex flex-col justify-between bg-[#F7F8FF] h-[85%] rounded-lg '>
+            <section id='recommend_for_you_section' className='flex flex-row justify-between bg-red-400 h-[50px] rounded-lg px-16 py-4'>
+              <div>
+                <h1>Recommended for you</h1>
+              </div>
+
+              <div className='flex flex-row justify-between'>
+                <p>Explore more!</p>
+                {/* logo */}
+              </div>
+              
+            </section>
+
+            <section id='info_cards' className='max-w-full px-2 h-full pt-8'>
+
+
+               <div className="overflow-x-auto h-[90%]">
+                  <div className="flex gap-4 p-4 h-full">
+                      {cardData.map((card, i) => (
+                        <Card key={i} {...card} />
+                      ))}
+                  </div>
+                </div>
+
+
+            </section>
+          </section>
+
 
         </section>
 
