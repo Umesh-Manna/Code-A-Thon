@@ -3,6 +3,34 @@ import arrow_1 from '../assets/quiz_section/Space_explorer/arrow_1.svg'
 import planet_13 from '../assets/quiz_section/Space_explorer/planet_13.svg'
 import planet_1 from '../assets/quiz_section/Space_explorer/planet_1.svg'
 
+const cardData = [
+  {
+    title: "Space Explorers",
+    description: "Travel beyond Earth! Discover planets, stars, astronauts, and amazing space facts.",
+    icons: ["🌑", "🪐", "⚛️"],
+    coins: 50,
+  },
+  {
+    title: "World Wonder",
+    description: "Explore our amazing earth. Mountains, Oceans, Earth, Countries and Maps await You.",
+    icons: ["🗺️", "🏛️", "🌍"],
+    coins: 50,
+  },
+  {
+    title: "Time Travel",
+    description: "Stories from past. Learn about kings, queens, heroes, and ancient times.",
+    icons: ["👑", "🦕", "🚜"],
+    coins: 50,
+  },
+  {
+    title: "Space Science",
+    description: "How things work. Rockets, Satellites, and Space inventions.",
+    icons: ["🚀", "🛰️", "🔭"],
+    coins: 50,
+  },
+];
+
+
 const Astrolab = () => {
   return (
     //focusing on Page semantics first
@@ -65,35 +93,40 @@ const Astrolab = () => {
               <div id='horizontal_scroll' className='w-full overflow-x-auto overflow-y-hidden border border-blue-600'>
 
                 <div className="flex gap-4 w-max py-2">
-      
-                  <div id='space_explorers' className='bg-[#FEE440] p-2 border rounded-[30px] w-[200px]'>
-                  <div id='contents' className='flex flex-col gap-4'>
-                      <div id='image_section' className='grid grid-cols-3 h-full items-center bg-[#0C173D] rounded-[30px] p-2'>
-                        <img src={arrow_1} alt="" className='h-full max-h-full w-auto object-contain mx-auto' />
-                        <img src={planet_13} alt="" className='h-full max-h-full w-auto object-contain mx-auto'/>
-                        <img src={planet_1} alt="" className='h-full max-h-full w-auto object-contain mx-auto'/>
-                      </div>
-                      <div id='card_contents'>
-                        <h4>Space Explorers</h4>
-                        <p>Travel beyond earth</p>
-                        <p>Discover Planets,stars, astronauts, and amazing space facts</p>
-                      </div>
-                      <div id='card_actions' className='flex'>
-                        <div id='no_of_questions'>
-                          <span>50 Q</span>
-                        </div>
-                        <button className='flex flex-col'>
-                          <span>Play</span>
-                        </button>
-                      </div>
-                  </div> 
-                </div> 
 
-                <div id='world_wonder'></div>
-                <div id='time_travel'></div>
-                <div id='space_science'></div>
-                <div id='mix_master_quiz'></div>  
-                
+                  
+
+
+
+                  {/*
+                  <div id='space_explorers' className='bg-[#FEE440] p-2 border rounded-[30px] w-[200px]'>
+                    <div id='contents' className='flex flex-col gap-4'>
+                        <div id='image_section' className='grid grid-cols-3 h-full items-center bg-[#0C173D] rounded-[30px] p-2'>
+                          <img src={arrow_1} alt="" className='h-full max-h-full w-auto object-contain mx-auto' />
+                          <img src={planet_13} alt="" className='h-full max-h-full w-auto object-contain mx-auto'/>
+                          <img src={planet_1} alt="" className='h-full max-h-full w-auto object-contain mx-auto'/>
+                        </div>
+                        <div id='card_contents'>
+                          <h4>Space Explorers</h4>
+                          <p>Travel beyond earth</p>
+                          <p>Discover Planets,stars, astronauts, and amazing space facts</p>
+                        </div>
+                        <div id='card_actions' className='flex'>
+                          <div id='no_of_questions'>
+                            <span>50 Q</span>
+                          </div>
+                          <button className='flex flex-col'>
+                            <span>Play</span>
+                          </button>
+                        </div>
+                    </div> 
+                  </div> 
+
+                  <div id='world_wonder'></div>
+                  <div id='time_travel'></div>
+                  <div id='space_science'></div>
+                  <div id='mix_master_quiz'></div>  
+                */}
                 
                 
 
