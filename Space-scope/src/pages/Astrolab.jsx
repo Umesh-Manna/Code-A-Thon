@@ -74,7 +74,7 @@ const cardData = [
 
 const Card = ({ title, description, icons, coins }) => {
   return (
-    <div className="w-72 shrink-0 rounded-2xl bg-yellow-300 p-4 shadow-md">
+    <div className="flex flex-col rounded-2xl bg-gradient-to-b ${gradient} p-4 text-white shrink-0 w-[323px] h-[360px] bg-yellow-300">
       {/* Icon strip */}
       {/* <div className="mb-3 flex gap-2 rounded-xl bg-indigo-900 p-2"> */}
       <div className="grid grid-flow-col auto-cols-fr items-center gap-6 bg-indigo-900 p-4 rounded-xl mb-3">
