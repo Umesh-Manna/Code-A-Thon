@@ -25,8 +25,15 @@ import mm1 from "../assets/quiz_section/Mix_master_quiz/mm1.svg";
 import mm2 from "../assets/quiz_section/Mix_master_quiz/mm2.svg";
 import mm3 from "../assets/quiz_section/Mix_master_quiz/mm3.svg";
 
-/* info section */
+/* info_section */
 import image1 from "../assets/info_section/image1.png";
+
+/* infographic_section */
+import background from "../assets/infographic_section/background.jpg";
+import twinkle_twinkle_LS from "../assets/infographic_section/twinkle_twinkle_LS.svg";
+import how_I_wonder from "../assets/infographic_section/how_I_wonder.svg";
+import up_up_space from "../assets/infographic_section/up_up_space.svg";
+import i_will_collect_TA from "../assets/infographic_section/i_will_collect_TA.svg";
 
 
 const cardData = [
@@ -189,124 +196,135 @@ const InfoCard = ({ title, description, image, gradient }) => {
 
 const Astrolab = () => {
   return (
-    //focusing on Page semantics first
 
     <main className="min-h-screen bg-gradient-to-br from-[#5B7CFA] to-[#9B5DE5] flex items-center justify-center">
       <div
         id="main_content"
-        className="pt-8 bg-gradient-to-br from-[#1D2671] via-[#C33764] to-[#7A306A] w-[85vw] h-[90vh] rounded-[30px] flex flex-col items-center overflow-y-auto"
+        className="py-8 bg-gradient-to-br from-[#1D2671] via-[#C33764] to-[#7A306A] w-[90vw] h-fit rounded-[30px] flex flex-col items-center overflow-y-auto"
       >
-        <section
-          id="quiz_section"
-          className="w-[90%] flex flex-col gap-4 min-h-full"
-        >
+        <div className="w-full h-screen flex items-center justify-center">
           <section
-            id="user_overview_bar"
-            className="flex flex-row justify-between  bg-amber-100 rounded-lg overflow-hidden"
-          >
-            <div
-              id="user_details"
-              className="flex flex-row gap-16 bg-red-400 rounded-lg"
-            >
-              <div id="username_col">
-                <h2>Hi! Yugal</h2>
-                <p>Let's Start your Quiz now..</p>
-              </div>
-
-              <div id="Ranking_col">
-                {/* icon */}
-                <div>
-                  <h2>Ranking</h2>
-                  <p>348</p>
-                </div>
-              </div>
-
-              <div id="points_col">
-                {/* icon */}
-                <div>
-                  <h2>Points</h2>
-                  <p>1209</p>
-                </div>
-              </div>
-            </div>
-
-            <div
-              id="leaderboard"
-              className="bg-blue-500 flex flex-row rounded-lg"
-            >
-              <div>
-                {/* icon */}
-                <p>Leaderboard</p>
-              </div>
-            </div>
-          </section>
-
-          <section
-            id="question_carousel"
-            className="flex flex-col justify-between bg-[#F7F8FF] h-[85%] rounded-lg "
+            id="quiz_section"
+            className="w-[90%] flex flex-col gap-4 min-h-full"
           >
             <section
-              id="lets_play_section"
-              className="flex flex-row justify-between bg-red-400 h-[50px] rounded-lg px-16 py-4"
+              id="user_overview_bar"
+              className="flex flex-row justify-between  bg-amber-100 rounded-lg overflow-hidden"
             >
-              <div>
-                <h1>Let's play!</h1>
+              <div
+                id="user_details"
+                className="flex flex-row gap-16 bg-red-400 rounded-lg"
+              >
+                <div id="username_col">
+                  <h2>Hi! Yugal</h2>
+                  <p>Let's Start your Quiz now..</p>
+                </div>
+
+                <div id="Ranking_col">
+                  {/* icon */}
+                  <div>
+                    <h2>Ranking</h2>
+                    <p>348</p>
+                  </div>
+                </div>
+
+                <div id="points_col">
+                  {/* icon */}
+                  <div>
+                    <h2>Points</h2>
+                    <p>1209</p>
+                  </div>
+                </div>
               </div>
 
-              <div className="flex flex-row justify-between">
-                <p>Explore Category</p>
-                {/* logo */}
+              <div
+                id="leaderboard"
+                className="bg-blue-500 flex flex-row rounded-lg"
+              >
+                <div>
+                  {/* icon */}
+                  <p>Leaderboard</p>
+                </div>
               </div>
             </section>
 
-            <section id="question_card" className="max-w-full px-2 h-full overflow-y-auto">
+            <section
+              id="question_carousel"
+              className="flex flex-col justify-between bg-[#F7F8FF] h-[85%] rounded-lg "
+            >
+              <section
+                id="lets_play_section"
+                className="flex flex-row justify-between bg-red-400 h-[50px] rounded-lg px-16 py-4"
+              >
+                <div>
+                  <h1>Let's play!</h1>
+                </div>
+
+                <div className="flex flex-row justify-between">
+                  <p>Explore Category</p>
+                  {/* logo */}
+                </div>
+              </section>
+
+              <section id="question_card" className="max-w-full px-2 h-full overflow-y-auto">
+                  <div className="flex shrink-1 gap-6 overflow-x-auto px-6">
+                    {cardData.map((card, i) => (
+                      <Card key={i} {...card} />
+                    ))}
+                  </div>
+              </section>
+                
+            </section>
+          </section>
+        </div>
+        {/* infographic section */}
+        <div className="bg-white w-full h-screen flex justify-center py-4">
+          <section 
+          id="infographic_section"
+          className="w-[90%] flex flex-col gap-4 min-h-full bg-no-repeat bg-cover bg-center rounded-xl"
+          style={{ backgroundImage: `url(${background})` }}>
+            
+            <section id="planet_section"></section>
+
+            <section id="space_impacts"></section>
+          </section>
+        </div>
+        {/* space explorer section */}
+        <div className=" w-full h-screen flex justify-center">
+          <section
+            id="space_explorer"
+            className="w-[90%] flex flex-col gap-4 min-h-full"
+          >
+            <section
+              id="info_carousel"
+              className="flex flex-col justify-between bg-[#F7F8FF] h-[85%] rounded-lg overflow-hidden"
+            >
+              <section
+                id="recommend_for_you_section"
+                className="flex flex-row justify-between bg-red-400 h-[50px] rounded-lg px-16 py-4"
+              >
+                <div>
+                  <h1>Recommended for you</h1>
+                </div>
+
+                <div className="flex flex-row justify-between">
+                  <p>Explore more!</p>
+                  {/* logo */}
+                </div>
+              </section>
+
+              <section id="info_cards" className="max-w-full px-2 h-full overflow-y-auto">
+
                 <div className="flex shrink-1 gap-6 overflow-x-auto px-6">
-                  {cardData.map((card, i) => (
-                    <Card key={i} {...card} />
+                  {spaceData.map((item) => (
+                    <InfoCard key={item.id} {...item} />
                   ))}
                 </div>
-            </section>
-              
-          </section>
-        </section>
 
-        {/* infographic section */}
-        <section></section>
-
-        {/* space explorer section */}
-        <section
-          id="space_explorer"
-          className="w-[90%] flex flex-col gap-4 min-h-full"
-        >
-          <section
-            id="info_carousel"
-            className="flex flex-col justify-between bg-[#F7F8FF] h-[85%] rounded-lg overflow-hidden"
-          >
-            <section
-              id="recommend_for_you_section"
-              className="flex flex-row justify-between bg-red-400 h-[50px] rounded-lg px-16 py-4"
-            >
-              <div>
-                <h1>Recommended for you</h1>
-              </div>
-
-              <div className="flex flex-row justify-between">
-                <p>Explore more!</p>
-                {/* logo */}
-              </div>
-            </section>
-
-            <section id="info_cards" className="max-w-full px-2 h-full overflow-y-auto">
-
-              <div className="flex shrink-1 gap-6 overflow-x-auto px-6">
-                {spaceData.map((item) => (
-                  <InfoCard key={item.id} {...item} />
-                ))}
-              </div>
-
+              </section>
             </section>
           </section>
-        </section>
+        </div>
       </div>
     </main>
   );
