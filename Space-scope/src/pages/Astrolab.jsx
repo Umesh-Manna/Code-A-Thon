@@ -1,4 +1,6 @@
 import React from "react";
+import { motion } from "motion/react"
+
 /* Quiz section: */
 //space explorer
 import arrow_1 from "../assets/quiz_section/Space_explorer/arrow_1.svg";
@@ -284,7 +286,19 @@ const Astrolab = () => {
           className="w-[90%] flex flex-col gap-4 min-h-full bg-no-repeat bg-cover bg-center rounded-xl"
           style={{ backgroundImage: `url(${background})` }}>
             
-            <section id="planet_section"></section>
+            {/* focusing on increasing the height,
+            later will try to implement inline, to see what happens */}
+            <section id="planet_section" className="flex flex-col items-start bg-yellow-500 h-full justify-around">
+              <div id="top_part" className= "inline-flex bg-red-300 gap-32">
+                <img src={twinkle_twinkle_LS} alt="" className="h-40 w-40 object-contain"/>
+                <img src={how_I_wonder} alt="" className="h-40 w-40 object-contain"/>
+              </div>
+              <div id="center_part"></div>
+              <div id="bottom_part" className= "inline-flex bg-blue-300 gap-32">
+                <img src={up_up_space} alt="" className="h-40 w-40 object-contain"/>
+                <img src={i_will_collect_TA} alt="" className="h-40 w-40 object-contain"/>
+              </div>
+            </section>
 
             <section id="space_impacts"></section>
           </section>
