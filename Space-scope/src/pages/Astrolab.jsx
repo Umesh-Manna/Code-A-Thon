@@ -1,5 +1,5 @@
 import React from "react";
-//Quiz section: 
+/* Quiz section: */
 //space explorer
 import arrow_1 from "../assets/quiz_section/Space_explorer/arrow_1.svg";
 import planet_13 from "../assets/quiz_section/Space_explorer/planet_13.svg";
@@ -24,6 +24,10 @@ import ss3 from "../assets/quiz_section/Space_science/ss3.svg";
 import mm1 from "../assets/quiz_section/Mix_master_quiz/mm1.svg";
 import mm2 from "../assets/quiz_section/Mix_master_quiz/mm2.svg";
 import mm3 from "../assets/quiz_section/Mix_master_quiz/mm3.svg";
+
+/* info section */
+import image1 from "../assets/info_section/image1.png";
+
 
 const cardData = [
   {
@@ -108,7 +112,7 @@ const spaceData = [
     title: "Humble Beginnings",
     description:
       "ISRO was founded in 1969 and started with scientists transporting rocket parts on bicycles—from humble beginnings to global glory. ISRO has launched satellites for over 30 countries, earning global trust.",
-    image: "/images/humble-beginnings.jpg",
+    image: [image1],
     gradient: "from-blue-700 to-cyan-500",
   },
   {
@@ -117,7 +121,7 @@ const spaceData = [
     description:
       "Europa Clipper is the first mission designed to conduct a detailed study of Jupiter’s moon Europa. The spacecraft will travel 1.8 billion miles to reach Jupiter in April 2030.",
     image: "/images/europa-clipper.jpg",
-    gradient: "from-purple-700 to-pink-500",
+    gradient: "from-purple-700 to-pink-500",  
   },
   {
     id: 3,
@@ -167,7 +171,7 @@ const InfoCard = ({ title, description, image, gradient }) => {
   return (
     <div
     //322.333×359.35
-      className={`flex w-[360px] flex-col rounded-2xl bg-gradient-to-b ${gradient} p-4 text-white shrink-0`}
+      className={`flex flex-col rounded-2xl bg-gradient-to-b ${gradient} p-4 text-white shrink-0 w-[323px] h-[360px]`}
     >
       {/* Image */}
       <div className="overflow-hidden rounded-xl border border-black">
@@ -198,7 +202,7 @@ const Astrolab = () => {
         >
           <section
             id="user_overview_bar"
-            className="flex flex-row justify-between  bg-amber-100 rounded-lg"
+            className="flex flex-row justify-between  bg-amber-100 rounded-lg overflow-hidden"
           >
             <div
               id="user_details"
@@ -277,7 +281,7 @@ const Astrolab = () => {
         >
           <section
             id="info_carousel"
-            className="flex flex-col justify-between bg-[#F7F8FF] h-[85%] rounded-lg "
+            className="flex flex-col justify-between bg-[#F7F8FF] h-[85%] rounded-lg overflow-hidden"
           >
             <section
               id="recommend_for_you_section"
@@ -293,9 +297,9 @@ const Astrolab = () => {
               </div>
             </section>
 
-            <section id="info_cards" className="max-w-full px-2 h-full pt-8">
+            <section id="info_cards" className="max-w-full px-2 h-full overflow-y-auto">
 
-              <div className="flex gap-6 overflow-x-auto px-6 py-8">
+              <div className="flex shrink-1 gap-6 overflow-x-auto px-6">
                 {spaceData.map((item) => (
                   <InfoCard key={item.id} {...item} />
                 ))}
