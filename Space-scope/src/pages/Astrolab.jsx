@@ -259,15 +259,26 @@ const Astrolab = () => {
               </div>
             </section>
 
-            <section id="question_card" className="max-w-full px-2 h-full pt-8">
-              <div className="overflow-x-auto h-[90%]">
-                <div className="flex gap-4 p-4 h-full">
+            <section id="question_card" className="max-w-full px-2 h-full overflow-y-auto">
+                <div className="flex shrink-1 gap-6 overflow-x-auto px-6">
                   {cardData.map((card, i) => (
                     <Card key={i} {...card} />
                   ))}
                 </div>
-              </div>
             </section>
+              
+            { /*
+            <section id="info_cards" className="max-w-full px-2 h-full overflow-y-auto">
+
+              <div className="flex shrink-1 gap-6 overflow-x-auto px-6">
+                {spaceData.map((item) => (
+                  <InfoCard key={item.id} {...item} />
+                ))}
+              </div>
+
+            </section>
+
+             */ }
           </section>
         </section>
 
