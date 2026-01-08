@@ -2,48 +2,83 @@
   display: grid;
   height: 100vh;
   width: 100vw;
-  /* Fixed 80px for the sidebar "slot", rest for content */
-  grid-template-columns: 80px 1fr; 
-  grid-template-rows: auto 1fr;
+  grid-template-columns: 80px 1fr; /* Reserved space for sidebar */
+  grid-template-rows: auto 1.5fr 1fr;
   background-color: #0b0d17;
+  overflow: hidden;
   position: relative;
 }
 
 .sidebarArea {
   grid-column: 1;
   grid-row: 1 / -1;
-  position: relative; /* Create a stacking context */
-  z-index: 100;       /* Force it above the navbar */
+  z-index: 100;
 }
 
-/* This is the actual sidebar box that expands */
 .sidebarContent {
-  position: absolute; /* Allows it to grow WITHOUT pushing the grid */
+  position: absolute;
   top: 0;
   left: 0;
   height: 100%;
-  width: 80px;        /* Initial collapsed width */
+  width: 80px;
   background-color: #0f172a;
-  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: width 0.3s ease;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
-  overflow: hidden;
 }
 
-/* When expanded, only the width of the box changes, not the grid column */
-.sidebarExpanded {
-  width: 260px; 
-  box-shadow: 10px 0 15px -3px rgba(0, 0, 0, 0.5); /* Adds depth over content */
-}
+.sidebarExpanded { width: 260px; }
 
 .navbarArea {
   grid-column: 2;
-  grid-row: 1;
-  z-index: 10; /* Lower than sidebar */
+  padding: 1rem 2rem;
+  width: 100%;
 }
 
-.mainContentArea {
+.infoArea {
   grid-column: 2;
-  grid-row: 2;
-  overflow-y: auto;
+  margin: 10px 20px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+.cardsArea {
+  grid-column: 2;
+  padding: 0 20px 20px 20px;
+}
+
+.cardGrid {
+  display: flex;
+  gap: 16px;
+  height: 100%;
+}
+
+.cardItem {
+  flex: 1;
   padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cardItem h3 {
+  color: #60a5fa;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.cardItem p {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.cardLink {
+  color: #3b82f6;
+  font-size: 0.85rem;
+  margin-top: 12px;
+  font-weight: 500;
 }
