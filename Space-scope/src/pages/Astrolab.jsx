@@ -3,39 +3,39 @@ import { motion } from "motion/react"
 
 /* Quiz section: */
 //space explorer
-import arrow_1 from "../assets/quiz_section/Space_explorer/arrow_1.svg";
-import planet_13 from "../assets/quiz_section/Space_explorer/planet_13.svg";
-import planet_1 from "../assets/quiz_section/Space_explorer/planet_1.svg";
+import arrow_1 from "../assets/astrolab/quiz_section/Space_explorer/arrow_1.svg";
+import planet_13 from "../assets/astrolab/quiz_section/Space_explorer/planet_13.svg";
+import planet_1 from "../assets/astrolab/quiz_section/Space_explorer/planet_1.svg";
 
 //World wonder
-import image_1 from "../assets/quiz_section/World_wonder/image_1.svg";
-import image_2 from "../assets/quiz_section/World_wonder/image_2.svg";
-import image_3 from "../assets/quiz_section/World_wonder/image_3.svg";
+import image_1 from "../assets/astrolab/quiz_section/World_wonder/image_1.svg";
+import image_2 from "../assets/astrolab/quiz_section/World_wonder/image_2.svg";
+import image_3 from "../assets/astrolab/quiz_section/World_wonder/image_3.svg";
 
 //Time travel
-import image_6 from "../assets/quiz_section/Time_travel/image_6.svg";
-import image_10 from "../assets/quiz_section/Time_travel/image_10.svg";
-import image_13 from "../assets/quiz_section/Time_travel/image_13.svg";
+import image_6 from "../assets/astrolab/quiz_section/Time_travel/image_6.svg";
+import image_10 from "../assets/astrolab/quiz_section/Time_travel/image_10.svg";
+import image_13 from "../assets/astrolab/quiz_section/Time_travel/image_13.svg";
 
 //Space_science
-import ss1 from "../assets/quiz_section/Space_science/ss1.svg";
-import ss2 from "../assets/quiz_section/Space_science/ss2.svg";
-import ss3 from "../assets/quiz_section/Space_science/ss3.svg";
+import ss1 from "../assets/astrolab/quiz_section/Space_science/ss1.svg";
+import ss2 from "../assets/astrolab/quiz_section/Space_science/ss2.svg";
+import ss3 from "../assets/astrolab/quiz_section/Space_science/ss3.svg";
 
 //Mix_master_quiz
-import mm1 from "../assets/quiz_section/Mix_master_quiz/mm1.svg";
-import mm2 from "../assets/quiz_section/Mix_master_quiz/mm2.svg";
-import mm3 from "../assets/quiz_section/Mix_master_quiz/mm3.svg";
+import mm1 from "../assets/astrolab/quiz_section/Mix_master_quiz/mm1.svg";
+import mm2 from "../assets/astrolab/quiz_section/Mix_master_quiz/mm2.svg";
+import mm3 from "../assets/astrolab/quiz_section/Mix_master_quiz/mm3.svg";
 
 /* info_section */
-import image1 from "../assets/info_section/image1.png";
+import image1 from "../assets/astrolab/info_section/image1.png";
 
 /* infographic_section */
-import background from "../assets/infographic_section/background.jpg";
-import twinkle_twinkle_LS from "../assets/infographic_section/twinkle_twinkle_LS.svg";
-import how_I_wonder from "../assets/infographic_section/how_I_wonder.svg";
-import up_up_space from "../assets/infographic_section/up_up_space.svg";
-import i_will_collect_TA from "../assets/infographic_section/i_will_collect_TA.svg";
+import background from "../assets/astrolab/infographic_section/background.jpg";
+import twinkle_twinkle_LS from "../assets/astrolab/infographic_section/twinkle_twinkle_LS.svg";
+import how_I_wonder from "../assets/astrolab/infographic_section/how_I_wonder.svg";
+import up_up_space from "../assets/astrolab/infographic_section/up_up_space.svg";
+import i_will_collect_TA from "../assets/astrolab/infographic_section/i_will_collect_TA.svg";
 
 
 const cardData = [
@@ -289,7 +289,7 @@ const Astrolab = () => {
             {/* focusing on increasing the height,
             later will try to implement inline, to see what happens */}
             <section id="planet_section" className="flex flex-col items-start bg-yellow-500 h-full justify-around">
-              <div id="top_part" className= "inline-flex bg-red-300 gap-32">
+              <div id=" top_part" className= "inline-flex bg-red-300 gap-32">
                 <img src={twinkle_twinkle_LS} alt="" className="h-40 w-40 object-contain"/>
                 <img src={how_I_wonder} alt="" className="h-40 w-40 object-contain"/>
               </div>

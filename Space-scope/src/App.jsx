@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Astrolab from './pages/Astrolab'
+import Skywatch from './pages/Skywatch'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
@@ -11,7 +11,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Astrolab />} />
+        <Route path="/astrolab" element={<Astrolab />} />
+        <Route path='/skywatch' element={<Skywatch />}/>
       </Routes>
     </BrowserRouter>
   )
