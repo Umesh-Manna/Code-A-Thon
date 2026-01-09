@@ -14,9 +14,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/astrolab" element={<Astrolab />} />
-        <Route path='/skylabs/hurricanes' element={<Hurricanes />}/>
-        <Route path='/skylabs/interactive_maps' element={<Interactive_maps />}/>
-        <Route path='/skylabs/our_environment' element={<Our_environment />}/>
+        <Route path='/skywatch/hurricanes' element={<Hurricanes />}/>
+        <Route path='/skywatch/interactive_maps' element={<Interactive_maps />}/>
+        <Route path='/skywatch/our_environment' element={<Our_environment />}/>
 
       </Routes>
     </BrowserRouter>

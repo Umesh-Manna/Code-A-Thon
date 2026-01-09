@@ -1,0 +1,229 @@
+/* ================= ROOT LAYOUT ================= */
+
+.container {
+  display: grid;
+  height: 100vh;
+  width: 100vw;
+  grid-template-columns: 80px 1fr;
+  grid-template-rows: auto 1fr;
+  background-color: #0b0d17;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebarArea {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 1000;
+}
+
+.sidebarContent {
+  position: relative;
+  height: 100%;
+  width: 60px;
+  background: linear-gradient(to bottom, #1e293b, #020617);
+  transition: width 0.3s ease;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1001;
+}
+
+.sidebarExpanded {
+  width: 260px;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbarArea {
+  grid-column: 2;
+  grid-row: 1;
+  position: relative;
+  z-index: 10;
+}
+
+/* ================= SCROLLABLE CONTENT ================= */
+
+.scrollArea {
+  grid-column: 2;
+  grid-row: 2;
+  overflow-y: auto;
+  padding: 24px;
+  position: relative;
+  z-index: 5;
+}
+
+/* ================= SECTION WRAPPER (NEW) ================= */
+
+.sectionWrapper {
+  border: 2px solid rgba(56, 189, 248, 0.9); /* bright blue */
+  border-radius: 22px;
+  padding: 22px;
+  margin-bottom: 40px;
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 23, 42, 0.9),
+    rgba(15, 23, 42, 0.75)
+  );
+  box-shadow:
+    0 0 0 1px rgba(56, 189, 248, 0.25),
+    0 0 25px rgba(56, 189, 248, 0.15);
+}
+
+/* ================= HERO SECTION ================= */
+
+.heroSection {
+  margin-bottom: 22px;
+  height: 260px;
+  border-radius: 18px;
+  position: relative;
+  overflow: hidden;
+
+  /* 🔴 HERO IMAGE PLACEHOLDER */
+  background-image: url("YOUR_IMAGE_HERE.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: flex-end;
+  padding: 36px;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(2, 6, 23, 0.85),
+    rgba(2, 6, 23, 0.35),
+    rgba(2, 6, 23, 0.15)
+  );
+  z-index: 1;
+}
+
+.heroTitle {
+  position: relative;
+  z-index: 2;
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: white;
+  letter-spacing: 0.5px;
+}
+
+/* ================= INFO SECTION ================= */
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 24px;
+  background: #2a2f45;
+  border-radius: 18px;
+  padding: 28px;
+}
+
+.infoText p {
+  color: #d1d5db;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.infoImagePlaceholder {
+  border-radius: 16px;
+  background: linear-gradient(135deg, #374151, #1f2937);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+  font-size: 0.9rem;
+}
+
+/* ================= HEADERS ================= */
+
+.appsTitle {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 26px 0 18px;
+}
+
+/* ================= CARDS ================= */
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.cardItem {
+  background: #0f172a;
+  border-radius: 18px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cardImagePlaceholder {
+  height: 150px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #374151, #1f2937);
+  margin-bottom: 14px;
+}
+
+.cardItem h3 {
+  color: #60a5fa;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.cardItem p {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.cardLink {
+  color: white;
+  font-size: 0.75rem;
+  margin-top: 12px;
+  background: #111827;
+  padding: 6px 10px;
+  border-radius: 6px;
+  width: fit-content;
+  font-weight: 500;
+}
+
+/* ================= SCROLLBAR ================= */
+
+.scrollArea::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollArea::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 4px;
+}
+
+.scrollArea::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+/* ================= HERO IMAGE OVERRIDES ================= */
+
+.cloudsHero {
+  background-image: url("YOUR_CLOUDS_IMAGE_HERE.jpg");
+}
+
+.opticalHero {
+  background-image: url("YOUR_OPTICAL_IMAGE_HERE.jpg");
+}
+
+.spaceWeatherHero {
+  background-image: url("YOUR_SPACE_WEATHER_IMAGE_HERE.jpg");
+}
