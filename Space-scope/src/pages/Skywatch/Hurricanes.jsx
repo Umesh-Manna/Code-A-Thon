@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import styles from '../components/Skywatch.module.css';
-import Sidebar from '../components/Sidebar';
-import Skywatch_nav from '../components/Skywatch_nav';
+import styles from '../../components/Hurricanes.module.css';
+import Sidebar from '../../components/Sidebar';
+import Skywatch_nav from '../../components/Skywatch_nav';
 
-const Skywatch = () => {
+const Hurricanes = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -119,4 +119,4 @@ const Skywatch = () => {
   );
 };
 
-export default Skywatch;
+export default Hurricanes;
