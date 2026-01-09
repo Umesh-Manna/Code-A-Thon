@@ -28,21 +28,21 @@ const Skywatch_nav = () => {
         {/* ================= NAVIGATION BUTTONS ================= */}
         <div className="flex items-center gap-3">
           <button
-            onClick={() => navigate('/hurricanes')}
+            onClick={() => navigate('/skywatch/hurricanes')}
             className="bg-slate-800/60 hover:bg-slate-700/80 active:bg-slate-700 text-white px-5 py-2 rounded-lg border border-slate-600 transition-all duration-200 font-medium whitespace-nowrap text-sm"
           >
             Hurricanes
           </button>
 
           <button
-            onClick={() => navigate('/interactive-maps')}
+            onClick={() => navigate('/skywatch/interactive_maps')}
             className="bg-slate-800/60 hover:bg-slate-700/80 active:bg-slate-700 text-white px-5 py-2 rounded-lg border border-slate-600 transition-all duration-200 font-medium whitespace-nowrap text-sm"
           >
             Interactive Maps
           </button>
 
           <button
-            onClick={() => navigate('/environment')}
+            onClick={() => navigate('/skywatch/our_environment')}
             className="bg-slate-800/60 hover:bg-slate-700/80 active:bg-slate-700 text-white px-5 py-2 rounded-lg border border-slate-600 transition-all duration-200 font-medium whitespace-nowrap text-sm"
           >
             Our Environment
