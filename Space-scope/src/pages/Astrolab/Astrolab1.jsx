@@ -124,10 +124,89 @@ const Astrolab1 = () => {
           </section>
 
           {/* ================= SECTION 2 ================= */}
-          <section className={styles.pageSection} />
+
 
           {/* ================= SECTION 3 ================= */}
-          <section className={styles.pageSection} />
+
+          <section className={styles.pageSection}>
+            <div className={styles.recSection}>
+              <div className={styles.recHeader}>
+                <h2>Recommended for you.</h2>
+                <span>Explore More →</span>
+              </div>
+
+              <div className={styles.recRow}>
+
+                <div className={`${styles.recCard} ${styles.greenRec}`}>
+                  <div className={styles.recImagePlaceholder}>
+                    Image Placeholder
+                  </div>
+                  <div className={styles.recBody}>
+                    <h3>PSLV Reliability</h3>
+                    <p>
+                      PSLV is known as the “workhorse of ISRO” and has one of the highest
+                      success rates globally. In 2017, PSLV launched 104 satellites in a
+                      single mission.
+                    </p>
+                  </div>
+                </div>
+
+                <div className={`${styles.recCard} ${styles.redRec}`}>
+                  <div className={styles.recImagePlaceholder}>
+                    Image Placeholder
+                  </div>
+                  <div className={styles.recBody}>
+                    <h3>GSAT Connectivity</h3>
+                    <p>
+                      GSAT satellites enable TV broadcasting, internet, weather
+                      forecasting, and disaster management across India.
+                    </p>
+                  </div>
+                </div>
+
+                <div className={`${styles.recCard} ${styles.orangeRec}`}>
+                  <div className={styles.recImagePlaceholder}>
+                    Image Placeholder
+                  </div>
+                  <div className={styles.recBody}>
+                    <h3>Hubble Legacy</h3>
+                    <p>
+                      NASA’s Hubble Space Telescope began its mission in 1990 and continues
+                      to revolutionize our understanding of the universe.
+                    </p>
+                  </div>
+                </div>
+
+                <div className={`${styles.recCard} ${styles.yellowRec}`}>
+                  <div className={styles.recImagePlaceholder}>
+                    Image Placeholder
+                  </div>
+                  <div className={styles.recBody}>
+                    <h3>NavIC Navigation</h3>
+                    <p>
+                      NavIC is India’s satellite navigation system providing accurate
+                      positioning and timing services over India and nearby regions.
+                    </p>
+                  </div>
+                </div>
+
+                <div className={`${styles.recCard} ${styles.grayRec}`}>
+                  <div className={styles.recImagePlaceholder}>
+                    Image Placeholder
+                  </div>
+                  <div className={styles.recBody}>
+                    <h3>Aditya-L1 Mission</h3>
+                    <p>
+                      Aditya-L1 is India’s first solar mission studying the Sun from a
+                      special orbit using eco-friendly fuel technologies.
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+
 
         </div>
       </main>

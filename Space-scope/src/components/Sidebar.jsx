@@ -25,7 +25,7 @@ const Sidebar = () => {
   const menuItems = [
     { icon: LayoutDashboard, label: 'Dashboard', path: '/' },
     { icon: Bell, label: 'Events', path: '/events' },
-    { icon: Eye, label: 'Sky Watch', path: '/skywatch' },
+    { icon: Eye, label: 'Sky Watch', path: '/skywatch/hurricanes' },
     { icon: Satellite, label: 'Sky Intel', path: '/skyintel' },
     { icon: Rocket, label: 'Milestones', path: '/milestones' },
     { icon: Globe, label: 'Astro Lab', path: '/astrolab' },
