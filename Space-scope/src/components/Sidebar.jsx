@@ -37,7 +37,7 @@ const Sidebar = () => {
       {/* Sidebar */}
       <div
         className={`bg-gradient-to-b from-slate-800 to-slate-900 transition-all duration-300 ease-in-out flex flex-col h-screen ${
-          isOpen ? 'w-80' : 'w-24'
+          isOpen ? 'w-50' : 'w-24'
         }`}
       >
         {/* Header */}
