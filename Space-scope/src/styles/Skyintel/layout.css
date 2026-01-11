@@ -1,0 +1,156 @@
+/* ===============================
+   Global Page Wrapper
+   =============================== */
+
+.skyintel-page {
+  min-height: 100vh;
+  padding: 16px;
+  background: radial-gradient(circle at top, #1b1f3b, #0b0e1a);
+  color: #ffffff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* ===============================
+   Top Filters Bar
+   =============================== */
+
+.filters-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 12px 16px;
+  margin-bottom: 16px;
+
+  background: linear-gradient(180deg, #1c2147, #141832);
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.filters-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.filter-label {
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.filters-bar select {
+  background: #0f1330;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+}
+
+.filters-right {
+  display: flex;
+  gap: 8px;
+}
+
+.toggle-label {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  opacity: 0.6;
+  background: #0f1330;
+}
+
+.toggle-label.active {
+  opacity: 1;
+  background: linear-gradient(135deg, #3f8cff, #6a5cff);
+}
+
+/* ===============================
+   Main Content Layout
+   =============================== */
+
+.main-content {
+  display: grid;
+  grid-template-columns: 2.4fr 1.2fr;
+  gap: 16px;
+}
+
+/* ===============================
+   Map Section
+   =============================== */
+
+.map-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  background: linear-gradient(180deg, #1a1f3f, #121533);
+  border-radius: 14px;
+  padding: 12px;
+
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07);
+}
+
+/* ===============================
+   Right Info Section
+   =============================== */
+
+.info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ===============================
+   Resources Panel
+   =============================== */
+
+.resources-panel {
+  background: linear-gradient(180deg, #1a1f3f, #121533);
+  border-radius: 14px;
+  padding: 12px;
+
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07);
+}
+
+.resources-panel h3 {
+  margin-bottom: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.resources-panel ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.resources-panel li {
+  padding: 6px 8px;
+  margin-bottom: 6px;
+
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+/* ===============================
+   Extra Description Section
+   =============================== */
+
+.extra-description {
+  margin-top: 20px;
+  padding: 22px;
+
+  background: linear-gradient(180deg, #1b2042, #13163a);
+  border-radius: 16px;
+
+  text-align: center;
+  box-shadow: inset 0 0 0 1px rgba(120, 200, 255, 0.25);
+}
+
+.extra-description h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}

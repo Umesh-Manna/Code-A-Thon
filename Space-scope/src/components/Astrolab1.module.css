@@ -117,7 +117,9 @@
 }
 
 .explore {
-  font-weight: 600;
+  font-size: 24px;        /* same as Section 3 */
+  font-weight: 600;       /* same as Section 3 */
+  line-height: 1.2;
 }
 
 .cardRow {
