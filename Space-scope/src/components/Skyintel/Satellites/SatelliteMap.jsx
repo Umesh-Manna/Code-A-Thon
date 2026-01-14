@@ -1,37 +1,46 @@
-import { MapContainer, TileLayer, Marker } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Circle,
+  useMap,
+} from "react-leaflet";
+import { useEffect } from "react";
 import "leaflet/dist/leaflet.css";
 
-/*
-  Props:
-  - satellite: selected satellite object (null initially)
-  - options: {
-      drawOrbits,
-      drawFootprint,
-      keepCentered,
-      largeView
+import { calculateFootprintRadius } from "../../../utils/Skyintel/orbitMath";
+
+function AutoCenter({ position, enabled }) {
+  const map = useMap();
+
+  useEffect(() => {
+    if (enabled && position) {
+      map.setView(position, map.getZoom(), { animate: true });
     }
-*/
+  }, [position, enabled, map]);
+
+  return null;
+}
 
 export default function SatelliteMap({ satellite, options }) {
-  /* ======================
-     Defaults
-     ====================== */
-  const defaultCenter = [20, 0]; // Equator-centered global view
+  const defaultCenter = [20, 0];
   const defaultZoom = 2;
 
-  /* ======================
-     Satellite Position (stub)
-     ====================== */
   const satellitePosition = satellite?.position
     ? [satellite.position.lat, satellite.position.lng]
     : null;
+
+  const footprintRadius =
+    options.drawFootprint && satellite?.position?.alt
+      ? calculateFootprintRadius(satellite.position.alt)
+      : 0;
 
   return (
     <div className={`satellite-map ${options.largeView ? "large" : ""}`}>
       <MapContainer
         center={satellitePosition || defaultCenter}
         zoom={defaultZoom}
-        scrollWheelZoom={true}
+        scrollWheelZoom
         className="leaflet-map"
       >
         <TileLayer
@@ -39,13 +48,26 @@ export default function SatelliteMap({ satellite, options }) {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        {/* Satellite Marker */}
         {satellitePosition && (
-          <Marker position={satellitePosition} />
+          <>
+            <Marker position={satellitePosition} />
+
+            {options.drawFootprint && footprintRadius > 0 && (
+              <Circle
+                center={satellitePosition}
+                radius={footprintRadius}
+                className="footprint-circle"
+              />
+            )}
+
+            <AutoCenter
+              position={satellitePosition}
+              enabled={options.keepCentered}
+            />
+          </>
         )}
       </MapContainer>
 
-      {/* Overlay Data (Top-left HUD) */}
       <div className="map-overlay">
         <div>LAT: {satellite?.position?.lat ?? "—"}</div>
         <div>LNG: {satellite?.position?.lng ?? "—"}</div>

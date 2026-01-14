@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 /* Components */
 import SatelliteList from "../../../components/Skyintel/Satellites/SatelliteList";
@@ -7,6 +7,9 @@ import SatelliteDetails from "../../../components/Skyintel/Satellites/SatelliteD
 import UserLocation from "../../../components/Skyintel/Satellites/UserLocation";
 import MapControls from "../../../components/Skyintel/Satellites/MapControls";
 
+/* API */
+import { getLiveSatellitePosition } from "../../../services/satelliteApi";
+
 /* Styles */
 import "../../../styles/Skyintel/layout.css";
 import "../../../styles/Skyintel/map.css";
@@ -14,21 +17,12 @@ import "../../../styles/Skyintel/tables.css";
 
 export default function Satellites() {
   /* ======================
-     Satellites (stub data)
+     Satellites (stub list)
      ====================== */
   const [satellites] = useState([
     {
       name: "ISS (ZARYA)",
       noradId: 25544,
-      position: {
-        lat: 33.96,
-        lng: 125.47,
-        alt: 419.22,
-        speed: 7.66,
-      },
-      azimuth: "Y",
-      elevation: "Y",
-      period: "Y",
     },
     {
       name: "Hubble Space Telescope",
@@ -36,9 +30,6 @@ export default function Satellites() {
     },
   ]);
 
-  /* ======================
-     Page-level State
-     ====================== */
   const [selectedSatellite, setSelectedSatellite] = useState(null);
 
   const [mapOptions, setMapOptions] = useState({
@@ -47,6 +38,33 @@ export default function Satellites() {
     keepCentered: true,
     largeView: false,
   });
+
+  /* ======================
+     Live Position Polling
+     ====================== */
+  useEffect(() => {
+    if (!selectedSatellite?.noradId) return;
+
+    let intervalId;
+
+    const fetchPosition = async () => {
+      const position = await getLiveSatellitePosition(
+        selectedSatellite.noradId
+      );
+
+      if (!position) return;
+
+      setSelectedSatellite((prev) => ({
+        ...prev,
+        position,
+      }));
+    };
+
+    fetchPosition();
+    intervalId = setInterval(fetchPosition, 5000);
+
+    return () => clearInterval(intervalId);
+  }, [selectedSatellite?.noradId]);
 
   /* ======================
      Handlers
@@ -67,25 +85,12 @@ export default function Satellites() {
      ====================== */
   return (
     <div className="skyintel-page">
-
-      {/* ===== Top Filters Bar ===== */}
       <div className="filters-bar">
         <div className="filters-left">
           <span className="filter-label">Search by →</span>
-
-          <select>
-            <option>Launched date</option>
-          </select>
-
-          <select>
-            <option>Satellites</option>
-            <option>All</option>
-          </select>
-
-          <select>
-            <option>Country</option>
-            <option>All</option>
-          </select>
+          <select><option>Launched date</option></select>
+          <select><option>Satellites</option></select>
+          <select><option>Country</option></select>
         </div>
 
         <div className="filters-right">
@@ -95,12 +100,8 @@ export default function Satellites() {
         </div>
       </div>
 
-      {/* ===== Main Content ===== */}
       <div className="main-content">
-
-        {/* ===== Left Column ===== */}
         <div className="map-section">
-
           <SatelliteMap
             satellite={selectedSatellite}
             options={mapOptions}
@@ -116,14 +117,10 @@ export default function Satellites() {
             selectedSatellite={selectedSatellite}
             onSelect={handleSatelliteSelect}
           />
-
         </div>
 
-        {/* ===== Right Column ===== */}
         <div className="info-section">
-
           <SatelliteDetails satellite={selectedSatellite} />
-
           <UserLocation />
 
           <div className="resources-panel">
@@ -135,15 +132,12 @@ export default function Satellites() {
               <li>Last Minute Stuff!</li>
             </ul>
           </div>
-
         </div>
       </div>
 
-      {/* ===== Extra Description ===== */}
       <div className="extra-description">
         <h2>Extra Description</h2>
       </div>
-
     </div>
   );
 }
