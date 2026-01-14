@@ -1,18 +1,6 @@
-/*
-  Props:
-  - satellite: {
-      name,
-      noradId,
-      azimuth,
-      elevation,
-      period
-    }
-*/
-
 export default function SatelliteDetails({ satellite }) {
   return (
     <div className="satellite-details">
-
       <h3 className="panel-title">
         {satellite?.name || "Space Station"}
       </h3>
@@ -21,33 +9,30 @@ export default function SatelliteDetails({ satellite }) {
         <tbody>
           <tr>
             <td>NORAD ID</td>
-            <td>{satellite?.noradId ?? "Y"}</td>
+            <td>{satellite?.noradId ?? "—"}</td>
           </tr>
 
           <tr>
             <td>Local Time</td>
-            <td>
-              {new Date().toLocaleTimeString()}
-            </td>
+            <td>{new Date().toLocaleTimeString()}</td>
           </tr>
 
           <tr>
             <td>Azimuth</td>
-            <td>{satellite?.azimuth ?? "Y"}</td>
+            <td>{satellite?.azimuth ?? "—"}</td>
           </tr>
 
           <tr>
             <td>Elevation</td>
-            <td>{satellite?.elevation ?? "Y"}</td>
+            <td>{satellite?.elevation ?? "—"}</td>
           </tr>
 
           <tr>
             <td>Satellite Period</td>
-            <td>{satellite?.period ?? "Y"}</td>
+            <td>{satellite?.period ?? "—"}</td>
           </tr>
         </tbody>
       </table>
-
     </div>
   );
 }

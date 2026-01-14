@@ -10,27 +10,24 @@ import MapControls from "../../../components/Skyintel/Satellites/MapControls";
 /* API */
 import { getLiveSatellitePosition } from "../../../services/satelliteApi";
 
+/* Math */
+import {
+  calculateAzimuthElevation,
+} from "../../../utils/Skyintel/orbitMath";
+
 /* Styles */
 import "../../../styles/Skyintel/layout.css";
 import "../../../styles/Skyintel/map.css";
 import "../../../styles/Skyintel/tables.css";
 
 export default function Satellites() {
-  /* ======================
-     Satellites (stub list)
-     ====================== */
   const [satellites] = useState([
-    {
-      name: "ISS (ZARYA)",
-      noradId: 25544,
-    },
-    {
-      name: "Hubble Space Telescope",
-      noradId: 20580,
-    },
+    { name: "ISS (ZARYA)", noradId: 25544 },
+    { name: "Hubble Space Telescope", noradId: 20580 },
   ]);
 
-  const [selectedSatellite, setSelectedSatellite] = useState(null);
+  const [selectedSatellites, setSelectedSatellites] = useState([]);
+  const [userLocation, setUserLocation] = useState(null);
 
   const [mapOptions, setMapOptions] = useState({
     drawOrbits: true,
@@ -40,37 +37,68 @@ export default function Satellites() {
   });
 
   /* ======================
-     Live Position Polling
+     User Location
      ====================== */
   useEffect(() => {
-    if (!selectedSatellite?.noradId) return;
+    navigator.geolocation?.getCurrentPosition((pos) => {
+      setUserLocation({
+        lat: pos.coords.latitude,
+        lng: pos.coords.longitude,
+      });
+    });
+  }, []);
+
+  /* ======================
+     Live Position + Angles
+     ====================== */
+  useEffect(() => {
+    if (selectedSatellites.length === 0) return;
 
     let intervalId;
 
-    const fetchPosition = async () => {
-      const position = await getLiveSatellitePosition(
-        selectedSatellite.noradId
+    const updateSatellites = async () => {
+      const updated = await Promise.all(
+        selectedSatellites.map(async (sat) => {
+          const position = await getLiveSatellitePosition(sat.noradId);
+          if (!position || !userLocation) return sat;
+
+          const { azimuth, elevation } =
+            calculateAzimuthElevation(
+              position.lat,
+              position.lng,
+              position.alt,
+              userLocation.lat,
+              userLocation.lng
+            );
+
+          return {
+            ...sat,
+            position,
+            azimuth,
+            elevation,
+            period:
+              sat.noradId === 25544
+                ? "92.68 min"
+                : "—",
+          };
+        })
       );
 
-      if (!position) return;
-
-      setSelectedSatellite((prev) => ({
-        ...prev,
-        position,
-      }));
+      setSelectedSatellites(updated);
     };
 
-    fetchPosition();
-    intervalId = setInterval(fetchPosition, 5000);
+    updateSatellites();
+    intervalId = setInterval(updateSatellites, 5000);
 
     return () => clearInterval(intervalId);
-  }, [selectedSatellite?.noradId]);
+  }, [selectedSatellites.map((s) => s.noradId).join(","), userLocation]);
 
-  /* ======================
-     Handlers
-     ====================== */
-  const handleSatelliteSelect = (satellite) => {
-    setSelectedSatellite(satellite);
+  const handleSatelliteToggle = (satellite) => {
+    setSelectedSatellites((prev) =>
+      prev.some((s) => s.noradId === satellite.noradId)
+        ? prev.filter((s) => s.noradId !== satellite.noradId)
+        : [...prev, satellite]
+    );
   };
 
   const handleMapOptionChange = (option) => {
@@ -80,30 +108,16 @@ export default function Satellites() {
     }));
   };
 
-  /* ======================
-     Render
-     ====================== */
+  const focusSatellite =
+    selectedSatellites[selectedSatellites.length - 1] || null;
+
   return (
     <div className="skyintel-page">
-      <div className="filters-bar">
-        <div className="filters-left">
-          <span className="filter-label">Search by →</span>
-          <select><option>Launched date</option></select>
-          <select><option>Satellites</option></select>
-          <select><option>Country</option></select>
-        </div>
-
-        <div className="filters-right">
-          <span className="toggle-label">Night</span>
-          <span className="toggle-label active">SATELLITES</span>
-          <span className="toggle-label">Light</span>
-        </div>
-      </div>
-
       <div className="main-content">
         <div className="map-section">
           <SatelliteMap
-            satellite={selectedSatellite}
+            satellites={selectedSatellites}
+            focusSatellite={focusSatellite}
             options={mapOptions}
           />
 
@@ -114,29 +128,15 @@ export default function Satellites() {
 
           <SatelliteList
             satellites={satellites}
-            selectedSatellite={selectedSatellite}
-            onSelect={handleSatelliteSelect}
+            selectedSatellites={selectedSatellites}
+            onToggle={handleSatelliteToggle}
           />
         </div>
 
         <div className="info-section">
-          <SatelliteDetails satellite={selectedSatellite} />
+          <SatelliteDetails satellite={focusSatellite} />
           <UserLocation />
-
-          <div className="resources-panel">
-            <h3>Resources</h3>
-            <ul>
-              <li>IP2Location IP Geolocation</li>
-              <li>Find your Magnetic Declination</li>
-              <li>Space Station HD Live!</li>
-              <li>Last Minute Stuff!</li>
-            </ul>
-          </div>
         </div>
-      </div>
-
-      <div className="extra-description">
-        <h2>Extra Description</h2>
       </div>
     </div>
   );

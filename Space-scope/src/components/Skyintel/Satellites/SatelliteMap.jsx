@@ -3,12 +3,16 @@ import {
   TileLayer,
   Marker,
   Circle,
+  Polyline,
   useMap,
 } from "react-leaflet";
 import { useEffect } from "react";
 import "leaflet/dist/leaflet.css";
 
-import { calculateFootprintRadius } from "../../../utils/Skyintel/orbitMath";
+import {
+  calculateFootprintRadius,
+  generateOrbitTrack,
+} from "../../../utils/Skyintel/orbitMath";
 
 function AutoCenter({ position, enabled }) {
   const map = useMap();
@@ -22,23 +26,22 @@ function AutoCenter({ position, enabled }) {
   return null;
 }
 
-export default function SatelliteMap({ satellite, options }) {
+export default function SatelliteMap({
+  satellites = [],
+  focusSatellite,
+  options,
+}) {
   const defaultCenter = [20, 0];
   const defaultZoom = 2;
 
-  const satellitePosition = satellite?.position
-    ? [satellite.position.lat, satellite.position.lng]
+  const focusPosition = focusSatellite?.position
+    ? [focusSatellite.position.lat, focusSatellite.position.lng]
     : null;
-
-  const footprintRadius =
-    options.drawFootprint && satellite?.position?.alt
-      ? calculateFootprintRadius(satellite.position.alt)
-      : 0;
 
   return (
     <div className={`satellite-map ${options.largeView ? "large" : ""}`}>
       <MapContainer
-        center={satellitePosition || defaultCenter}
+        center={focusPosition || defaultCenter}
         zoom={defaultZoom}
         scrollWheelZoom
         className="leaflet-map"
@@ -48,31 +51,73 @@ export default function SatelliteMap({ satellite, options }) {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        {satellitePosition && (
-          <>
-            <Marker position={satellitePosition} />
+        {satellites.map((sat) => {
+          if (!sat.position) return null;
 
-            {options.drawFootprint && footprintRadius > 0 && (
-              <Circle
-                center={satellitePosition}
-                radius={footprintRadius}
-                className="footprint-circle"
-              />
-            )}
+          const position = [
+            sat.position.lat,
+            sat.position.lng,
+          ];
 
-            <AutoCenter
-              position={satellitePosition}
-              enabled={options.keepCentered}
-            />
-          </>
+          const footprintRadius =
+            options.drawFootprint && sat.position.alt
+              ? calculateFootprintRadius(sat.position.alt)
+              : 0;
+
+          const orbitTrack =
+            options.drawOrbits
+              ? generateOrbitTrack(
+                  sat.position.lat,
+                  sat.position.lng
+                )
+              : [];
+
+          return (
+            <div key={sat.noradId}>
+              {/* Satellite Marker */}
+              <Marker position={position} />
+
+              {/* Footprint */}
+              {options.drawFootprint && footprintRadius > 0 && (
+                <Circle
+                  center={position}
+                  radius={footprintRadius}
+                  className="footprint-circle"
+                />
+              )}
+
+              {/* Orbit Ground Track */}
+              {options.drawOrbits && orbitTrack.length > 0 && (
+                <Polyline
+                  positions={orbitTrack}
+                  className="orbit-line"
+                />
+              )}
+            </div>
+          );
+        })}
+
+        {focusPosition && (
+          <AutoCenter
+            position={focusPosition}
+            enabled={options.keepCentered}
+          />
         )}
       </MapContainer>
 
       <div className="map-overlay">
-        <div>LAT: {satellite?.position?.lat ?? "—"}</div>
-        <div>LNG: {satellite?.position?.lng ?? "—"}</div>
-        <div>ALT (km): {satellite?.position?.alt ?? "—"}</div>
-        <div>SPD (km/s): {satellite?.position?.speed ?? "—"}</div>
+        <div>
+          LAT: {focusSatellite?.position?.lat ?? "—"}
+        </div>
+        <div>
+          LNG: {focusSatellite?.position?.lng ?? "—"}
+        </div>
+        <div>
+          ALT (km): {focusSatellite?.position?.alt ?? "—"}
+        </div>
+        <div>
+          SPD (km/s): {focusSatellite?.position?.speed ?? "—"}
+        </div>
       </div>
     </div>
   );
