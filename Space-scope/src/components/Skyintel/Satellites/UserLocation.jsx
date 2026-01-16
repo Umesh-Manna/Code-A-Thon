@@ -2,33 +2,58 @@ import { useEffect, useState } from "react";
 
 export default function UserLocation() {
   const [location, setLocation] = useState({
-    latitude: null,
-    longitude: null,
+    ip: "—",
+    latitude: "—",
+    longitude: "—",
+    magneticDeclination: "—",
     timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-    ip: "Y",
-    magneticDeclination: "Y",
   });
 
+  /* ===============================
+     Fetch Public IP
+     =============================== */
+  useEffect(() => {
+    fetch("https://api.ipify.org?format=json")
+      .then((res) => res.json())
+      .then((data) => {
+        setLocation((prev) => ({
+          ...prev,
+          ip: data.ip,
+        }));
+      })
+      .catch(() => {});
+  }, []);
+
+  /* ===============================
+     Geolocation (Live)
+     =============================== */
   useEffect(() => {
     if (!navigator.geolocation) return;
 
-    navigator.geolocation.getCurrentPosition(
+    const watchId = navigator.geolocation.watchPosition(
       (pos) => {
+        const lat = pos.coords.latitude;
+        const lng = pos.coords.longitude;
+
         setLocation((prev) => ({
           ...prev,
-          latitude: pos.coords.latitude.toFixed(4),
-          longitude: pos.coords.longitude.toFixed(4),
+          latitude: lat.toFixed(5),
+          longitude: lng.toFixed(5),
+          magneticDeclination: estimateDeclination(lat, lng),
         }));
       },
-      () => {
-        /* Permission denied or unavailable */
+      () => {},
+      {
+        enableHighAccuracy: true,
+        maximumAge: 1000,
       }
     );
+
+    return () => navigator.geolocation.clearWatch(watchId);
   }, []);
 
   return (
     <div className="user-location">
-
       <h3 className="panel-title">Your current location</h3>
 
       <table className="details-table">
@@ -40,12 +65,12 @@ export default function UserLocation() {
 
           <tr>
             <td>Latitude</td>
-            <td>{location.latitude ?? "Y"}</td>
+            <td>{location.latitude}</td>
           </tr>
 
           <tr>
             <td>Longitude</td>
-            <td>{location.longitude ?? "Y"}</td>
+            <td>{location.longitude}</td>
           </tr>
 
           <tr>
@@ -59,7 +84,15 @@ export default function UserLocation() {
           </tr>
         </tbody>
       </table>
-
     </div>
   );
+}
+
+/* ===============================
+   Magnetic Declination (Approx)
+   =============================== */
+function estimateDeclination(lat, lng) {
+  // Very lightweight approximation (degrees)
+  const decl = (lng / 180) * 20;
+  return `${decl.toFixed(1)}°`;
 }
