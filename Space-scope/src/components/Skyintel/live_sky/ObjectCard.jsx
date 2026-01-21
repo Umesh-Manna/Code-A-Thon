@@ -1,32 +1,39 @@
-const ObjectCard = ({ object }) => {
-  return (
-    <div className="group relative rounded-xl overflow-hidden bg-slate-900 border border-slate-700 hover:border-cyan-400 transition">
+import { useNavigate } from "react-router-dom";
 
-      <div
-        className="h-40 bg-cover bg-center"
-        style={{ backgroundImage: `url(${object.image})` }}
-      >
-        <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition" />
-        <span className="absolute bottom-2 right-2 text-xs text-slate-200">
-          Click to open
-        </span>
+const ObjectCard = ({ object }) => {
+  const navigate = useNavigate();
+
+  const handleOpen = () => {
+    if (object.id === "c50") {
+      navigate("/skyintel/live_sky/ObjectView");
+    }
+  };
+
+  return (
+    <div className="object-card">
+
+      <div className="object-card-image">
+        Image Placeholder
       </div>
 
-      <div className="p-4 space-y-2">
-        <div>
-          <h3 className="text-sm text-slate-400">{object.code}</h3>
-          <h2 className="text-lg font-semibold">{object.name}</h2>
+      <div className="object-card-content">
+        <div className="object-code">{object.code}</div>
+        <div className="object-name">{object.name}</div>
+
+        <div className="object-type">
+          {object.type}
         </div>
 
-        <span className="inline-block text-xs px-2 py-1 rounded bg-slate-700">
-          {object.type}
-        </span>
-
-        <div className="flex gap-2 pt-3">
-          <button className="flex-1 text-sm py-1.5 rounded bg-white text-black hover:bg-slate-200">
+        <div className="object-card-actions">
+          <button
+            className="btn-open"
+            onClick={handleOpen}
+            disabled={object.id !== "c50"}
+          >
             Open
           </button>
-          <button className="flex-1 text-sm py-1.5 rounded bg-green-500 hover:bg-green-600">
+
+          <button className="btn-notify">
             Notify Me
           </button>
         </div>

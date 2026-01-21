@@ -8,8 +8,8 @@ import Interactive_maps from './pages/Skywatch/Interactive_maps'
 import Our_environment from './pages/Skywatch/Our_environment'
 
 import Satellites from './pages/Skyintel/Satellites/Satellites'
-import Live_sky from './pages/Skyintel/live_sky/Live_sky'
-
+import Live_sky from './pages/Skyintel/live_sky/Live_sky.jsx'
+import ObjectView from './pages/Skyintel/live_sky/ObjectView.jsx'
 
 
 function App() {
@@ -32,6 +32,11 @@ function App() {
           path="/skyintel/live_sky"
           element={<Live_sky/>}
         />
+        <Route
+          path="/skyintel/live_sky/ObjectView"
+          element={<ObjectView/>}
+        />
+
         {/* <Route
           path="/solar-activity"
           element={<Placeholder title="Real-time Solar Activity" />}

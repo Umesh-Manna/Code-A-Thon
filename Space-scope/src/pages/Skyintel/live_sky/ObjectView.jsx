@@ -1,32 +1,18 @@
-const ObjectCard = ({ object }) => {
+const ObjectView = () => {
   return (
-    <div className="object-card">
-
-      {/* Image placeholder */}
-      <div className="object-card-image">
-        Image Placeholder
-      </div>
-
-      <div className="object-card-content">
-        <div className="object-code">{object.code}</div>
-        <div className="object-name">{object.name}</div>
-
-        <div className="object-type">
-          {object.type}
-        </div>
-
-        <div className="object-card-actions">
-          <button className="btn-open">
-            Open
-          </button>
-          <button className="btn-notify">
-            Notify Me
-          </button>
-        </div>
-      </div>
-
+    <div style={{ width: "100vw", height: "100vh", background: "#000" }}>
+      <iframe
+        title="Stellarium Web"
+        src="https://stellarium-web.org/"
+        style={{
+          width: "100%",
+          height: "100%",
+          border: "none"
+        }}
+        allowFullScreen
+      />
     </div>
   );
 };
 
-export default ObjectCard;
+export default ObjectView;
