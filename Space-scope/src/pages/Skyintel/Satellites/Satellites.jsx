@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
 
+/* Sidebar */
+import Sidebar from "../../../components/Sidebar"; 
+// adjust path if your Sidebar folder differs
+
+/* Navbar */
+import Navbar from "../../../components/Skyintel/Navbar/Navbar";
+
 /* Components */
 import SatelliteList from "../../../components/Skyintel/Satellites/SatelliteList";
 import SatelliteMap from "../../../components/Skyintel/Satellites/SatelliteMap";
@@ -94,9 +101,6 @@ export default function Satellites() {
     return () => clearInterval(intervalId);
   }, [userLocation, selectedSatellites.map(s => s.noradId).join(",")]);
 
-  /* ======================
-     Handlers
-     ====================== */
   const handleSatelliteToggle = (satellite) => {
     setSelectedSatellites((prev) =>
       prev.some((s) => s.noradId === satellite.noradId)
@@ -116,32 +120,42 @@ export default function Satellites() {
     selectedSatellites[selectedSatellites.length - 1] || null;
 
   return (
-    <div className="skyintel-page">
-      <div className="main-content">
-        <div className="map-section">
-          <SatelliteMap
-            satellites={selectedSatellites}
-            focusSatellite={focusSatellite}
-            options={mapOptions}
-          />
+    <div className="flex">
+      {/* ===== Sidebar ===== */}
+      <Sidebar />
 
-          <MapControls
-            options={mapOptions}
-            onToggle={handleMapOptionChange}
-          />
+      {/* ===== Main Content ===== */}
+      <main className="flex-1 skyintel-page">
+        {/* Top Navbar */}
+        <Navbar />
 
-          <SatelliteList
-            satellites={satellites}
-            selectedSatellites={selectedSatellites}
-            onToggle={handleSatelliteToggle}
-          />
+        {/* Existing Page Content */}
+        <div className="main-content">
+          <div className="map-section">
+            <SatelliteMap
+              satellites={selectedSatellites}
+              focusSatellite={focusSatellite}
+              options={mapOptions}
+            />
+
+            <MapControls
+              options={mapOptions}
+              onToggle={handleMapOptionChange}
+            />
+
+            <SatelliteList
+              satellites={satellites}
+              selectedSatellites={selectedSatellites}
+              onToggle={handleSatelliteToggle}
+            />
+          </div>
+
+          <div className="info-section">
+            <SatelliteDetails satellite={focusSatellite} />
+            <UserLocation />
+          </div>
         </div>
-
-        <div className="info-section">
-          <SatelliteDetails satellite={focusSatellite} />
-          <UserLocation />
-        </div>
-      </div>
+      </main>
     </div>
   );
 }

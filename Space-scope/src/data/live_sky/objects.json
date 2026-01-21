@@ -1,0 +1,65 @@
+[
+  {
+    "id": "c50",
+    "code": "C 50",
+    "name": "NGC 2244",
+    "type": "Open Cluster",
+    "image": ""
+  },
+  {
+    "id": "c49",
+    "code": "C 49",
+    "name": "Rosette Nebula",
+    "type": "Bright Nebula",
+    "image": ""
+  },
+  {
+    "id": "c46",
+    "code": "C 46",
+    "name": "Hubble's Variable Nebula",
+    "type": "Bright Nebula",
+    "image": ""
+  },
+  {
+    "id": "m78",
+    "code": "M 78",
+    "name": "NGC 2068",
+    "type": "Diffuse Nebula",
+    "image": ""
+  },
+  {
+    "id": "alp-ori",
+    "code": "alp-ori",
+    "name": "Betelgeuse",
+    "type": "Red Supergiant Star",
+    "image": ""
+  },
+  {
+    "id": "sh2-267",
+    "code": "Sh 2-267",
+    "name": "LBN 875",
+    "type": "Emission Nebula",
+    "image": ""
+  },
+  {
+    "id": "zet-ori",
+    "code": "zet-ori",
+    "name": "Alnitak",
+    "type": "Binary Blue Supergiants",
+    "image": ""
+  },
+  {
+    "id": "ic343",
+    "code": "IC 343",
+    "name": "Horsehead Region",
+    "type": "Emission Nebula",
+    "image": ""
+  },
+  {
+    "id": "gam-gam",
+    "code": "gam-gam",
+    "name": "Alhena",
+    "type": "Blue-White Luminous Star",
+    "image": ""
+  }
+]
