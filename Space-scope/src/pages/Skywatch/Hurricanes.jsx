@@ -76,7 +76,7 @@ const Hurricanes = () => {
 
             {/* IMAGE PLACEHOLDER */}
             <div className={styles.infoImagePlaceholder}>
-              <span>Image Placeholder</span>
+              <img src={para_img} alt="" />
             </div>
           </section>
 
@@ -90,7 +90,9 @@ const Hurricanes = () => {
             <div className={styles.cardGrid}>
               {/* CARD 1 */}
               <div className={styles.cardItem}>
-                <div className={styles.cardImagePlaceholder}></div>
+                <div className={styles.cardImagePlaceholder}>
+                  <img src={card1} alt="" />
+                </div>
                 <h3>Live Hurricane Tracker</h3>
                 <p>
                   See current tropical activity and interact with NOAA satellite
@@ -101,7 +103,9 @@ const Hurricanes = () => {
 
               {/* CARD 2 */}
               <div className={styles.cardItem}>
-                <div className={styles.cardImagePlaceholder}></div>
+                <div className={styles.cardImagePlaceholder}>
+                  <img src={card2} alt="" />
+                </div>
                 <h3>Atlantic Hurricanes</h3>
                 <p>
                   View paths of previous hurricanes and tropical storms from this
@@ -112,7 +116,9 @@ const Hurricanes = () => {
 
               {/* CARD 3 */}
               <div className={styles.cardItem}>
-                <div className={styles.cardImagePlaceholder}></div>
+                <div className={styles.cardImagePlaceholder}>
+                  <img src={card3} alt="" />
+                </div>
                 <h3>Pacific Hurricanes</h3>
                 <p>
                   Track Pacific hurricanes and tropical storms using satellite
