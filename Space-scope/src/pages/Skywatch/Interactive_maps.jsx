@@ -1,28 +1,25 @@
 import { useState } from 'react';
-// import styles from '../../components/Interactive.module.css';
 import styles from '../../components/Interactive_maps.module.css';
 import Sidebar from '../../components/Sidebar';
 import Skywatch_nav from '../../components/Skywatch_nav';
 
-//importing images
+// Images
 import hero_banner from '../../assets/SKY_WATCH/Maps/hero_banner.webp';
-import r1c1 from '../../assets/SKY_WATCH/Maps/r1c1.webp'
-import r1c2 from '../../assets/SKY_WATCH/Maps/r1c2.webp'
-import r1c3 from '../../assets/SKY_WATCH/Maps/r1c3.webp'
-import r2c1 from '../../assets/SKY_WATCH/Maps/r2c1.webp'
-import r2c2 from '../../assets/SKY_WATCH/Maps/r2c2.webp'
-import r2c3 from '../../assets/SKY_WATCH/Maps/r2c3.webp'
-import r3c1 from '../../assets/SKY_WATCH/Maps/r3c1.webp'
-import r3c2 from '../../assets/SKY_WATCH/Maps/r3c2.webp'
-
+import r1c1 from '../../assets/SKY_WATCH/Maps/r1c1.webp';
+import r1c2 from '../../assets/SKY_WATCH/Maps/r1c2.webp';
+import r1c3 from '../../assets/SKY_WATCH/Maps/r1c3.webp';
+import r2c1 from '../../assets/SKY_WATCH/Maps/r2c1.webp';
+import r2c2 from '../../assets/SKY_WATCH/Maps/r2c2.webp';
+import r2c3 from '../../assets/SKY_WATCH/Maps/r2c3.webp';
+import r3c1 from '../../assets/SKY_WATCH/Maps/r3c1.webp';
+import r3c2 from '../../assets/SKY_WATCH/Maps/r3c2.webp';
 
 const Interactive_maps = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-
     <div className={styles.container}>
-      {/* SIDEBAR (UNCHANGED) */}
+      {/* SIDEBAR */}
       <aside className={styles.sidebarArea}>
         <div
           className={`${styles.sidebarContent} ${
@@ -36,146 +33,66 @@ const Interactive_maps = () => {
         </div>
       </aside>
 
-      {/* NAVBAR (UNCHANGED) */}
+      {/* NAVBAR */}
       <nav className={styles.navbarArea}>
         <Skywatch_nav />
       </nav>
 
-      {/* ================= SCROLLABLE MAIN CONTENT ================= */}
-        <main className={styles.scrollArea}>
-          {/* HERO (NOW SCROLLS) */}
+      {/* MAIN CONTENT */}
+      <main className={styles.scrollArea}>
+        <div className={styles.sectionWrapper}>
+          {/* HERO */}
+          <section
+            className={styles.heroSection}
+            style={{ backgroundImage: `url(${hero_banner})` }}
+          >
+            <div className={styles.heroOverlay}></div>
+            <h1 className={styles.heroTitle}>Interactive Maps</h1>
+          </section>
 
-          <div className={styles.sectionWrapper}>
-            <section className={styles.heroSection}>
-              <div className={styles.heroOverlay}></div>
-              <h1 className={styles.heroTitle}>Interactive Maps</h1>
-            </section>
-    
-            {/* INFO SECTION */}
-            <section className={styles.infoGrid}>
-              <div className={styles.infoText}>
-                <p>
-                  NESDIS collects vast amounts of data from satellites to support NOAA's mission to understand and predict changes in climate, weather, oceans, and coasts, and then share that knowledge and information with others. Applications that utilize Geographic Information Systems (GIS) such as The World in Real-Time, Western Hemisphere, and Global Archive below present data as imagery on models of the earth. Zoom to increase the resolution of the imagery, pan to visit specific places, and click through the menus for further information.
-                </p>
-    
-                <p>
-                  Scroll back and forth through time using the image sequences found in Visible and Infrared Imagery, Colorized Infrared and Water Vapor Imagery. These simple interfaces allow a focused view of weather development over the continental United States.
-                </p>
-    
-              </div>
-
-              <div>
-                
-              </div>
-            </section>
-    
-            {/* DIVIDER */}
-            <div className={styles.sectionDivider}></div>
-    
-            {/* APPLICATIONS */}
-            <section>
-              <h2 className={styles.appsTitle}>Maps</h2>
-    
-              <div className={styles.cardGrid}>
-                {/* CARD 1 */}
-                <div className={styles.cardItem}>
-                  <div className={styles.cardImagePlaceholder}>
-                    <img src={r1c1} alt="Pacific Hurricanes" />
-                  </div>
-                  <h3>The World in Real-Time</h3>
-                  <p>
-                    Select data from geostationary and polar-orbiting satellites, always up to the minute.
-                  </p>
-                  <span className={styles.cardLink}>Explore interactively →</span>
-                </div>
-    
-                {/* CARD 2 */}
-                <div className={styles.cardItem}>
-                  <div className={styles.cardImagePlaceholder}>
-                    <img src={r1c2} alt="Pacific Hurricanes" />
-                  </div>
-                  <h3>Western Hemisphere</h3>
-                  <p>
-                    GOES GeoColor Imagery of the Western Hemisphere and Pacific Ocean collected over the last 24-hours.
-                  </p>
-                  <span className={styles.cardLink}>Animate through time →</span>
-                </div>
-    
-                {/* CARD 3 */}
-                <div className={styles.cardItem}>
-                  <div className={styles.cardImagePlaceholder}>
-                    <img src={r1c3} alt="Pacific Hurricanes" />
-                  </div>
-                  <h3>Global Archive</h3>
-                  <p>
-                    View latest daylight imagery and multiyear archive over the whole Earth as captured by the JPSS polar satellites.
-                  </p>
-                  <span className={styles.cardLink}>View Earth's atmosphere →</span>
-                </div>
-
-                {/* CARD 4 */}
-                <div className={styles.cardItem}>
-                  <div className={styles.cardImagePlaceholder}>
-                    <img src={r2c1} alt="Pacific Hurricanes" />
-                  </div>
-                  <h3>Visible and Infrared Imagery</h3>
-                  <p>
-                    Continental United States from GOES East and West, combining bands 1 and 13 for day/night continuity, over "Blue Marble" data.
-                  </p>
-                  <span className={styles.cardLink}>Watch storms progress →</span>
-                </div>
-
-                {/* CARD 5 */}
-                <div className={styles.cardItem}>
-                  <div className={styles.cardImagePlaceholder}>
-                    <img src={r2c2} alt="Pacific Hurricanes" />
-                  </div>
-                  <h3>Colorized Infrared</h3>
-                  <p>
-                    Applying color enhancements to GOES band 13 imagery highlights progressively colder cloud tops, indicating severity of storm development.
-                  </p>
-                  <span className={styles.cardLink}>Find highest cloud tops →</span>
-                </div>
-
-                {/* CARD 6 */}
-                <div className={styles.cardItem}>
-                  <div className={styles.cardImagePlaceholder}>
-                    <img src={r2c3} alt="Pacific Hurricanes" />
-                  </div>
-                  <h3>Water Vapor Imagery</h3>
-                  <p>
-                    GOES water vapor band 10 senses moisture content in the atmosphere, a vital component in forecasting rainfall and flooding.
-                  </p>
-                  <span className={styles.cardLink}>Track rain intensity →</span>
-                </div>
-
-                {/* CARD 7 */}
-                <div className={styles.cardItem}>
-                  <div className={styles.cardImagePlaceholder}>
-                    <img src={r3c1} alt="Pacific Hurricanes" />
-                  </div>
-                  <h3>Regions in Real-Time</h3>
-                  <p>
-                    The GOES East and GOES West satellites provide up-to-the-minute views of the Western Hemisphere. These regional maps, provided by NESDIS' Center for Satellite Applications and Research (STAR), contain technical information from each satellite channel for scientists.
-                  </p>
-                  <span className={styles.cardLink}>Explore imagery by region →</span>
-                </div>
-
-                {/* CARD 8 */}
-                <div className={styles.cardItem}>
-                  <div className={styles.cardImagePlaceholder}>
-                    <img src={r3c2} alt="Pacific Hurricanes" />
-                  </div>
-                  <h3>Atmospheric Aerosols</h3>
-                  <p>
-                    There are many different types of particles in the air that NOAA satellites help us study. This map, provided by NESDIS' Center for Satellite Applications and Research (STAR), contains technical information about these particles for scientists.
-                  </p>
-                  <span className={styles.cardLink}>See aerosol layers →</span>
-                </div>
-              </div>
-            </section>
+          {/* INFO */}
+          <section className={styles.infoGrid}>
+            <div className={styles.infoText}>
+              <p>
+                NESDIS collects vast amounts of satellite data to support NOAA’s
+                mission to understand and predict changes in climate, weather,
+                oceans, and coasts.
+              </p>
+              <p>
+                These interactive GIS-based applications allow users to explore,
+                zoom, pan, and analyze Earth systems in near real time.
+              </p>
             </div>
-        </main>
+          </section>
+
+          <div className={styles.sectionDivider}></div>
+
+          {/* MAPS */}
+          <h2 className={styles.appsTitle}>Maps</h2>
+
+          <div className={styles.cardGrid}>
+            {[
+              [r1c1, 'The World in Real-Time', 'Select up-to-the-minute satellite data.', 'Explore interactively →'],
+              [r1c2, 'Western Hemisphere', 'GOES GeoColor imagery from the last 24 hours.', 'Animate through time →'],
+              [r1c3, 'Global Archive', 'Daylight imagery and multiyear global archives.', 'View Earth’s atmosphere →'],
+              [r2c1, 'Visible & Infrared Imagery', 'Day/night continuity over the U.S.', 'Watch storms progress →'],
+              [r2c2, 'Colorized Infrared', 'Enhanced imagery highlighting cold cloud tops.', 'Find highest cloud tops →'],
+              [r2c3, 'Water Vapor Imagery', 'Atmospheric moisture analysis for forecasting.', 'Track rain intensity →'],
+              [r3c1, 'Regions in Real-Time', 'Regional satellite views with scientific data.', 'Explore imagery by region →'],
+              [r3c2, 'Atmospheric Aerosols', 'Study airborne particles and layers.', 'See aerosol layers →'],
+            ].map(([img, title, desc, link], idx) => (
+              <div key={idx} className={styles.cardItem}>
+                <div className={styles.cardImageWrapper}>
+                  <img src={img} alt={title} />
+                </div>
+                <h3>{title}</h3>
+                <p>{desc}</p>
+                <span className={styles.cardLink}>{link}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </main>
     </div>
   );
 };

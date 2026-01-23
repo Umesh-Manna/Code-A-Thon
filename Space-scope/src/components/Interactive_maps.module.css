@@ -5,16 +5,15 @@
   height: 100vh;
   width: 100vw;
   grid-template-columns: 80px 1fr;
-  grid-template-rows: auto 1fr; /* hero removed from fixed grid */
+  grid-template-rows: auto 1fr;
   background-color: #0b0d17;
   overflow: hidden;
-  position: relative;
 }
 
 /* ================= SIDEBAR ================= */
 
 .sidebarArea {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
@@ -22,13 +21,10 @@
 }
 
 .sidebarContent {
-  position: relative;
-  height: 100%;
   width: 60px;
+  height: 100%;
   background: linear-gradient(to bottom, #1e293b, #020617);
   transition: width 0.3s ease;
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
-  z-index: 1001;
 }
 
 .sidebarExpanded {
@@ -40,7 +36,6 @@
 .navbarArea {
   grid-column: 2;
   grid-row: 1;
-  position: relative;
   z-index: 10;
 }
 
@@ -51,47 +46,33 @@
   grid-row: 2;
   overflow-y: auto;
   padding: 20px;
-  position: relative;
-  z-index: 5;
 }
 
-/* ======================================================
-   SECTION WRAPPER (BLUE BORDER – NEW)
-   Wrap major sections with this class in JSX
-====================================================== */
+/* ================= SECTION WRAPPER (BLUE BORDER) ================= */
 
 .sectionWrapper {
-  border: 2px solid rgba(56, 189, 248, 0.9); /* bright blue */
+  border: 2px solid rgba(56, 189, 248, 0.9);
   border-radius: 22px;
   padding: 22px;
-  margin-bottom: 40px;
-
   background: linear-gradient(
     to bottom,
     rgba(15, 23, 42, 0.9),
     rgba(15, 23, 42, 0.75)
   );
-
   box-shadow:
     0 0 0 1px rgba(56, 189, 248, 0.25),
     0 0 25px rgba(56, 189, 248, 0.15);
 }
 
-/* ================= HERO (NOW SCROLLS) ================= */
+/* ================= HERO ================= */
 
 .heroSection {
-  margin-bottom: 20px;
   height: 260px;
   border-radius: 18px;
-  position: relative;
-  overflow: hidden;
-
-  /* 🔽 IMAGE PLACEHOLDER */
-  background-image: url("../assets/SKY_WATCH/Maps/hero_banner.webp");
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
-
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: flex-end;
   padding: 36px;
@@ -106,7 +87,6 @@
     rgba(2, 6, 23, 0.35),
     rgba(2, 6, 23, 0.15)
   );
-  z-index: 1;
 }
 
 .heroTitle {
@@ -115,39 +95,21 @@
   font-size: 3.2rem;
   font-weight: 800;
   color: white;
-  letter-spacing: 0.5px;
 }
 
-/* ================= INFO SECTION ================= */
+/* ================= INFO ================= */
 
 .infoGrid {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
+  grid-template-columns: 1fr;
   gap: 24px;
-  background: #2a2f45;
-  border-radius: 18px;
-  padding: 28px;
+  margin-top: 24px;
 }
 
 .infoText p {
   color: #d1d5db;
   font-size: 0.95rem;
   line-height: 1.7;
-  margin-bottom: 14px;
-}
-
-.infoImagePlaceholder {
-  border-radius: 16px;
-  background: linear-gradient(
-    135deg,
-    #374151,
-    #1f2937
-  );
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #9ca3af;
-  font-size: 0.9rem;
 }
 
 /* ================= DIVIDER ================= */
@@ -184,16 +146,23 @@
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.cardImagePlaceholder {
-  height: 150px;
+/* 🔑 IMAGE CONTAINMENT (CRITICAL FIX) */
+
+.cardImageWrapper {
+  height: 160px;
   border-radius: 14px;
-  background: linear-gradient(
-    135deg,
-    #374151,
-    #1f2937
-  );
+  overflow: hidden;
   margin-bottom: 14px;
 }
+
+.cardImageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ================= CARD TEXT ================= */
 
 .cardItem h3 {
   color: #60a5fa;
@@ -209,6 +178,8 @@
   flex: 1;
 }
 
+/* ================= LINK ================= */
+
 .cardLink {
   color: white;
   font-size: 0.75rem;
@@ -218,19 +189,4 @@
   border-radius: 6px;
   width: fit-content;
   font-weight: 500;
-}
-
-/* ================= SCROLLBAR ================= */
-
-.scrollArea::-webkit-scrollbar {
-  width: 8px;
-}
-
-.scrollArea::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.18);
-  border-radius: 4px;
-}
-
-.scrollArea::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.28);
 }
