@@ -87,7 +87,7 @@
   overflow: hidden;
 
   /* 🔽 IMAGE PLACEHOLDER */
-  background-image: url("YOUR_IMAGE_HERE.jpg");
+  background-image: url("../assets/SKY_WATCH/Maps/hero_banner.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

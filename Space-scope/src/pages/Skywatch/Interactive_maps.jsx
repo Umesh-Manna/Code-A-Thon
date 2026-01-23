@@ -4,6 +4,18 @@ import styles from '../../components/Interactive_maps.module.css';
 import Sidebar from '../../components/Sidebar';
 import Skywatch_nav from '../../components/Skywatch_nav';
 
+//importing images
+import hero_banner from '../../assets/SKY_WATCH/Maps/hero_banner.webp';
+import r1c1 from '../../assets/SKY_WATCH/Maps/r1c1.webp'
+import r1c2 from '../../assets/SKY_WATCH/Maps/r1c2.webp'
+import r1c3 from '../../assets/SKY_WATCH/Maps/r1c3.webp'
+import r2c1 from '../../assets/SKY_WATCH/Maps/r2c1.webp'
+import r2c2 from '../../assets/SKY_WATCH/Maps/r2c2.webp'
+import r2c3 from '../../assets/SKY_WATCH/Maps/r2c3.webp'
+import r3c1 from '../../assets/SKY_WATCH/Maps/r3c1.webp'
+import r3c2 from '../../assets/SKY_WATCH/Maps/r3c2.webp'
+
+
 const Interactive_maps = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -51,7 +63,10 @@ const Interactive_maps = () => {
                 </p>
     
               </div>
-    
+
+              <div>
+                
+              </div>
             </section>
     
             {/* DIVIDER */}
@@ -64,7 +79,9 @@ const Interactive_maps = () => {
               <div className={styles.cardGrid}>
                 {/* CARD 1 */}
                 <div className={styles.cardItem}>
-                  <div className={styles.cardImagePlaceholder}></div>
+                  <div className={styles.cardImagePlaceholder}>
+                    <img src={r1c1} alt="Pacific Hurricanes" />
+                  </div>
                   <h3>The World in Real-Time</h3>
                   <p>
                     Select data from geostationary and polar-orbiting satellites, always up to the minute.
@@ -74,7 +91,9 @@ const Interactive_maps = () => {
     
                 {/* CARD 2 */}
                 <div className={styles.cardItem}>
-                  <div className={styles.cardImagePlaceholder}></div>
+                  <div className={styles.cardImagePlaceholder}>
+                    <img src={r1c2} alt="Pacific Hurricanes" />
+                  </div>
                   <h3>Western Hemisphere</h3>
                   <p>
                     GOES GeoColor Imagery of the Western Hemisphere and Pacific Ocean collected over the last 24-hours.
@@ -84,7 +103,9 @@ const Interactive_maps = () => {
     
                 {/* CARD 3 */}
                 <div className={styles.cardItem}>
-                  <div className={styles.cardImagePlaceholder}></div>
+                  <div className={styles.cardImagePlaceholder}>
+                    <img src={r1c3} alt="Pacific Hurricanes" />
+                  </div>
                   <h3>Global Archive</h3>
                   <p>
                     View latest daylight imagery and multiyear archive over the whole Earth as captured by the JPSS polar satellites.
@@ -94,7 +115,9 @@ const Interactive_maps = () => {
 
                 {/* CARD 4 */}
                 <div className={styles.cardItem}>
-                  <div className={styles.cardImagePlaceholder}></div>
+                  <div className={styles.cardImagePlaceholder}>
+                    <img src={r2c1} alt="Pacific Hurricanes" />
+                  </div>
                   <h3>Visible and Infrared Imagery</h3>
                   <p>
                     Continental United States from GOES East and West, combining bands 1 and 13 for day/night continuity, over "Blue Marble" data.
@@ -104,7 +127,9 @@ const Interactive_maps = () => {
 
                 {/* CARD 5 */}
                 <div className={styles.cardItem}>
-                  <div className={styles.cardImagePlaceholder}></div>
+                  <div className={styles.cardImagePlaceholder}>
+                    <img src={r2c2} alt="Pacific Hurricanes" />
+                  </div>
                   <h3>Colorized Infrared</h3>
                   <p>
                     Applying color enhancements to GOES band 13 imagery highlights progressively colder cloud tops, indicating severity of storm development.
@@ -114,7 +139,9 @@ const Interactive_maps = () => {
 
                 {/* CARD 6 */}
                 <div className={styles.cardItem}>
-                  <div className={styles.cardImagePlaceholder}></div>
+                  <div className={styles.cardImagePlaceholder}>
+                    <img src={r2c3} alt="Pacific Hurricanes" />
+                  </div>
                   <h3>Water Vapor Imagery</h3>
                   <p>
                     GOES water vapor band 10 senses moisture content in the atmosphere, a vital component in forecasting rainfall and flooding.
@@ -124,18 +151,9 @@ const Interactive_maps = () => {
 
                 {/* CARD 7 */}
                 <div className={styles.cardItem}>
-                  <div className={styles.cardImagePlaceholder}></div>
-                  <h3>Pacific Hurricanes</h3>
-                  <p>
-                    Track Pacific hurricanes and tropical storms using satellite
-                    imagery and historical data.
-                  </p>
-                  <span className={styles.cardLink}>Pacific Hurricanes →</span>
-                </div>
-
-                {/* CARD 8 */}
-                <div className={styles.cardItem}>
-                  <div className={styles.cardImagePlaceholder}></div>
+                  <div className={styles.cardImagePlaceholder}>
+                    <img src={r3c1} alt="Pacific Hurricanes" />
+                  </div>
                   <h3>Regions in Real-Time</h3>
                   <p>
                     The GOES East and GOES West satellites provide up-to-the-minute views of the Western Hemisphere. These regional maps, provided by NESDIS' Center for Satellite Applications and Research (STAR), contain technical information from each satellite channel for scientists.
@@ -143,9 +161,11 @@ const Interactive_maps = () => {
                   <span className={styles.cardLink}>Explore imagery by region →</span>
                 </div>
 
-                {/* CARD 9 */}
+                {/* CARD 8 */}
                 <div className={styles.cardItem}>
-                  <div className={styles.cardImagePlaceholder}></div>
+                  <div className={styles.cardImagePlaceholder}>
+                    <img src={r3c2} alt="Pacific Hurricanes" />
+                  </div>
                   <h3>Atmospheric Aerosols</h3>
                   <p>
                     There are many different types of particles in the air that NOAA satellites help us study. This map, provided by NESDIS' Center for Satellite Applications and Research (STAR), contains technical information about these particles for scientists.
