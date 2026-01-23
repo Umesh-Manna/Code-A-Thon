@@ -4,7 +4,11 @@ import Sidebar from '../../components/Sidebar';
 import Skywatch_nav from '../../components/Skywatch_nav';
 
 // Importing images
-1
+import hero_banner from '../../assets/SKY_WATCH/Hurricane/hero_banner.webp'
+import para_img from '../../assets/SKY_WATCH/Hurricane/para_img.webp'
+import card1 from '../../assets/SKY_WATCH/Hurricane/card1.webp'
+import card2 from '../../assets/SKY_WATCH/Hurricane/card2.webp'
+import card3 from '../../assets/SKY_WATCH/Hurricane/card3.webp'
 
 const Hurricanes = () => {
   const [isExpanded, setIsExpanded] = useState(false);
