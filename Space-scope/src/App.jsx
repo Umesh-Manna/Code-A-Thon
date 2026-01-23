@@ -33,7 +33,7 @@ function App() {
           element={<Live_sky/>}
         />
         <Route
-          path="/skyintel/live_sky/ObjectView"
+          path="/skyintel/live_sky/object/:objectId"
           element={<ObjectView/>}
         />
 

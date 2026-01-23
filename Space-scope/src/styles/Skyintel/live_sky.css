@@ -6,6 +6,11 @@
   color: #ffffff;
 }
 
+/* Push content below navbar */
+.live-sky-content {
+  padding-top: 16px;
+}
+
 /* Filter bar */
 .live-sky-filter {
   position: sticky;
@@ -35,7 +40,6 @@
   flex-direction: column;
   border: 1px solid #0f172a;
 
-  /* remove greyed look */
   filter: none;
   opacity: 1;
 
@@ -55,14 +59,10 @@
   transform: translateY(-2px);
 }
 
-/* Image area (placeholder or real image) */
+/* Image area */
 .object-card-image {
   flex: 1;
-  background: linear-gradient(
-    180deg,
-    #020617,
-    #020617
-  );
+  background: linear-gradient(180deg, #020617, #020617);
   display: flex;
   align-items: center;
   justify-content: center;

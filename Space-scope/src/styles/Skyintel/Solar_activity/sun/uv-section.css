@@ -1,0 +1,40 @@
+/* ================================
+   Desktop Grid Fidelity (PDF-like)
+   ================================ */
+
+@media (min-width: 1200px) {
+  .uv-image-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ================================
+   Image Contrast & Clarity
+   ================================ */
+
+.uv-image-wrapper img {
+  image-rendering: auto;
+  background-color: #000;
+}
+
+/* ================================
+   Card Hover (subtle, professional)
+   ================================ */
+
+.uv-image-card {
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.uv-image-card:hover {
+  border-color: #2b3a55;
+  transform: translateY(-2px);
+}
+
+/* ================================
+   Typography Tightening (PDF match)
+   ================================ */
+
+.uv-description {
+  max-height: 3.6em;
+  overflow: hidden;
+}

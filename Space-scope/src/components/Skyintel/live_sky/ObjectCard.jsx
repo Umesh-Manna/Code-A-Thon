@@ -4,9 +4,7 @@ const ObjectCard = ({ object }) => {
   const navigate = useNavigate();
 
   const handleOpen = () => {
-    if (object.id === "c50") {
-      navigate("/skyintel/live_sky/ObjectView");
-    }
+    navigate(`/skyintel/live_sky/object/${object.id}`);
   };
 
   return (
@@ -18,7 +16,7 @@ const ObjectCard = ({ object }) => {
 
       <div className="object-card-content">
         <div className="object-code">{object.code}</div>
-        <div className="object-name">{object.name}</div>
+        <div className="object-name">{object.displayName}</div>
 
         <div className="object-type">
           {object.type}
@@ -28,7 +26,6 @@ const ObjectCard = ({ object }) => {
           <button
             className="btn-open"
             onClick={handleOpen}
-            disabled={object.id !== "c50"}
           >
             Open
           </button>

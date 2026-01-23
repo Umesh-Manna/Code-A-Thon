@@ -16,7 +16,7 @@ export default function Navbar() {
             Lunar Eclipse
           </NavLink>
 
-          <NavLink to="/live-sky" className="nav-btn">
+          <NavLink to="/skyintel/live_sky" className="nav-btn">
             Live sky positions
           </NavLink>
 

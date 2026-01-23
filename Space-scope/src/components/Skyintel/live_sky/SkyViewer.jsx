@@ -1,62 +1,42 @@
-import { useRef, useEffect } from "react";
+import { useMemo } from "react";
 
-const STELLARIUM_SCRIPT_ID = "stellarium-engine-script";
+const OBSERVER_LOCATION = {
+  lat: 19.0760,
+  lon: 72.8777
+};
 
-const SkyViewer = () => {
-  const engineRootRef = useRef(null);
+const SkyViewer = ({ target, time }) => {
+  const stellariumUrl = useMemo(() => {
+    const params = new URLSearchParams({
+      target: target,
+      fov: "20",
+      tracking: "true",
+      constellations: "true",
+      ground: "false",
+      atmosphere: "false",
+      lat: OBSERVER_LOCATION.lat,
+      lon: OBSERVER_LOCATION.lon
+    });
 
-  useEffect(() => {
-    const existingScript = document.getElementById(STELLARIUM_SCRIPT_ID);
-
-    if (existingScript) {
-      console.log("[SkyViewer] Stellarium script already present");
-      return;
+    if (time) {
+      params.set("time", time);
     }
 
-    const script = document.createElement("script");
-    script.id = STELLARIUM_SCRIPT_ID;
-    script.src = "/stellarium/stellarium.js";
-    script.async = true;
-
-    script.onload = () => {
-      console.log("[SkyViewer] Stellarium script loaded");
-
-      if (window.Stellarium) {
-        console.log("[SkyViewer] Stellarium global detected");
-      } else {
-        console.warn(
-          "[SkyViewer] Script loaded, but no Stellarium engine detected (expected in scaffold mode)"
-        );
-      }
-    };
-
-    script.onerror = () => {
-      console.error("[SkyViewer] Failed to load stellarium.js");
-    };
-
-    document.body.appendChild(script);
-  }, []);
+    return `https://stellarium-web.org/?${params.toString()}`;
+  }, [target, time]);
 
   return (
-    <div
+    <iframe
+      title="Stellarium Sky Viewer"
+      src={stellariumUrl}
       style={{
         width: "100%",
         height: "100%",
-        position: "absolute",
-        inset: 0,
-        backgroundColor: "#000",
-        overflow: "hidden"
+        border: "none",
+        backgroundColor: "#000"
       }}
-    >
-      <div
-        ref={engineRootRef}
-        id="stellarium-engine-root"
-        style={{
-          width: "100%",
-          height: "100%"
-        }}
-      />
-    </div>
+      allow="fullscreen"
+    />
   );
 };
 
