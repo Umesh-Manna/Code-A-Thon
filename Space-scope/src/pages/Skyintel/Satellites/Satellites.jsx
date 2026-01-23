@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 
 /* Sidebar */
-import Sidebar from "../../../components/Sidebar"; 
-// adjust path if your Sidebar folder differs
+import Sidebar from "../../../components/Sidebar";
 
 /* Navbar */
 import Navbar from "../../../components/Skyintel/Navbar/Navbar";
@@ -44,9 +43,6 @@ export default function Satellites() {
     largeView: false,
   });
 
-  /* ======================
-     User Location (once)
-     ====================== */
   useEffect(() => {
     navigator.geolocation?.getCurrentPosition(
       (pos) => {
@@ -59,9 +55,6 @@ export default function Satellites() {
     );
   }, []);
 
-  /* ======================
-     Live Satellite Updates
-     ====================== */
   useEffect(() => {
     if (selectedSatellites.length === 0) return;
 
@@ -120,16 +113,21 @@ export default function Satellites() {
     selectedSatellites[selectedSatellites.length - 1] || null;
 
   return (
-    <div className="flex">
-      {/* ===== Sidebar ===== */}
-      <Sidebar />
+    <div className="skyintel-layout">
+      {/* SIDEBAR */}
+      <aside className="skyintel-sidebar-area">
+        <div className="skyintel-sidebar-content">
+          <Sidebar />
+        </div>
+      </aside>
 
-      {/* ===== Main Content ===== */}
-      <main className="flex-1 skyintel-page">
-        {/* Top Navbar */}
+      {/* NAVBAR */}
+      <nav className="skyintel-navbar-area">
         <Navbar />
+      </nav>
 
-        {/* Existing Page Content */}
+      {/* SCROLLABLE MAIN */}
+      <main className="skyintel-scroll-area">
         <div className="main-content">
           <div className="map-section">
             <SatelliteMap

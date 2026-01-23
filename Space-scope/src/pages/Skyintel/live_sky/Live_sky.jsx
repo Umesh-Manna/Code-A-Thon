@@ -5,11 +5,14 @@ import { useState, useMemo } from "react";
 import FilterBar from "../../../components/Skyintel/live_sky/FilterBar";
 import ObjectCard from "../../../components/Skyintel/live_sky/ObjectCard";
 import objects from "../../../data/live_sky/objects.json";
+
+import Sidebar from "../../../components/Sidebar";
 import Navbar from "../../../components/Skyintel/Navbar/Navbar";
 
 const Live_sky = () => {
   const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const filteredObjects = useMemo(() => {
     if (!activeFilter) return objects;
@@ -19,12 +22,25 @@ const Live_sky = () => {
   }, [activeFilter]);
 
   return (
-    <div className="live-sky-page">
-      {/* Navbar only for Live_sky */}
-      <Navbar />
+    <div className="live-sky-container">
+      {/* ================= SIDEBAR (LOCKED) ================= */}
+      <aside className="live-sky-sidebar-area">
+        <div
+          className={`live-sky-sidebar-content ${
+            isSidebarOpen ? "expanded" : ""
+          }`}
+        >
+          <Sidebar />
+        </div>
+      </aside>
 
-      {/* Main content shifted down */}
-      <div className="live-sky-content">
+      {/* ================= NAVBAR (LOCKED) ================= */}
+      <nav className="live-sky-navbar-area">
+        <Navbar />
+      </nav>
+
+      {/* ================= SCROLLABLE CONTENT ================= */}
+      <main className="live-sky-scroll-area">
         <div className="live-sky-filter">
           <FilterBar
             activeFilter={activeFilter}
@@ -43,7 +59,7 @@ const Live_sky = () => {
             />
           ))}
         </div>
-      </div>
+      </main>
     </div>
   );
 };
