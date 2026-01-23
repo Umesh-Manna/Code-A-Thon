@@ -50,12 +50,13 @@ const Hurricanes = () => {
           <section className={styles.infoGrid}>
             <div className={styles.infoText}>
               <p>
-                NOAA’s geostationary and polar-orbiting satellites provide vital
-                information for monitoring and forecasting hurricanes.
+                NOAA’s geostationary and polar-orbiting satellites provide vital information for monitoring and forecasting hurricanes and tropical weather that threaten our lives and property.
               </p>
               <p>
-                These satellites enable real-time tracking and environmental
-                analysis of tropical cyclones.
+                Our geostationary satellites continuously view the entire Atlantic and eastern/central Pacific hurricane basins to provide real-time tracking and monitoring of tropical cyclones as well as the environmental conditions that cause them to form. By imaging a storm as often as every 30 seconds, these satellites help forecasters more easily discern the movement of cloud features and provide greater confidence in estimating the intensity of storms.
+              </p>
+              <p>
+                Our polar-orbiting satellites orbit the Earth from pole to pole 14 times a day, providing full global coverage twice daily. They make sophisticated and precise observations of the atmosphere, ocean and land, which are critical for daily and long-term monitoring and forecasting. 
               </p>
             </div>
 
