@@ -3,6 +3,9 @@ import styles from '../../components/Hurricanes.module.css';
 import Sidebar from '../../components/Sidebar';
 import Skywatch_nav from '../../components/Skywatch_nav';
 
+// Importing images
+1
+
 const Hurricanes = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
