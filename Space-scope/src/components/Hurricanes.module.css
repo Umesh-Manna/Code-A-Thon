@@ -1,18 +1,22 @@
-/* ROOT LAYOUT */
+/* ================= ROOT LAYOUT ================= */
+
 .container {
   display: grid;
-  grid-template-columns: 80px 1fr;
-  grid-template-rows: auto 1fr;
   height: 100vh;
   width: 100vw;
-  background: #020617;
+  grid-template-columns: 80px 1fr;
+  grid-template-rows: auto 1fr;
+  background-color: #0b0d17;
   overflow: hidden;
 }
 
-/* SIDEBAR */
+/* ================= SIDEBAR ================= */
+
 .sidebarArea {
   position: fixed;
-  inset: 0 auto 0 0;
+  top: 0;
+  left: 0;
+  height: 100vh;
   z-index: 1000;
 }
 
@@ -27,43 +31,51 @@
   width: 260px;
 }
 
-/* NAVBAR */
+/* ================= NAVBAR ================= */
+
 .navbarArea {
   grid-column: 2;
   grid-row: 1;
   z-index: 10;
 }
 
-/* SCROLL AREA */
+/* ================= SCROLLABLE CONTENT ================= */
+
 .scrollArea {
   grid-column: 2;
   grid-row: 2;
   overflow-y: auto;
-  padding: 24px;
+  padding: 20px;
 }
 
-/* WRAPPER */
+/* ================= SECTION WRAPPER (BLUE BORDER) ================= */
+
 .sectionWrapper {
-  border-radius: 24px;
-  padding: 24px;
-  background: radial-gradient(
-    circle at top,
-    rgba(30, 41, 59, 0.9),
-    rgba(2, 6, 23, 1)
+  border: 2px solid rgba(56, 189, 248, 0.9);
+  border-radius: 22px;
+  padding: 22px;
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 23, 42, 0.9),
+    rgba(15, 23, 42, 0.75)
   );
+  box-shadow:
+    0 0 0 1px rgba(56, 189, 248, 0.25),
+    0 0 25px rgba(56, 189, 248, 0.15);
 }
 
-/* HERO */
+/* ================= HERO ================= */
+
 .heroSection {
   height: 260px;
   border-radius: 18px;
   background-size: cover;
   background-position: center;
   position: relative;
+  overflow: hidden;
   display: flex;
   align-items: flex-end;
-  padding: 32px;
-  overflow: hidden;
+  padding: 36px;
 }
 
 .heroOverlay {
@@ -72,19 +84,21 @@
   background: linear-gradient(
     to right,
     rgba(2, 6, 23, 0.85),
-    rgba(2, 6, 23, 0.2)
+    rgba(2, 6, 23, 0.35),
+    rgba(2, 6, 23, 0.15)
   );
 }
 
 .heroTitle {
   position: relative;
   z-index: 2;
-  color: white;
-  font-size: 3rem;
+  font-size: 3.2rem;
   font-weight: 800;
+  color: white;
 }
 
-/* INFO */
+/* ================= INFO ================= */
+
 .infoGrid {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
@@ -93,95 +107,97 @@
 }
 
 .infoText p {
-  color: #cbd5f5;
+  color: #d1d5db;
+  font-size: 0.95rem;
   line-height: 1.7;
+  margin-bottom: 14px;
 }
 
-.infoImage {
+.infoImagePlaceholder {
   border-radius: 16px;
   overflow: hidden;
 }
 
-.infoImage img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* DIVIDER */
-.sectionDivider {
-  height: 1px;
-  background: rgba(255, 255, 255, 0.15);
-  margin: 32px 0;
-}
-
-/* APPLICATIONS */
-.appsTitle {
-  color: white;
-  font-size: 1.3rem;
-  margin-bottom: 18px;
-}
-
-/* CARD GRID */
-.cardGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-/* CARD */
-.card {
-  background: linear-gradient(
-    to bottom,
-    #020617,
-    #020617 70%,
-    #020617
-  );
-  border-radius: 22px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-/* CARD IMAGE — CRITICAL FIX */
-.cardImage {
-  height: 180px;
-  border-radius: 16px;
-  overflow: hidden;
-}
-
-.cardImage img {
+.infoImagePlaceholder img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-/* CARD TEXT */
-.card h3 {
-  color: white;
-  font-size: 1.05rem;
-  font-weight: 600;
+/* ================= DIVIDER ================= */
+
+.sectionDivider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
+  margin: 30px 0;
 }
 
-.card p {
+/* ================= APPLICATIONS ================= */
+
+.appsTitle {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+/* ================= CARDS ================= */
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.cardItem {
+  background: #020617;
+  border-radius: 20px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* 🔑 IMAGE CONTAINMENT FIX */
+.cardImageWrapper {
+  height: 180px;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+
+.cardImageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ================= CARD TEXT ================= */
+
+.cardItem h3 {
+  color: #60a5fa;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.cardItem p {
   color: #94a3b8;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   line-height: 1.6;
   flex-grow: 1;
 }
 
-/* BUTTON */
-.cardButton {
-  align-self: flex-start;
-  background: white;
+/* ================= LINK ================= */
+
+.cardLink {
   color: black;
-  border: none;
-  border-radius: 10px;
-  padding: 8px 14px;
-  font-size: 0.8rem;
+  background: white;
+  font-size: 0.75rem;
   font-weight: 600;
-  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 8px;
+  width: fit-content;
 }

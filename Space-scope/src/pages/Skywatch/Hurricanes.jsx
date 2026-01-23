@@ -34,7 +34,7 @@ const Hurricanes = () => {
         <Skywatch_nav />
       </nav>
 
-      {/* MAIN CONTENT */}
+      {/* SCROLLABLE MAIN CONTENT */}
       <main className={styles.scrollArea}>
         <div className={styles.sectionWrapper}>
           {/* HERO */}
@@ -59,8 +59,8 @@ const Hurricanes = () => {
               </p>
             </div>
 
-            <div className={styles.infoImage}>
-              <img src={para_img} alt="Hurricane satellite view" />
+            <div className={styles.infoImagePlaceholder}>
+              <img src={para_img} alt="Hurricane satellite imagery" />
             </div>
           </section>
 
@@ -70,24 +70,23 @@ const Hurricanes = () => {
           <h2 className={styles.appsTitle}>Hurricane Applications</h2>
 
           <div className={styles.cardGrid}>
-            {/* CARD 1 */}
-            <div className={styles.card}>
-              <div className={styles.cardImage}>
+            <div className={styles.cardItem}>
+              <div className={styles.cardImageWrapper}>
                 <img src={card1} alt="Live Hurricane Tracker" />
               </div>
               <h3>Live Hurricane Tracker</h3>
               <p>
-                See current tropical activity and interact with NOAA satellite
-                imagery while accessing National Hurricane Center data.
+                The Live Hurricane Tracker allows users to see the current
+                tropical activity and interact with NOAA satellite imagery while
+                accessing National Hurricane Center data.
               </p>
-              <button className={styles.cardButton}>
+              <span className={styles.cardLink}>
                 Live Hurricane Tracker →
-              </button>
+              </span>
             </div>
 
-            {/* CARD 2 */}
-            <div className={styles.card}>
-              <div className={styles.cardImage}>
+            <div className={styles.cardItem}>
+              <div className={styles.cardImageWrapper}>
                 <img src={card2} alt="Atlantic Hurricanes" />
               </div>
               <h3>Atlantic Hurricanes</h3>
@@ -95,14 +94,13 @@ const Hurricanes = () => {
                 View paths of previous hurricanes and tropical storms from this
                 season using NOAA and NHC data.
               </p>
-              <button className={styles.cardButton}>
+              <span className={styles.cardLink}>
                 Atlantic Hurricanes →
-              </button>
+              </span>
             </div>
 
-            {/* CARD 3 */}
-            <div className={styles.card}>
-              <div className={styles.cardImage}>
+            <div className={styles.cardItem}>
+              <div className={styles.cardImageWrapper}>
                 <img src={card3} alt="Pacific Hurricanes" />
               </div>
               <h3>Pacific Hurricanes</h3>
@@ -110,9 +108,9 @@ const Hurricanes = () => {
                 Track Pacific hurricanes and tropical storms using satellite
                 imagery and historical data.
               </p>
-              <button className={styles.cardButton}>
+              <span className={styles.cardLink}>
                 Pacific Hurricanes →
-              </button>
+              </span>
             </div>
           </div>
         </div>
