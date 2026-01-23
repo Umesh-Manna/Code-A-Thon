@@ -1,100 +1,69 @@
-/* ================= ROOT LAYOUT ================= */
-
+/* ROOT LAYOUT */
 .container {
   display: grid;
+  grid-template-columns: 80px 1fr;
+  grid-template-rows: auto 1fr;
   height: 100vh;
   width: 100vw;
-  grid-template-columns: 80px 1fr;
-  grid-template-rows: auto 1fr; /* hero removed from fixed grid */
-  background-color: #0b0d17;
+  background: #020617;
   overflow: hidden;
-  position: relative;
 }
 
-/* ================= SIDEBAR ================= */
-
+/* SIDEBAR */
 .sidebarArea {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100vh;
+  position: fixed;
+  inset: 0 auto 0 0;
   z-index: 1000;
 }
 
 .sidebarContent {
-  position: relative;
-  height: 100%;
   width: 60px;
+  height: 100%;
   background: linear-gradient(to bottom, #1e293b, #020617);
   transition: width 0.3s ease;
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
-  z-index: 1001;
 }
 
 .sidebarExpanded {
   width: 260px;
 }
 
-/* ================= NAVBAR ================= */
-
+/* NAVBAR */
 .navbarArea {
   grid-column: 2;
   grid-row: 1;
-  position: relative;
   z-index: 10;
 }
 
-/* ================= SCROLLABLE CONTENT ================= */
-
+/* SCROLL AREA */
 .scrollArea {
   grid-column: 2;
   grid-row: 2;
   overflow-y: auto;
-  padding: 20px;
-  position: relative;
-  z-index: 5;
+  padding: 24px;
 }
 
-/* ======================================================
-   SECTION WRAPPER (BLUE BORDER – NEW)
-   Wrap major sections with this class in JSX
-====================================================== */
-
+/* WRAPPER */
 .sectionWrapper {
-  border: 2px solid rgba(56, 189, 248, 0.9); /* bright blue */
-  border-radius: 22px;
-  padding: 22px;
-  margin-bottom: 40px;
-
-  background: linear-gradient(
-    to bottom,
-    rgba(15, 23, 42, 0.9),
-    rgba(15, 23, 42, 0.75)
+  border-radius: 24px;
+  padding: 24px;
+  background: radial-gradient(
+    circle at top,
+    rgba(30, 41, 59, 0.9),
+    rgba(2, 6, 23, 1)
   );
-
-  box-shadow:
-    0 0 0 1px rgba(56, 189, 248, 0.25),
-    0 0 25px rgba(56, 189, 248, 0.15);
 }
 
-/* ================= HERO (NOW SCROLLS) ================= */
-
+/* HERO */
 .heroSection {
-  margin-bottom: 20px;
   height: 260px;
   border-radius: 18px;
-  position: relative;
-  overflow: hidden;
-
-  /* 🔽 IMAGE PLACEHOLDER */
-  background-image: url("../assets/SKY_WATCH/Hurricane/hero_banner.webp");
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
-
+  position: relative;
   display: flex;
   align-items: flex-end;
-  padding: 36px;
+  padding: 32px;
+  overflow: hidden;
 }
 
 .heroOverlay {
@@ -103,134 +72,116 @@
   background: linear-gradient(
     to right,
     rgba(2, 6, 23, 0.85),
-    rgba(2, 6, 23, 0.35),
-    rgba(2, 6, 23, 0.15)
+    rgba(2, 6, 23, 0.2)
   );
-  z-index: 1;
 }
 
 .heroTitle {
   position: relative;
   z-index: 2;
-  font-size: 3.2rem;
-  font-weight: 800;
   color: white;
-  letter-spacing: 0.5px;
+  font-size: 3rem;
+  font-weight: 800;
 }
 
-/* ================= INFO SECTION ================= */
-
+/* INFO */
 .infoGrid {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   gap: 24px;
-  background: #2a2f45;
-  border-radius: 18px;
-  padding: 28px;
+  margin-top: 24px;
 }
 
 .infoText p {
-  color: #d1d5db;
-  font-size: 0.95rem;
+  color: #cbd5f5;
   line-height: 1.7;
-  margin-bottom: 14px;
 }
 
-.infoImagePlaceholder {
+.infoImage {
   border-radius: 16px;
-  background: linear-gradient(
-    135deg,
-    #374151,
-    #1f2937
-  );
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #9ca3af;
-  font-size: 0.9rem;
+  overflow: hidden;
 }
 
-/* ================= DIVIDER ================= */
+.infoImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
+/* DIVIDER */
 .sectionDivider {
   height: 1px;
   background: rgba(255, 255, 255, 0.15);
-  margin: 30px 0;
+  margin: 32px 0;
 }
 
-/* ================= APPLICATIONS ================= */
-
+/* APPLICATIONS */
 .appsTitle {
   color: white;
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 1.3rem;
   margin-bottom: 18px;
 }
 
-/* ================= CARDS ================= */
-
+/* CARD GRID */
 .cardGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
+  gap: 24px;
 }
 
-.cardItem {
-  background: #0f172a;
-  border-radius: 18px;
-  padding: 14px;
+/* CARD */
+.card {
+  background: linear-gradient(
+    to bottom,
+    #020617,
+    #020617 70%,
+    #020617
+  );
+  border-radius: 22px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
+  gap: 12px;
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.cardImagePlaceholder {
-  height: 150px;
-  border-radius: 14px;
-  background: linear-gradient(
-    135deg,
-    #374151,
-    #1f2937
-  );
-  margin-bottom: 14px;
+/* CARD IMAGE — CRITICAL FIX */
+.cardImage {
+  height: 180px;
+  border-radius: 16px;
+  overflow: hidden;
 }
 
-.cardItem h3 {
-  color: #60a5fa;
-  font-size: 0.95rem;
-  font-weight: 600;
-  margin-bottom: 8px;
+.cardImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-.cardItem p {
-  color: #94a3b8;
-  font-size: 0.85rem;
-  line-height: 1.5;
-  flex: 1;
-}
-
-.cardLink {
+/* CARD TEXT */
+.card h3 {
   color: white;
-  font-size: 0.75rem;
-  margin-top: 12px;
-  background: #111827;
-  padding: 6px 10px;
-  border-radius: 6px;
-  width: fit-content;
-  font-weight: 500;
+  font-size: 1.05rem;
+  font-weight: 600;
 }
 
-/* ================= SCROLLBAR ================= */
-
-.scrollArea::-webkit-scrollbar {
-  width: 8px;
+.card p {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  flex-grow: 1;
 }
 
-.scrollArea::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.18);
-  border-radius: 4px;
-}
-
-.scrollArea::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.28);
+/* BUTTON */
+.cardButton {
+  align-self: flex-start;
+  background: white;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
 }
