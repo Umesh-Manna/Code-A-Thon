@@ -27,3 +27,15 @@ export default defineConfig([
     },
   },
 ])
+module.exports = {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,jsx,ts,tsx}"
+  ],
+  safelist: [
+    "text-stroke-white-6",
+    "text-stroke-white-4",
+    "text-stroke-transparent-6",
+  ],
+};
+
