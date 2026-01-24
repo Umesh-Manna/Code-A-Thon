@@ -19,11 +19,25 @@ import card4_cloud from '../../assets/SKY_WATCH/Cloud/card4.gif';
 import card5_cloud from '../../assets/SKY_WATCH/Cloud/card5.gif';
 import card6_cloud from '../../assets/SKY_WATCH/Cloud/card6.webp';
 import card7_cloud from '../../assets/SKY_WATCH/Cloud/card7.webp';
+
 /* Optical Phenomena */
+import hero_banner_optical from '../../assets/SKY_WATCH/Optical/hero_banner.webp';
+import para_img_optical from '../../assets/SKY_WATCH/Optical/para_img.webp'
+import card1_optical from '../../assets/SKY_WATCH/Optical/card1.webp'
+import card2_optical from '../../assets/SKY_WATCH/Optical/card2.webp'
+import card3_optical from '../../assets/SKY_WATCH/Optical/card3.webp'
+import card4_optical from '../../assets/SKY_WATCH/Optical/card4.webp'
 
 /* Space Weather */ 
+import hero_banner_weather from '../../assets/SKY_WATCH/Weather/hero_banner.webp' 
+import para_img_weather from '../../assets/SKY_WATCH/Weather/para_img.webp'
+import card1_weather from '../../assets/SKY_WATCH/Weather/card1.webp'
+import card2_weather from '../../assets/SKY_WATCH/Weather/card2.webp'
+import card3_weather from '../../assets/SKY_WATCH/Weather/card3.webp'
+import card4_weather from '../../assets/SKY_WATCH/Weather/card4.webp'
+import card5_weather from '../../assets/SKY_WATCH/Weather/card5.webp'
+import card6_weather from '../../assets/SKY_WATCH/Weather/card6.webp'
 
-/*  */
 
 const Our_environment = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -169,7 +183,9 @@ const Our_environment = () => {
         <div className={styles.sectionWrapper}>
           <section className={`${styles.heroSection} ${styles.opticalHero}`}>
             {/* 🔴 OPTICAL HERO IMAGE PLACEHOLDER */}
-            <div className={styles.heroOverlay}></div>
+            <div className={styles.heroOverlay}>
+              <img src={hero_banner_optical} alt="" />
+            </div>
             <h1 className={styles.heroTitle}>Optical Phenomena</h1>
           </section>
 
@@ -182,7 +198,7 @@ const Our_environment = () => {
             </div>
 
             <div className={styles.infoImagePlaceholder}>
-              <span>Image Placeholder</span>
+              <img src={para_img_optical} alt="" />
             </div>
           </section>
 
@@ -192,13 +208,15 @@ const Our_environment = () => {
 
           <div className={styles.cardGrid}>
             {[
-              'Solar Eclipse',
-              'Changing of the Seasons',
-              'Sunrise and Sunset',
-              'Sunglint',
-            ].map((title, index) => (
+              [card1_optical,'Solar Eclipse'],
+              [card2_optical,'Changing of the Seasons'],
+              [card3_optical,'Sunrise and Sunset'],
+              [card4_optical, 'Sunglint'],
+            ].map(([img,title], index) => (
               <div key={index} className={styles.cardItem}>
-                <div className={styles.cardImagePlaceholder}></div>
+                <div className={styles.cardImagePlaceholder}>
+                  <img src={img} alt="" />
+                </div>
                 <h3>{title}</h3>
                 <span className={styles.cardLink}>Learn more →</span>
               </div>
@@ -212,7 +230,9 @@ const Our_environment = () => {
         <div className={styles.sectionWrapper}>
           <section className={`${styles.heroSection} ${styles.spaceWeatherHero}`}>
             {/* 🔴 SPACE WEATHER HERO IMAGE PLACEHOLDER */}
-            <div className={styles.heroOverlay}></div>
+            <div className={styles.heroOverlay}>
+              <img src={hero_banner_weather} alt="" />
+            </div>
             <h1 className={styles.heroTitle}>Space Weather</h1>
           </section>
 
@@ -230,7 +250,7 @@ const Our_environment = () => {
             </div>
 
             <div className={styles.infoImagePlaceholder}>
-              <span>Image Placeholder</span>
+              <img src={para_img_weather} alt="" />
             </div>
           </section>
 
@@ -239,12 +259,14 @@ const Our_environment = () => {
 
           <div className={styles.cardGrid}>
             {[
-              'Sunspots and the Solar Cycle',
-              'Solar Flares',
-              'Solar Wind, Geomagnetic Storms, and Coronal Mass Ejections',
-            ].map((title, index) => (
+              [card1_weather,'Sunspots and the Solar Cycle'],
+              [card2_weather,'Solar Flares'],
+              [card3_weather,'Solar Wind, Geomagnetic Storms, and Coronal Mass Ejections'],
+            ].map(([img,title], index) => (
               <div key={index} className={styles.cardItem}>
-                <div className={styles.cardImagePlaceholder}></div>
+                <div className={styles.cardImagePlaceholder}>
+                  <img src={img} alt="" />
+                </div>
                 <h3>{title}</h3>
                 <span className={styles.cardLink}>Learn more →</span>
               </div>
@@ -257,7 +279,7 @@ const Our_environment = () => {
           <div className={styles.cardGrid}>
             <div className={styles.cardItem}>
               <div className={styles.cardImagePlaceholder}>
-                {/* 🔴 IMAGE PLACEHOLDER */}
+                <img src={card4_weather} alt="" />
               </div>
               <h3>Lagrange Points: An Orbital Parking Spot for Satellites</h3>
               <span className={styles.cardLink}>Lagrange Points →</span>
@@ -265,7 +287,7 @@ const Our_environment = () => {
 
             <div className={styles.cardItem}>
               <div className={styles.cardImagePlaceholder}>
-                {/* 🔴 IMAGE PLACEHOLDER */}
+                <img src={card5_weather} alt="" />
               </div>
               <h3>
                 SUVI Instrument on Board NOAA's GOES-16 Sends First Solar Images
@@ -275,7 +297,7 @@ const Our_environment = () => {
 
             <div className={styles.cardItem}>
               <div className={styles.cardImagePlaceholder}>
-                {/* 🔴 IMAGE PLACEHOLDER */}
+                <img src={card6_weather} alt="" />
               </div>
               <h3>
                 NOAA GOES East Satellite Captures Full Rotation of the Sun
