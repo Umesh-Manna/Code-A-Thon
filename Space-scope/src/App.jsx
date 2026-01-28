@@ -10,7 +10,7 @@ import Our_environment from './pages/Skywatch/Our_environment'
 import Satellites from './pages/Skyintel/Satellites/Satellites'
 import Live_sky from './pages/Skyintel/live_sky/Live_sky.jsx'
 import ObjectView from './pages/Skyintel/live_sky/ObjectView.jsx'
-
+import MoonDashboard from './Lunar_moon/MoonDashboard.jsx'
 
 function App() {
   // return (<></> )
@@ -35,6 +35,11 @@ function App() {
         <Route
           path="/skyintel/live_sky/object/:objectId"
           element={<ObjectView/>}
+        />
+
+        <Route
+          path="/skyintel/lunar_view"
+          element={<MoonDashboard/>}
         />
 
         {/* <Route
