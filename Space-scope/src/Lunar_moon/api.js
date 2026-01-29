@@ -1,13 +1,13 @@
-const BASE_URL = "http://127.0.0.1:8000";
+const BASE_URL = "http://localhost:8000";
 
-export const fetchMoonNow = async (lat, lon) => {
+export async function fetchMoonNow(lat, lon) {
   const res = await fetch(`${BASE_URL}/moon/now?lat=${lat}&lon=${lon}`);
-  if (!res.ok) throw new Error("Failed to fetch moon data");
+  if (!res.ok) throw new Error("Moon fetch failed");
   return res.json();
-};
+}
 
-export const fetchLunarEclipse = async () => {
+export async function fetchLunarEclipse() {
   const res = await fetch(`${BASE_URL}/moon/eclipse`);
-  if (!res.ok) throw new Error("Failed to fetch eclipse data");
+  if (!res.ok) throw new Error("Eclipse fetch failed");
   return res.json();
-};
+}

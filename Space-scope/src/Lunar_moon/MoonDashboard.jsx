@@ -9,9 +9,6 @@ const MoonDashboard = () => {
   const [eclipse, setEclipse] = useState(null);
   const [error, setError] = useState(null);
 
-  /* ===========================
-     Fetch Moon & Eclipse Data
-  ============================ */
   useEffect(() => {
     const loadMoon = (lat, lon) => {
       fetchMoonNow(lat, lon)
@@ -19,7 +16,6 @@ const MoonDashboard = () => {
         .catch(() => setError("Failed to fetch moon data"));
     };
 
-    // Try geolocation, fallback if denied
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
         (pos) => loadMoon(pos.coords.latitude, pos.coords.longitude),
@@ -29,14 +25,11 @@ const MoonDashboard = () => {
       loadMoon(0, 0);
     }
 
-    fetchLunarEclipse()
-      .then(setEclipse)
-      .catch(() => {});
+    fetchLunarEclipse().then(setEclipse).catch(() => {});
   }, []);
 
   return (
     <div className="moon-dashboard">
-      {/* ================= Header ================= */}
       <header className="moon-header">
         <h1>🌙 Moon & Lunar Eclipse Dashboard</h1>
 
@@ -48,40 +41,37 @@ const MoonDashboard = () => {
 
       {error && <p className="error">{error}</p>}
 
-      {/* ================= Moon View ================= */}
       {view === "moon" && moon && (
         <>
           <div className="moon-panel">
-            {/* WebGL Moon */}
             <MoonWebGL illumination={moon.illumination} />
           </div>
 
-          <div className="moon-info">
-            <p>
-              <strong>Phase:</strong> {moon.phase}
-            </p>
-            <p>
-              <strong>Geometric Illumination:</strong> {moon.illumination}%
-            </p>
-            <p>
-              <strong>Lunar Age:</strong> {moon.age} days
-            </p>
-          </div>
+          {/* ===== Dynamic Moon Data Table ===== */}
+          <table className="moon-table">
+            <tbody>
+              <tr><td>Constellation</td><td>{moon.constellation}</td></tr>
+              <tr><td>Moon Phase</td><td>{moon.phase}</td></tr>
+              <tr><td>Illumination</td><td>{moon.illumination}%</td></tr>
+              <tr><td>RA (JNow)</td><td>{moon.ra}</td></tr>
+              <tr><td>Dec (JNow)</td><td>{moon.dec}</td></tr>
+              <tr><td>Altitude</td><td>{moon.altitude}</td></tr>
+              <tr><td>Azimuth / Direction</td><td>{moon.azimuth}</td></tr>
+              <tr><td>Rise Time</td><td>{moon.rise_time}</td></tr>
+              <tr><td>Set Time</td><td>{moon.set_time}</td></tr>
+              <tr><td>Distance to Earth</td><td>{moon.distance}</td></tr>
+              <tr><td>Apparent Size</td><td>{moon.apparent_size}</td></tr>
+              <tr><td>Orbital Speed</td><td>{moon.orbital_speed}</td></tr>
+            </tbody>
+          </table>
         </>
       )}
 
-      {/* ================= Eclipse View ================= */}
       {view === "eclipse" && eclipse && (
         <div className="moon-info">
-          <p>
-            <strong>Type:</strong> {eclipse.type}
-          </p>
-          <p>
-            <strong>Date:</strong> {eclipse.date}
-          </p>
-          <p>
-            <strong>Visibility:</strong> {eclipse.visibility}
-          </p>
+          <p><strong>Type:</strong> {eclipse.type}</p>
+          <p><strong>Date:</strong> {eclipse.date}</p>
+          <p><strong>Visibility:</strong> {eclipse.visibility}</p>
         </div>
       )}
     </div>
