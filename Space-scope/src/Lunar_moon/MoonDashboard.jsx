@@ -9,6 +9,9 @@ const MoonDashboard = () => {
   const [eclipse, setEclipse] = useState(null);
   const [error, setError] = useState(null);
 
+  /* ===========================
+     Fetch Moon & Eclipse Data
+  ============================ */
   useEffect(() => {
     const loadMoon = (lat, lon) => {
       fetchMoonNow(lat, lon)
@@ -16,6 +19,7 @@ const MoonDashboard = () => {
         .catch(() => setError("Failed to fetch moon data"));
     };
 
+    // Try geolocation, fallback if denied
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
         (pos) => loadMoon(pos.coords.latitude, pos.coords.longitude),
@@ -25,13 +29,15 @@ const MoonDashboard = () => {
       loadMoon(0, 0);
     }
 
-    fetchLunarEclipse().then(setEclipse).catch(() => {});
+    fetchLunarEclipse()
+      .then(setEclipse)
+      .catch(() => {});
   }, []);
 
   return (
-    <div className="moon-fullscreen">
-      {/* Header overlay */}
-      <header className="moon-overlay">
+    <div className="moon-dashboard">
+      {/* ================= Header ================= */}
+      <header className="moon-header">
         <h1>🌙 Moon & Lunar Eclipse Dashboard</h1>
 
         <select value={view} onChange={(e) => setView(e.target.value)}>
@@ -40,26 +46,42 @@ const MoonDashboard = () => {
         </select>
       </header>
 
-      {error && <div className="error-overlay">{error}</div>}
+      {error && <p className="error">{error}</p>}
 
-      {/* ===== MOON VIEW (WebGL) ===== */}
+      {/* ================= Moon View ================= */}
       {view === "moon" && moon && (
-        <MoonWebGL illumination={moon.illumination} />
+        <>
+          <div className="moon-panel">
+            {/* WebGL Moon */}
+            <MoonWebGL illumination={moon.illumination} />
+          </div>
+
+          <div className="moon-info">
+            <p>
+              <strong>Phase:</strong> {moon.phase}
+            </p>
+            <p>
+              <strong>Geometric Illumination:</strong> {moon.illumination}%
+            </p>
+            <p>
+              <strong>Lunar Age:</strong> {moon.age} days
+            </p>
+          </div>
+        </>
       )}
 
-      {/* ===== ECLIPSE VIEW (placeholder) ===== */}
-      {view === "eclipse" && (
-        <div className="eclipse-placeholder">
-          Eclipse view coming next
-        </div>
-      )}
-
-      {/* Info panel */}
-      {moon && view === "moon" && (
-        <div className="info-overlay">
-          <p><strong>Phase:</strong> {moon.phase}</p>
-          <p><strong>Geometric Illumination:</strong> {moon.illumination}%</p>
-          <p><strong>Lunar Age:</strong> {moon.age} days</p>
+      {/* ================= Eclipse View ================= */}
+      {view === "eclipse" && eclipse && (
+        <div className="moon-info">
+          <p>
+            <strong>Type:</strong> {eclipse.type}
+          </p>
+          <p>
+            <strong>Date:</strong> {eclipse.date}
+          </p>
+          <p>
+            <strong>Visibility:</strong> {eclipse.visibility}
+          </p>
         </div>
       )}
     </div>

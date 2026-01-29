@@ -6,7 +6,7 @@ import { OrbitControls, useTexture } from "@react-three/drei";
    Moon Sphere
 =========================== */
 const MoonSphere = ({ illumination }) => {
-  const texture = useTexture("/textures/moon_8k.jpg");
+  const texture = useTexture("/textures/moon_2k.jpg");
 
   // Convert illumination → phase angle
   const phaseAngle = Math.acos(illumination / 100);
