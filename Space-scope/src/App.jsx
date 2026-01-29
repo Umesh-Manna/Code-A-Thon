@@ -11,6 +11,7 @@ import Satellites from './pages/Skyintel/Satellites/Satellites'
 import Live_sky from './pages/Skyintel/live_sky/Live_sky.jsx'
 import ObjectView from './pages/Skyintel/live_sky/ObjectView.jsx'
 import MoonDashboard from './Lunar_moon/MoonDashboard.jsx'
+import MoonWebGL from './Lunar_moon/MoonWebGL.jsx'
 
 function App() {
   // return (<></> )
@@ -41,6 +42,12 @@ function App() {
           path="/skyintel/lunar_view"
           element={<MoonDashboard/>}
         />
+
+        <Route
+          path="/skyintel/moon"
+          element={<MoonWebGL />}
+        />
+
 
         {/* <Route
           path="/solar-activity"
