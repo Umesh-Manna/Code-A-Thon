@@ -1,21 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, useTexture } from "@react-three/drei";
-import * as THREE from "three";
-import { fetchMoonNow } from "./api";
 
 /* ===========================
-   Moon Sphere Component
+   Moon Sphere
 =========================== */
-const Moon = ({ illumination }) => {
-  const texture = useTexture("/textures/moon_2k.jpg");
+const MoonSphere = ({ illumination }) => {
+  const texture = useTexture("/textures/moon_8k.jpg");
 
   // Convert illumination → phase angle
   const phaseAngle = Math.acos(illumination / 100);
 
   return (
     <>
-      {/* Directional sunlight */}
+      {/* Sun light */}
       <directionalLight
         position={[
           Math.cos(phaseAngle) * 5,
@@ -23,15 +21,14 @@ const Moon = ({ illumination }) => {
           Math.sin(phaseAngle) * 5,
         ]}
         intensity={1.4}
-        color="#ffffff"
       />
 
       {/* Ambient bounce */}
-      <ambientLight intensity={0.1} />
+      <ambientLight intensity={0.15} />
 
-      {/* Moon mesh */}
+      {/* Moon */}
       <mesh>
-        <sphereGeometry args={[2.5, 64, 64]} />
+        <sphereGeometry args={[2.5, 128, 128]} />
         <meshStandardMaterial
           map={texture}
           roughness={1}
@@ -43,34 +40,21 @@ const Moon = ({ illumination }) => {
 };
 
 /* ===========================
-   Main WebGL Page
+   WebGL Canvas Wrapper
 =========================== */
-const MoonWebGL = () => {
-  const [illumination, setIllumination] = useState(50);
-
-  useEffect(() => {
-    fetchMoonNow(0, 0).then((data) => {
-      setIllumination(data.illumination);
-    });
-  }, []);
-
+const MoonWebGL = ({ illumination }) => {
   return (
-    <div style={{ width: "100vw", height: "100vh" }}>
-      <Canvas
-        camera={{ position: [0, 0, 7], fov: 45 }}
-        gl={{ antialias: true }}
-      >
-        <color attach="background" args={["black"]} />
+    <Canvas
+      camera={{ position: [0, 0, 7], fov: 45 }}
+      gl={{ antialias: true }}
+      style={{ width: "100%", height: "100%" }}
+    >
+      <color attach="background" args={["black"]} />
 
-        <Moon illumination={illumination} />
+      <MoonSphere illumination={illumination} />
 
-        {/* Controls (disable zoom for realism) */}
-        <OrbitControls
-          enableZoom={false}
-          enablePan={false}
-        />
-      </Canvas>
-    </div>
+      <OrbitControls enableZoom={false} enablePan={false} />
+    </Canvas>
   );
 };
 
