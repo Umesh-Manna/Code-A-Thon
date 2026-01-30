@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchMoonNow, fetchLunarEclipse } from "./api";
-import MoonWebGL from "./MoonWebGL";
+import { fetchMoonNow } from "./api";
 import SunEarthMoonMap from "./SunEarthMoonMap";
 import DayNightMap from "./DayNightMap";
 import Countdown from "./Countdown";
@@ -52,8 +51,18 @@ const MoonDashboard = () => {
          =============================== */}
       {view === "moon" && moon && (
         <>
+          {/* Static Moon Image (NO WebGL) */}
           <div className="moon-panel">
-            <MoonWebGL illumination={moon.illumination} />
+            <img
+              src="/textures/moon_static.jpg"
+              alt="Moon surface"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                display: "block",
+              }}
+            />
           </div>
 
           <div className="moon-info">
@@ -62,7 +71,7 @@ const MoonDashboard = () => {
             <p><strong>Lunar Age:</strong> {moon.age} days</p>
           </div>
 
-          {/* ---- SAFE DETAILS TABLE ---- */}
+          {/* ---- Details Table ---- */}
           {moon.details && (
             <table className="moon-details">
               <tbody>
