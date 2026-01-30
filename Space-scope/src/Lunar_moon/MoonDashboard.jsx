@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { fetchMoonNow } from "./api";
 
-/* MOON FEATURES — UNCHANGED */
 import SunEarthMoonMap from "./SunEarthMoonMap";
 import DayNightMap from "./DayNightMap";
 import Countdown from "./Countdown";
 
-/* LAYOUT COMPONENTS — UNCHANGED */
 import Navbar from "../components/Skyintel/Navbar/Navbar";
 import Sidebar from "../components/Sidebar";
 
@@ -14,13 +12,11 @@ import "./moon.css";
 
 /* ===============================
    Helper: UTC → Local date only
-   =============================== */
+=============================== */
 function localDay(utcISO) {
   if (!utcISO) return "-";
   return new Date(utcISO).getDate();
 }
-
-const NAVBAR_HEIGHT = "72px"; // keep in sync with navbar design
 
 const MoonDashboard = () => {
   const [view, setView] = useState("moon");
@@ -46,36 +42,18 @@ const MoonDashboard = () => {
 
   return (
     <>
-      {/* ===============================
-          SIDEBAR (FIXED, OVERLAY)
-         =============================== */}
+      {/* Sidebar */}
       <div className="fixed inset-y-0 left-0 z-50">
         <Sidebar />
       </div>
 
-      {/* ===============================
-          NAVBAR (FIXED, INDEPENDENT)
-         =============================== */}
-      <div
-        className="fixed top-0 right-0 z-40"
-        style={{
-          left: "6rem", // collapsed sidebar width (w-24)
-          height: NAVBAR_HEIGHT,
-        }}
-      >
+      {/* Navbar */}
+      <div className="fixed top-0 right-0 z-40 skyintel-navbar-fixed" style={{ left: "6rem" }}>
         <Navbar />
       </div>
 
-      {/* ===============================
-          MAIN SCROLLABLE CONTENT
-         =============================== */}
-      <div
-        className="min-h-screen pr-6"
-        style={{
-          paddingLeft: "6rem",      // collapsed sidebar width
-          paddingTop: NAVBAR_HEIGHT // space for fixed navbar
-        }}
-      >
+      {/* Page */}
+      <div className="skyintel-page" style={{ paddingLeft: "6rem" }}>
         <div className="moon-dashboard">
           <header className="moon-header">
             <h1>🌙 Moon Dashboard</h1>
@@ -94,89 +72,28 @@ const MoonDashboard = () => {
              ===================================================== */}
           {view === "moon" && moon && (
             <>
+              {/* Moon image */}
               <div className="moon-panel">
                 <img
                   src="/textures/moon_static.jpg"
                   alt="Moon surface"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    display: "block",
-                  }}
+                  className="moon-image"
                 />
               </div>
 
+              {/* 3 existing details (UNCHANGED) */}
               <div className="moon-info">
                 <p><strong>Phase:</strong> {moon.phase}</p>
                 <p><strong>Geometric Illumination:</strong> {moon.illumination}%</p>
                 <p><strong>Lunar Age:</strong> {moon.age} days</p>
               </div>
 
-              {moon.details && (
-                <table className="moon-details">
-                  <tbody>
-                    <tr>
-                      <td>Constellation</td>
-                      <td>{moon.details.constellation}</td>
-                    </tr>
-                    <tr>
-                      <td>RA (JNow)</td>
-                      <td>{moon.details.ra.toFixed(2)}°</td>
-                    </tr>
-                    <tr>
-                      <td>Dec (JNow)</td>
-                      <td>{moon.details.dec.toFixed(2)}°</td>
-                    </tr>
-                    <tr>
-                      <td>Distance to Earth</td>
-                      <td>{moon.details.distance_km.toLocaleString()} km</td>
-                    </tr>
-                    <tr>
-                      <td>Apparent Size</td>
-                      <td>{moon.details.angular_size_arcmin} arcmin</td>
-                    </tr>
-                    <tr>
-                      <td>Orbital Speed</td>
-                      <td>{moon.details.orbital_speed_kmh} km/h</td>
-                    </tr>
-                  </tbody>
-                </table>
-              )}
-            </>
-          )}
-
-          {/* =====================================================
-              SECTION 2 — POSITIONS
-             ===================================================== */}
-          {view === "positions" && moon && (
-            <>
-              <SunEarthMoonMap
-                sunAngle={moon.sun_angle}
-                moonAngle={moon.moon_angle}
-              />
-
-              <div className="countdown-box">
-                <h3>🌕 Countdown to Next Full Moon</h3>
-                <Countdown target={moon.next_full_moon} />
-                <div className="local-time">
-                  Local time:{" "}
-                  {new Date(moon.next_full_moon).toLocaleString()}
-                </div>
-              </div>
-
-              <h3 className="section-title">🌙 Next 4 Moon Phases</h3>
-              <div className="phase-cards">
-                {moon.next_phases.map((p) => (
-                  <div key={p.name} className="phase-card">
-                    <strong>{p.name}</strong>
-                    <div>{new Date(p.utc).toLocaleString()}</div>
-                  </div>
-                ))}
-              </div>
-
+              {/* =================================================
+                  ✅ RE-ADDED TABLE (FIX)
+                  Appears BELOW the 3 details
+                 ================================================= */}
               <h3 className="section-title">
-                📅 Moon Phases Calendar – Next 12 Months
+                🌙 Moon Phases Calendar – Next 12 Months
               </h3>
 
               <table className="phase-calendar">
@@ -186,7 +103,7 @@ const MoonDashboard = () => {
                     <th>New Moon</th>
                     <th>First Quarter</th>
                     <th>Full Moon</th>
-                    <th>Last Quarter</th>
+                    <th>Third Quarter</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -205,7 +122,37 @@ const MoonDashboard = () => {
           )}
 
           {/* =====================================================
-              SECTION 3 — DAY / NIGHT MAP
+              SECTION 2 — SUN–EARTH–MOON POSITIONS (UNCHANGED)
+             ===================================================== */}
+          {view === "positions" && moon && (
+            <>
+              <SunEarthMoonMap
+                sunAngle={moon.sun_angle}
+                moonAngle={moon.moon_angle}
+              />
+
+              <div className="countdown-box">
+                <h3>🌕 Countdown to Next Full Moon</h3>
+                <Countdown target={moon.next_full_moon} />
+                <div className="local-time">
+                  Local time: {new Date(moon.next_full_moon).toLocaleString()}
+                </div>
+              </div>
+
+              <h3 className="section-title">🌙 Next 4 Moon Phases</h3>
+              <div className="phase-cards">
+                {moon.next_phases.map((p) => (
+                  <div key={p.name} className="phase-card">
+                    <strong>{p.name}</strong>
+                    <div>{new Date(p.utc).toLocaleString()}</div>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+
+          {/* =====================================================
+              SECTION 3 — DAY / NIGHT MAP (UNCHANGED)
              ===================================================== */}
           {view === "eclipse" && (
             <>

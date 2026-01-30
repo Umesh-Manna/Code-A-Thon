@@ -1,20 +1,60 @@
 /* ===============================
-   Dashboard Container
+   Page-level layout fixes
+=============================== */
+
+/* Matches navbar height INCLUDING its internal margin-bottom */
+.skyintel-navbar-fixed {
+  height: auto;
+}
+
+/* This is the key fix:
+   Push content exactly below navbar
+   NO hardcoded JS heights
+   NO extra gap
+*/
+.skyintel-page {
+  margin-top: 96px; /* matches real navbar height in SkyIntel */
+  padding-right: 24px;
+  min-height: 100vh;
+}
+
+/* ===============================
+   Moon Dashboard (content only)
 =============================== */
 .moon-dashboard {
   width: 100%;
   max-width: 1100px;
 
-  /* REMOVE centering responsibility */
+  /* IMPORTANT: do NOT center with margin auto */
   margin: 0;
 
-  /* Keep internal spacing only */
   padding: 24px 0;
 }
 
+/* ===============================
+   Moon Panel
+=============================== */
+.moon-panel {
+  width: 100%;
+  max-width: 520px;
+  aspect-ratio: 1 / 1;
+
+  background: black;
+  border-radius: 16px;
+  overflow: hidden;
+
+  margin: 0 auto 24px auto;
+}
+
+.moon-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
 /* ===============================
-   Header Row
+   Header
 =============================== */
 .moon-header {
   display: flex;
@@ -28,46 +68,8 @@
   font-weight: 600;
 }
 
-/* Dropdown */
-.moon-header select {
-  background: #111;
-  color: #fff;
-  padding: 6px 12px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-}
-
-.moon-header select:focus {
-  outline: none;
-}
-
 /* ===============================
-   Moon Panel (IMPORTANT PART)
-=============================== */
-.moon-panel {
-  width: 100%;
-  max-width: 520px;
-  aspect-ratio: 1 / 1;
-
-  background: black;
-  border-radius: 16px;
-  overflow: hidden;
-
-  margin: 0 auto 24px auto;
-
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-}
-
-/* WebGL canvas constrained to panel */
-.moon-panel canvas {
-  width: 100% !important;
-  height: 100% !important;
-  display: block;
-}
-
-/* ===============================
-   Info Section
+   Info
 =============================== */
 .moon-info {
   max-width: 520px;
@@ -79,33 +81,6 @@
   margin: 6px 0;
 }
 
-.moon-info strong {
-  font-weight: 600;
-}
-
-/* ===============================
-   Error Message
-=============================== */
 .error {
   color: #ff6b6b;
-  margin-bottom: 12px;
 }
-
-.moon-details {
-  width: 100%;
-  max-width: 520px;
-  margin: 16px auto;
-  border-collapse: collapse;
-  font-size: 0.9rem;
-}
-
-.moon-details td {
-  padding: 6px 8px;
-  border-bottom: 1px solid #333;
-}
-
-.moon-details td:first-child {
-  font-weight: 600;
-  color: #ccc;
-}
-
