@@ -3,6 +3,7 @@ import { fetchMoonNow, fetchLunarEclipse } from "./api";
 import MoonWebGL from "./MoonWebGL";
 import SunEarthMoonMap from "./SunEarthMoonMap";
 import Countdown from "./Countdown";
+import DayNightMap from "./DayNightMap";
 import "./moon.css";
 
 /* ===============================
@@ -46,7 +47,7 @@ const MoonDashboard = () => {
         <select value={view} onChange={(e) => setView(e.target.value)}>
           <option value="moon">Live Moon Phase</option>
           <option value="positions">Sun–Earth–Moon Positions</option>
-          <option value="eclipse">Lunar Eclipse</option>
+          <option value="eclipse">Day / Night Map</option>
         </select>
       </header>
 
@@ -141,19 +142,16 @@ const MoonDashboard = () => {
       {/* =====================================================
           LUNAR ECLIPSE (KEPT AS-IS)
          ===================================================== */}
-      {view === "eclipse" && eclipse && (
-        <div className="moon-info">
-          <p>
-            <strong>Type:</strong> {eclipse.type}
+      {view === "eclipse" && (
+  <>
+          <h3>🌍 Live Earth Day / Night Map</h3>
+          <DayNightMap />
+          <p className="moon-info">
+            Real-time solar illumination with accurate terminator shading.
           </p>
-          <p>
-            <strong>Date:</strong> {eclipse.date}
-          </p>
-          <p>
-            <strong>Visibility:</strong> {eclipse.visibility}
-          </p>
-        </div>
+        </>
       )}
+
     </div>
   );
 };
