@@ -4,9 +4,14 @@
 .moon-dashboard {
   width: 100%;
   max-width: 1100px;
-  margin: 0 auto;
-  padding: 24px;
+
+  /* REMOVE centering responsibility */
+  margin: 0;
+
+  /* Keep internal spacing only */
+  padding: 24px 0;
 }
+
 
 /* ===============================
    Header Row
