@@ -12,8 +12,8 @@ export default function Navbar() {
             Real-time Solar Activity
           </NavLink>
 
-          <NavLink to="/lunar-eclipse" className="nav-btn">
-            Lunar Eclipse
+          <NavLink to="/Skyintel/lunar_view" className="nav-btn">
+            Lunar Data
           </NavLink>
 
           <NavLink to="/skyintel/live_sky" className="nav-btn">
