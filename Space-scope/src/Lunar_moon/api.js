@@ -11,3 +11,4 @@ export async function fetchLunarEclipse() {
   if (!res.ok) throw new Error("Eclipse fetch failed");
   return res.json();
 }
+  

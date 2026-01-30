@@ -1,16 +1,53 @@
 from datetime import datetime, timedelta
 import math
 
+# ===============================
+# Constants
+# ===============================
+SYNODIC_MONTH = 29.530588
+REF_NEW_MOON = datetime(2000, 1, 6, 18, 14)  # UTC reference new moon
+
+PHASES = [
+    ("New Moon", 0.0),
+    ("First Quarter", 0.25),
+    ("Full Moon", 0.5),
+    ("Last Quarter", 0.75),
+]
+
+# ===============================
+# Phase calculation helpers
+# ===============================
+def _next_phase_from(reference, target_phase):
+    """
+    Compute the next lunar phase AFTER a given reference datetime.
+    """
+    days_since_ref = (reference - REF_NEW_MOON).total_seconds() / 86400
+    lunations = days_since_ref / SYNODIC_MONTH
+    current_phase = lunations % 1
+
+    delta = (target_phase - current_phase) % 1
+    return reference + timedelta(days=delta * SYNODIC_MONTH)
+
+
+def _next_phase_time(target_phase):
+    """
+    Compute next phase from 'now' (used outside the calendar).
+    """
+    return _next_phase_from(datetime.utcnow(), target_phase)
+
+
+# ===============================
+# Main API logic
+# ===============================
 def moon_now(lat, lon):
     now = datetime.utcnow()
 
-    # --- Lunar phase calculations ---
+    # ----- Current phase -----
     days = (now - datetime(2001, 1, 1)).days
-    lunations = days / 29.530588
-    phase = lunations % 1
+    phase = (days / SYNODIC_MONTH) % 1
 
     illumination = round(abs(math.cos(phase * math.pi)) * 100, 2)
-    age = round(phase * 29.53, 2)
+    age = round(phase * SYNODIC_MONTH, 2)
 
     phase_name = (
         "New Moon" if phase < 0.03 else
@@ -23,37 +60,58 @@ def moon_now(lat, lon):
         "Waning Crescent"
     )
 
-    # --- Approximate positional astronomy ---
-    ra = round((phase * 360) % 360, 2)          # degrees
-    dec = round(5 * math.sin(phase * 2 * math.pi), 2)
+    # ----- Orbital geometry -----
+    sun_angle = round((now.timetuple().tm_yday / 365.2422) * 360, 2)
+    moon_angle = round(phase * 360, 2)
 
-    altitude = round(45 * math.cos(phase * math.pi), 2)
-    azimuth = round((phase * 360 + 180) % 360, 2)
+    # ----- Next full moon -----
+    next_full = _next_phase_time(0.5)
 
-    rise_time = (now - timedelta(hours=6)).strftime("%H:%M UTC")
-    set_time = (now + timedelta(hours=6)).strftime("%H:%M UTC")
+    # ----- Next 4 phases -----
+    next_phases = []
+    for name, p in PHASES:
+        t = _next_phase_time(p)
+        next_phases.append({
+            "name": name,
+            "utc": t.isoformat()
+        })
 
-    distance_km = round(384400 + 20000 * math.cos(phase * 2 * math.pi), 0)
-    apparent_size = round(0.49 + 0.05 * math.cos(phase * 2 * math.pi), 3)
-    orbital_speed = round(1.022, 3)  # km/s (average)
+    # ===============================
+    # Correct 12-month calendar
+    # ===============================
+    calendar = []
+    cursor = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
 
-    constellation = "Taurus"  # placeholder, upgradable later
+    for _ in range(12):
+        row = {"month": cursor.strftime("%B %Y")}
+
+        for name, phase_fraction in PHASES:
+            t = _next_phase_from(cursor, phase_fraction)
+
+            # If phase spills into next month, search further ahead
+            if t.month != cursor.month:
+                t = _next_phase_from(cursor + timedelta(days=15), phase_fraction)
+
+            row[name] = t.isoformat()
+
+        calendar.append(row)
+
+        # Move to next month
+        cursor += timedelta(days=32)
+        cursor = cursor.replace(day=1)
 
     return {
+        # Section 1 — Live Moon Phase (unchanged)
         "phase": phase_name,
         "illumination": illumination,
         "age": age,
 
-        "constellation": constellation,
-        "ra": f"{ra}°",
-        "dec": f"{dec}°",
-        "altitude": f"{altitude}°",
-        "azimuth": f"{azimuth}°",
-        "rise_time": rise_time,
-        "set_time": set_time,
-        "distance": f"{distance_km:,} km",
-        "apparent_size": f"{apparent_size}°",
-        "orbital_speed": f"{orbital_speed} km/s"
+        # Section 2 — Positions & calendar
+        "sun_angle": sun_angle,
+        "moon_angle": moon_angle,
+        "next_full_moon": next_full.isoformat(),
+        "next_phases": next_phases,
+        "calendar": calendar
     }
 
 
