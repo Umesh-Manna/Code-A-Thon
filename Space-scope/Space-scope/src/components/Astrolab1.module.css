@@ -1,0 +1,316 @@
+/* ================= ROOT LAYOUT ================= */
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.sidebarArea {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 50;
+}
+
+.main {
+  height: 100vh;
+  margin-left: 80px;
+  overflow-y: auto;
+}
+
+/* ================= BACKGROUND ================= */
+
+.gradientPanel {
+  background: linear-gradient(
+    135deg,
+    #b83280,
+    #5b1e3a,
+    #1e0b1a
+  );
+}
+
+/* ================= SECTIONS ================= */
+
+.pageSection {
+  height: 100vh;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+/* ================= SHARED WIDTH ================= */
+
+.contentWrap {
+  width: fit-content;
+  max-width: 100%;
+}
+
+/* ================= HEADER (SECTION 1) ================= */
+
+.topBanner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.headerPill {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 18px;
+  padding: 14px 20px;
+  gap: 20px;
+}
+
+.headerBlock strong {
+  font-size: 20px;
+}
+
+.headerBlock span {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.headerStat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.headerStat span {
+  color: #2563eb;
+  font-weight: bold;
+}
+
+.divider {
+  width: 1px;
+  height: 36px;
+  background: #e5e7eb;
+}
+
+.leaderboardBtn {
+  margin-left: auto;
+  background: #7c3aed;
+  color: white;
+  border: 2px solid white;
+  padding: 10px 20px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+/* ================= PLAY SECTION (SECTION 1 – UPDATED) ================= */
+
+.playSection {
+  background: #f8fafc;            /* same white as section 3 */
+  padding: 24px;
+  border-radius: 24px;
+  width: 100%;                    /* 🔑 wider like section 3 */
+  max-width: 100%;
+  overflow: hidden;
+}
+
+
+.sectionHeader {
+  margin-bottom: 12px;
+}
+
+.explore {
+  font-size: 24px;        /* same as Section 3 */
+  font-weight: 600;       /* same as Section 3 */
+  line-height: 1.2;
+}
+
+.cardRow {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  padding-bottom: 16px;
+
+  /* 🔑 match section 3 scroll feel */
+  width: 100%;
+}
+
+
+/* ================= CARDS ================= */
+
+.card {
+  width: 360px;                  /* 🔑 same as section 3 */
+  height: 420px;                 /* 🔑 same as section 3 */
+  border-radius: 22px;
+
+  padding: 16px;
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  flex-shrink: 0;
+
+  /* 🔑 same depth as section 3 cards */
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+}
+
+
+.iconTray {
+  background: linear-gradient(135deg, #0f172a, #020617);
+  border-radius: 16px;
+  padding: 14px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  font-size: 30px;
+}
+
+.cardFooter {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.badge {
+  background: rgba(255, 255, 255, 0.25);
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+.playBtn {
+  background: #020617;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+/* ================= CARD COLORS ================= */
+
+.blue {
+  background: linear-gradient(135deg, #2563eb, #60a5fa);
+}
+
+.green {
+  background: linear-gradient(135deg, #059669, #34d399);
+}
+
+.purple {
+  background: linear-gradient(135deg, #7c3aed, #c084fc);
+}
+
+.pink {
+  background: linear-gradient(135deg, #ec4899, #f472b6);
+}
+
+.yellow {
+  background: linear-gradient(135deg, #fde047, #facc15);
+  color: #020617;
+}
+
+/* ========================================================= */
+/* ================= SECTION 3 – RECOMMENDED ================= */
+/* ========================================================= */
+
+.recSection {
+  background: #f8fafc;
+  border-radius: 24px;
+  padding: 24px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.recHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.recHeader h2 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.recHeader span {
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Horizontal scrolling */
+.recRow {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  padding-bottom: 16px;
+}
+
+/* Fixed-size recommended cards */
+.recCard {
+  width: 360px;
+  height: 420px;
+  border-radius: 22px;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+}
+
+/* === CLEAN GRAY IMAGE PLACEHOLDER (REFERENCE MATCH) === */
+
+.recImagePlaceholder {
+  height: 200px;
+  margin: 14px;
+  border-radius: 18px;
+
+  background: linear-gradient(
+    180deg,
+    #3a4250,
+    #2b3240
+  );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.45);
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Recommended card body */
+.recBody {
+  padding: 16px;
+  color: white;
+  height: calc(100% - 200px);
+}
+
+.recBody h3 {
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.recBody p {
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+/* Color themes */
+.greenRec {
+  background: linear-gradient(135deg, #0f7a2f, #19b44a);
+}
+
+.redRec {
+  background: linear-gradient(135deg, #8b0023, #ff0033);
+}
+
+.orangeRec {
+  background: linear-gradient(135deg, #ff6a00, #ffb347);
+}
+
+.yellowRec {
+  background: linear-gradient(135deg, #b58a00, #ffd400);
+}
+
+.grayRec {
+  background: linear-gradient(135deg, #6b6b6b, #bfbfbf);
+}

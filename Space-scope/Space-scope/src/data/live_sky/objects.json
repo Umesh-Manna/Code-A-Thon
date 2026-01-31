@@ -1,0 +1,90 @@
+[
+  {
+    "id": "c50",
+    "code": "C 50",
+    "displayName": "Caldwell 50",
+    "stellariumTarget": "NGC 2244",
+    "type": "Open Cluster",
+    "constellation": "Monoceros",
+    "magnitude": "~4.8",
+    "image": "",
+    "categories": ["Cluster", "Caldwell", "NGC"]
+  },
+  {
+    "id": "c49",
+    "code": "C 49",
+    "displayName": "Rosette Nebula",
+    "stellariumTarget": "Rosette Nebula",
+    "type": "Bright Nebula",
+    "constellation": "Monoceros",
+    "image": "",
+    "categories": ["Nebula", "Caldwell"]
+  },
+  {
+    "id": "c46",
+    "code": "C 46",
+    "displayName": "Hubble's Variable Nebula",
+    "stellariumTarget": "NGC 2261",
+    "type": "Bright Nebula",
+    "image": "",
+    "categories": ["Nebula", "Caldwell", "NGC"]
+  },
+  {
+    "id": "m78",
+    "code": "M 78",
+    "displayName": "Messier 78",
+    "stellariumTarget": "NGC 2068",
+    "type": "Diffuse Nebula",
+    "constellation": "Orion",
+    "image": "",
+    "categories": ["Nebula", "Messier", "NGC"]
+  },
+  {
+    "id": "alp-ori",
+    "code": "α Ori",
+    "displayName": "Betelgeuse",
+    "stellariumTarget": "Betelgeuse",
+    "type": "Red Supergiant Star",
+    "constellation": "Orion",
+    "image": "",
+    "categories": ["Star"]
+  },
+  {
+    "id": "sh2-267",
+    "code": "Sh 2-267",
+    "displayName": "Sharpless 2-267",
+    "stellariumTarget": "Sh2-267",
+    "type": "Emission Nebula",
+    "image": "",
+    "categories": ["Nebula", "Sharpless"]
+  },
+  {
+    "id": "zet-ori",
+    "code": "ζ Ori",
+    "displayName": "Alnitak",
+    "stellariumTarget": "Alnitak",
+    "type": "Binary Blue Supergiants",
+    "constellation": "Orion",
+    "image": "",
+    "categories": ["Star"]
+  },
+  {
+    "id": "ic343",
+    "code": "IC 343",
+    "displayName": "Horsehead Region",
+    "stellariumTarget": "Horsehead Nebula",
+    "type": "Emission Nebula",
+    "image": "",
+    "categories": ["Nebula"]
+  },
+  {
+    "id": "gam-gam",
+    "code": "γ Gem",
+    "displayName": "Alhena",
+    "stellariumTarget": "Alhena",
+    "type": "Blue-White Luminous Star",
+    "constellation": "Gemini",
+    "image": "",
+    "categories": ["Star"]
+  }
+]
