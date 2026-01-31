@@ -1,0 +1,151 @@
+/* ROOT */
+.container {
+  display: grid;
+  height: 100vh;
+  width: 100vw;
+  grid-template-columns: 80px 1fr;
+  grid-template-rows: auto 1fr;
+  background-color: #0b0d17;
+  overflow: hidden;
+}
+
+/* SIDEBAR */
+.sidebarArea {
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 1000;
+}
+
+.sidebarContent {
+  width: 60px;
+  height: 100%;
+  background: linear-gradient(to bottom, #1e293b, #020617);
+  transition: width 0.3s ease;
+}
+
+.sidebarExpanded {
+  width: 260px;
+}
+
+/* NAVBAR */
+.navbarArea {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+/* SCROLL */
+.scrollArea {
+  grid-column: 2;
+  grid-row: 2;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+/* BLUE BORDER */
+.sectionWrapper {
+  border: 2px solid rgba(56, 189, 248, 0.9);
+  border-radius: 22px;
+  padding: 22px;
+  margin-bottom: 40px;
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 23, 42, 0.9),
+    rgba(15, 23, 42, 0.75)
+  );
+}
+
+/* HERO */
+.heroSection {
+  height: 260px;
+  border-radius: 18px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding: 36px;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(2, 6, 23, 0.85),
+    rgba(2, 6, 23, 0.2)
+  );
+}
+
+.heroTitle {
+  position: relative;
+  z-index: 2;
+  color: white;
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+/* INFO */
+.infoGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.infoText p {
+  color: #d1d5db;
+  line-height: 1.7;
+}
+
+/* IMAGE CONTAINERS */
+.infoImageWrapper,
+.cardImageWrapper {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.infoImageWrapper img,
+.cardImageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* CARDS */
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 20px;
+}
+
+.cardItem {
+  background: #0f172a;
+  border-radius: 18px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cardImageWrapper {
+  height: 160px;
+  margin-bottom: 14px;
+}
+
+.cardItem h3 {
+  color: #60a5fa;
+  font-size: 0.95rem;
+}
+
+.cardLink {
+  color: white;
+  font-size: 0.75rem;
+  background: #111827;
+  padding: 6px 10px;
+  border-radius: 6px;
+  width: fit-content;
+  margin-top: auto;
+}

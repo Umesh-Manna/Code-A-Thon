@@ -1,0 +1,128 @@
+/* ===============================
+   Map Wrapper
+   =============================== */
+
+.satellite-map {
+  position: relative;
+  width: 100%;
+  height: 420px;
+
+  border-radius: 12px;
+  overflow: hidden;
+
+  background: #0b0f2a;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+/* Large Map View */
+.satellite-map.large {
+  height: 70vh;
+}
+
+/* ===============================
+   Leaflet Container
+   =============================== */
+
+.leaflet-map {
+  width: 100%;
+  height: 100%;
+}
+
+/* Fix Leaflet default controls */
+.leaflet-control-zoom {
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* ===============================
+   Map HUD Overlay
+   =============================== */
+
+.map-overlay {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+
+  padding: 8px 10px;
+  background: rgba(15, 18, 50, 0.85);
+
+  border-radius: 8px;
+  font-size: 0.75rem;
+  line-height: 1.4;
+
+  box-shadow: 0 0 0 1px rgba(120, 200, 255, 0.35);
+  backdrop-filter: blur(4px);
+}
+
+.map-overlay div {
+  white-space: nowrap;
+}
+
+/* ===============================
+   Map Controls Row (below map)
+   =============================== */
+
+.map-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  padding: 8px 6px;
+}
+
+.map-controls label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  font-size: 0.75rem;
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.map-controls input[type="checkbox"] {
+  accent-color: #5da9ff;
+}
+
+/* Button-style control (Larger Map View) */
+.map-controls button {
+  padding: 4px 10px;
+  font-size: 0.75rem;
+
+  background: linear-gradient(135deg, #3f8cff, #6a5cff);
+  border: none;
+  border-radius: 999px;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* ===============================
+   Day / Night Indicator
+   =============================== */
+
+.map-status {
+  margin-left: auto;
+  padding: 4px 10px;
+
+  font-size: 0.7rem;
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ===============================
+   Orbit & Footprint (future use)
+   =============================== */
+
+.orbit-line {
+  stroke: #5da9ff;
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+}
+
+.footprint-circle {
+  fill: rgba(90, 180, 255, 0.2);
+  stroke: rgba(90, 180, 255, 0.6);
+  stroke-width: 1;
+}
