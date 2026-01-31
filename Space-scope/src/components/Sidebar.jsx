@@ -29,7 +29,7 @@ const Sidebar = ({ isCollapsed, onToggle }) => {
   return (
     <aside 
       className={`fixed left-0 top-0 h-screen transition-all duration-300 z-50 flex flex-col border-r border-white/5 shadow-2xl
-        ${isCollapsed ? 'w-20 bg-[#232d3f]/60 backdrop-blur-md' : 'w-52 bg-[#060B1A]'} 
+        ${isCollapsed ? 'w-20 bg-[#232d3f]/60 backdrop-blur-md' : 'w-67 bg-[#060B1A]'} 
       `}
     >
       {/* Header Toggle Section */}

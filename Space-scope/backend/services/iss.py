@@ -32,4 +32,27 @@ def get_iss_event():
         }
     ]
 
+# ---------- LIVE ISS POSITION (for Globe) ----------
+import requests
+from datetime import datetime
+
+def get_iss_live_position():
+    try:
+        res = requests.get(
+            "https://api.wheretheiss.at/v1/satellites/25544",
+            timeout=5
+        )
+        data = res.json()
+
+        return {
+            "lat": data["latitude"],
+            "lng": data["longitude"],
+            "altitude": data["altitude"],
+            "velocity": data["velocity"],
+            "timestamp": datetime.utcnow().isoformat()
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+
 

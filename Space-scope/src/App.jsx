@@ -22,6 +22,7 @@ import Hero from './components/Hero.jsx';
 import Login from './components/Login.jsx';
 import Events from './screens/Events.jsx';
 import Dashboard from './screens/Dashboard.jsx';
+import Milestones from './screens/Milestones.jsx';
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/events" element={<Events />} />
       {/* Fallback route */}
+      <Route path="/milestones" element={<Milestones />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );

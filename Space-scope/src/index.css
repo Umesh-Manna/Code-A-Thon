@@ -119,3 +119,34 @@
 .text-stroke-transparent-6 {
   -webkit-text-stroke: 6px transparent;
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@layer components {
+  .control-card {
+    @apply relative overflow-hidden rounded-2xl
+      bg-gradient-to-br from-[#081b3a] via-[#0b2a5a] to-[#0e3a7c]
+      border border-cyan-400/20
+      shadow-[0_0_40px_-10px_rgba(0,180,255,0.35)]
+      backdrop-blur-xl;
+  }
+
+  .control-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at top left,
+      rgba(0, 200, 255, 0.15),
+      transparent 60%
+    );
+    pointer-events: none;
+  }
+}
+

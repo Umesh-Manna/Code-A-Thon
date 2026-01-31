@@ -1,7 +1,6 @@
 import requests
 
 def get_active_meteors():
-    # For hackathon stability, keep this reliable
     return [
         {
             "title": "Perseid Meteor Shower",
