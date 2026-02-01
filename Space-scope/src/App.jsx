@@ -12,7 +12,7 @@ import Live_sky from './pages/Skyintel/live_sky/Live_sky.jsx'
 import ObjectView from './pages/Skyintel/live_sky/ObjectView.jsx'
 import MoonDashboard from './Lunar_moon/MoonDashboard.jsx'
 
-import LatestUltravioletImages from './Solar_data/sections/LatestUltravioletImages.jsx'
+import SolarDataCardsPage from "./Solar_data/pages/SolarDataCardsPage.jsx";
 
 function App() {
   // return (<></> )
@@ -46,7 +46,7 @@ function App() {
 
         <Route
           path="/skyintel/solar_data"
-          element={<LatestUltravioletImages/>}
+          element={<SolarDataCardsPage />}
         />
 
         {/* <Route
