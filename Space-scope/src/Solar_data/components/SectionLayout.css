@@ -1,0 +1,60 @@
+/* src/Solar_data/components/SectionLayout.css */
+
+.solar-section {
+  background-color: #2b3142;
+  border-radius: 10px;
+  padding: 24px;
+  color: #e6e8ee;
+  max-width: 100%;
+}
+
+/* Title */
+.solar-section__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+}
+
+/* Description */
+.solar-section__description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #cfd3dc;
+  margin: 12px 0;
+}
+
+/* Attribution */
+.solar-section__attribution {
+  font-size: 0.85rem;
+  color: #aab0c0;
+  margin-bottom: 16px;
+}
+
+/* Visualization Area */
+.solar-section__visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 24px 0;
+}
+
+/* Legend */
+.solar-section__legend {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Notes / Bullet Section */
+.solar-section__notes {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #cfd3dc;
+}
+
+/* Divider */
+.solar-divider {
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.15);
+  margin: 16px 0;
+}
