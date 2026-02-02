@@ -1,0 +1,25 @@
+.uv-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+
+.uv-item {
+  background-color: #1e2230;
+  border-radius: 6px;
+  padding: 8px;
+  text-align: center;
+}
+
+.uv-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.uv-item figcaption {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: #cfd3dc;
+}

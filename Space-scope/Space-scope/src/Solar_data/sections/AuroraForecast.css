@@ -1,0 +1,47 @@
+/* Two-map layout like the PDF */
+.aurora-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  margin-top: 20px;
+  justify-items: center;
+}
+
+/* Individual aurora card */
+.aurora-item {
+  background: #0b0f1a;
+  padding: 12px;
+  border-radius: 12px;
+
+  /* 🔑 SIZE CONTROL */
+  max-width: 380px;
+  width: 100%;
+}
+
+/* Aurora map image */
+.aurora-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+/* Caption */
+.aurora-item figcaption {
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: #b8c1ec;
+  text-align: center;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .aurora-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .aurora-item {
+    max-width: 100%;
+  }
+}

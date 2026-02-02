@@ -1,0 +1,13 @@
+.photosphere-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.photosphere-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  background-color: #000;
+}

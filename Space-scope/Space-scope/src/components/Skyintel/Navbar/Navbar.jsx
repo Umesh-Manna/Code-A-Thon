@@ -8,7 +8,7 @@ export default function Navbar() {
         <span className="brand">SkyIntel</span>
 
         <div className="nav-buttons">
-          <NavLink to="/solar-activity" className="nav-btn">
+          <NavLink to="/skyintel/solar_data" className="nav-btn">
             Real-time Solar Activity
           </NavLink>
 

@@ -1,0 +1,78 @@
+.solar-activity-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.solar-activity-image {
+  max-width: 520px;
+  width: 100%;
+  background-color: #000;
+}
+
+/* Legend */
+.solar-activity-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 0.95rem;
+}
+
+.solar-activity-legend div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.legend-color {
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+/* Legend Colors (matched to PDF palette) */
+.legend-color.flare {
+  background: #c77dbb;
+}
+
+.legend-color.limb {
+  background: #4bb3d3;
+}
+
+.legend-color.quiet {
+  background: #0b6fa4;
+}
+
+.legend-color.coronal-hole {
+  background: #1fa971;
+}
+
+.legend-color.prominence {
+  background: #f4a300;
+}
+
+.legend-color.filament {
+  background: #c45500;
+}
+
+.legend-color.bright {
+  background: #f2e94e;
+}
+
+.legend-color.unlabeled {
+  background: #ffffff;
+}
+
+/* Notes list */
+.solar-activity-notes {
+  padding-left: 18px;
+  margin: 0;
+}
+
+.solar-activity-notes li {
+  margin-bottom: 8px;
+}

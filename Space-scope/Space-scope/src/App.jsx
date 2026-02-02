@@ -12,6 +12,8 @@ import Live_sky from './pages/Skyintel/live_sky/Live_sky.jsx'
 import ObjectView from './pages/Skyintel/live_sky/ObjectView.jsx'
 import MoonDashboard from './Lunar_moon/MoonDashboard.jsx'
 
+import SolarDataCardsPage from "./Solar_data/pages/SolarDataCardsPage.jsx";
+
 function App() {
   // return (<></> )
 
@@ -42,6 +44,10 @@ function App() {
           element={<MoonDashboard/>}
         />
 
+        <Route
+          path="/skyintel/solar_data"
+          element={<SolarDataCardsPage />}
+        />
 
         {/* <Route
           path="/solar-activity"

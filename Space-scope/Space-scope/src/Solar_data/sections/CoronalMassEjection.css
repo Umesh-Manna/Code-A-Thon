@@ -1,0 +1,69 @@
+/* Grid layout matching the PDF proportions */
+.cme-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  justify-items: center;
+}
+
+/* Individual CME card */
+.cme-item {
+  background: #0b0f1a;
+  padding: 12px;
+  border-radius: 12px;
+
+  /* 👇 LIMIT SIZE (THIS IS THE KEY) */
+  max-width: 320px;
+  width: 100%;
+}
+
+/* Bottom image slightly wider but controlled */
+.cme-item--center {
+  grid-column: span 2;
+  max-width: 420px;
+}
+
+/* CME images */
+.cme-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+/* Caption */
+.cme-item figcaption {
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: #b8c1ec;
+  text-align: center;
+}
+
+/* Notes section spacing */
+.cme-notes-title {
+  margin-bottom: 8px;
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+.solar-section__notes p {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cme-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cme-item,
+  .cme-item--center {
+    max-width: 100%;
+  }
+
+  .cme-item--center {
+    grid-column: span 1;
+  }
+}
