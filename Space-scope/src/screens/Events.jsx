@@ -54,7 +54,7 @@ const issIcon = new L.DivIcon({
 
 function ChangeView({ center }) {
   const map = useMap();
-  useEffect(() => {
+  React.useEffect(() => {
     if (center) map.setView(center, 4);
   }, [center]);
   return null;
@@ -134,7 +134,6 @@ const EventCard = ({ event, onNotify, index }) => {
       className="group relative mb-8"
     >
       <div className="relative flex flex-col xl:flex-row bg-[#080c14]/90 backdrop-blur-2xl border border-white/10 rounded-[32px] overflow-hidden shadow-2xl">
-        {/* LEFT */}
         <div className="w-full xl:w-[420px] h-[300px] p-4 flex-shrink-0">
           {isISS ? (
             <OrbitalMap />
@@ -150,7 +149,6 @@ const EventCard = ({ event, onNotify, index }) => {
           )}
         </div>
 
-        {/* RIGHT */}
         <div className="flex-1 p-8 flex flex-col justify-between">
           <div>
             <span className="flex items-center gap-2 text-blue-400 font-black text-[10px] tracking-[0.5em] uppercase mb-1">
@@ -266,6 +264,55 @@ export default function Events() {
 
         {/* MAIN */}
         <main className={styles.mainContent}>
+          {/* ===== HEADER + SEARCH BAR (RESTORED) ===== */}
+          <motion.header
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            className="mb-16"
+          >
+            <p className="text-blue-500 font-mono text-xs tracking-[0.5em] uppercase mb-1">
+              Interstellar Stream Terminal
+            </p>
+            <h1 className="text-7xl font-black italic uppercase tracking-tighter">
+              Space Scope <span className="text-blue-500">Events</span>
+            </h1>
+          </motion.header>
+
+          <div className="flex flex-wrap gap-4 mb-16 bg-white/5 p-2 rounded-full border border-white/5 backdrop-blur-3xl">
+            <div className="flex items-center gap-4 px-8 py-4 flex-1">
+              <Search className="text-blue-400" size={18} />
+              <input
+                className="bg-transparent outline-none text-white uppercase font-bold w-full placeholder:text-white/20"
+                placeholder="Search Celestial Broadcasts..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </div>
+
+            <select
+              value={timeFilter}
+              onChange={(e) => setTimeFilter(e.target.value)}
+              className="bg-black/40 px-8 py-4 rounded-full text-xs font-black tracking-widest uppercase text-blue-400 border border-white/5"
+            >
+              <option value="PRESENT">Live / Upcoming</option>
+              <option value="PAST">Archive Intel</option>
+              <option value="ALL">Total Spectrum</option>
+            </select>
+
+            <button
+              onClick={() => setShowNotifications(!showNotifications)}
+              className="relative h-12 w-12 flex items-center justify-center bg-white/10 rounded-full border border-white/5"
+            >
+              <Bell size={22} />
+              {notifications.length > 0 && (
+                <span className="absolute -top-1 -right-1 h-5 w-5 bg-blue-500 rounded-full text-[10px] font-black flex items-center justify-center">
+                  {notifications.length}
+                </span>
+              )}
+            </button>
+          </div>
+
+          {/* ===== EVENTS LIST ===== */}
           <div className="space-y-6">
             <AnimatePresence mode="popLayout">
               {filtered.map((event, idx) => (
@@ -301,6 +348,11 @@ export default function Events() {
             </div>
 
             <div className="space-y-4">
+              {notifications.length === 0 && (
+                <p className="opacity-20 uppercase font-bold tracking-widest text-center mt-20">
+                  Standby for Signal Lock...
+                </p>
+              )}
               {notifications.map((n) => (
                 <div
                   key={n.id}
