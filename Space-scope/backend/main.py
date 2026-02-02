@@ -13,6 +13,11 @@ from services.milestones import get_milestones
 from services.live_status import get_live_status
 from services.missions import get_launch_missions
 
+
+# Umesh's imports
+from astro import moon_now, next_lunar_eclipse
+from solar import router as solar_router   # ✅ ADD THIS
+
 app = FastAPI()
 
 # Updated CORS configuration to cover all common local origins
@@ -76,6 +81,29 @@ def live_status():
 @app.get("/missions")
 def missions():
     return get_launch_missions()
+
+
+# Umesh's imports
+
+# -----------------------------
+# Existing Lunar APIs (UNCHANGED)
+# -----------------------------
+
+@app.get("/moon/now")
+def moon_now_api(lat: float, lon: float):
+    return moon_now(lat, lon)
+
+@app.get("/moon/eclipse")
+def eclipse_api():
+    return next_lunar_eclipse()
+
+# -----------------------------
+# Solar APIs (NEW, SAFE ADDITION)
+# -----------------------------
+
+app.include_router(solar_router)
+
+
 
 # The "Main Guard" block is required on Windows to prevent multiprocessing crashes
 if __name__ == "__main__":
