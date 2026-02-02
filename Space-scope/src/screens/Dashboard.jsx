@@ -9,15 +9,13 @@ import SkyWeather from "../components/dashboard/SkyWeather";
 import InsightCard from "../components/dashboard/InsightCard";
 import EarthGlobe from "../components/dashboard/Globe";
 
-// Umesh's imports
 import styles from "./Dashboard.module.css";
 
 const Dashboard = () => {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <div className={'relative min-h-screen text-white bg-black overflow-hidden'}>
+    <div className="relative min-h-screen text-white bg-black overflow-hidden">
 
       {/* 🌌 BACKGROUND (NO LAYOUT EFFECT) */}
       <div className="fixed inset-0 z-0 pointer-events-none">
@@ -40,31 +38,26 @@ const Dashboard = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/90" />
       </div>
 
-      <div className={'relative z-10 flex min-h-screen ${styles.dashboardContainer}'}>
+      {/* ================= ROOT LAYOUT ================= */}
+      <div className={`relative z-10 ${styles.dashboardContainer}`}>
 
-        {/* SIDEBAR (SAME AS EVENTS) */}
-        <aside className="live-sky-sidebar-area">
+        {/* ================= SIDEBAR (OVERLAY) ================= */}
+        <aside className={styles.sidebarArea}>
           <div
-            className={`live-sky-sidebar-content ${
-              isSidebarOpen ? "expanded" : ""
+            className={`${styles.sidebarContent} ${
+              !isSidebarCollapsed ? styles.expanded : ""
             }`}
           >
-            <Sidebar 
+            <Sidebar
               isCollapsed={isSidebarCollapsed}
               onToggle={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
             />
           </div>
         </aside>
 
-        {/* MAIN CONTENT */}
-        <main
-          className={`transition-all duration-300 flex-1 p-6 space-y-6 ${
-            isSidebarCollapsed ? "ml-24" : "ml-64"
-          } ${styles.mainContent}`}
-        >
-
-          {/* HEADER */}
-          <h1 className="text-3xl font-bold">
+        {/* ================= MAIN CONTENT ================= */}
+        <main className={styles.mainContent}>
+          <h1 className="text-3xl font-bold mb-6">
             Space Scope{" "}
             <span className="text-white/60 font-medium">Real-Time</span>
           </h1>
@@ -74,38 +67,33 @@ const Dashboard = () => {
             <div className="col-span-3">
               <EventSnapshot />
             </div>
-
             <div className="col-span-6">
               <SpaceWeather />
             </div>
-
             <div className="col-span-3">
               <MissionCard />
             </div>
           </div>
 
-          {/* MIDDLE SECTION */}
-          <div className="grid grid-cols-12 gap-6">
+          {/* MIDDLE GRID */}
+          <div className="grid grid-cols-12 gap-6 mt-6">
             <div className="col-span-4">
               <MoonPhase />
             </div>
-
             <div className="col-span-8 h-[690px]">
               <EarthGlobe />
             </div>
           </div>
 
-          {/* BOTTOM SECTION */}
-          <div className="grid grid-cols-12 gap-6">
+          {/* BOTTOM GRID */}
+          <div className="grid grid-cols-12 gap-6 mt-6">
             <div className="col-span-4">
               <SkyWeather />
             </div>
-
             <div className="col-span-8">
               <InsightCard />
             </div>
           </div>
-
         </main>
       </div>
     </div>

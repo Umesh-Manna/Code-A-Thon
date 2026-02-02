@@ -1,4 +1,4 @@
-/* sidebar + mainContent */
+/* root layout */
 
 .dashboardContainer {
   display: grid;
@@ -6,30 +6,15 @@
   width: 100vw;
 
   grid-template-columns: 80px 1fr;
-  /* grid-template-rows: auto 1fr; */
-
-  background: linear-gradient(135deg, #3a4a5e, #0f172a);
-  color: #ffffff;
+  grid-template-rows: 1fr;
 
   overflow: hidden;
   position: relative;
 }
 
-/* mainContent */
-
-.mainContent {
-  grid-column: 2;
-  grid-row: 2;
-
-  overflow-y: auto;
-  padding-bottom: 32px;
-  position: relative;
-}
-
-
 /* sidebar */
 
-.live-sky-sidebar-area {
+.sidebarArea {
   position: absolute;
   top: 0;
   left: 0;
@@ -37,12 +22,34 @@
   z-index: 1000;
 }
 
-.live-sky-sidebar-content {
+.sidebarContent {
   height: 100%;
   width: 80px;
   transition: width 0.3s ease;
 }
 
-.live-sky-sidebar-content.expanded {
+.sidebarContent.expanded {
   width: 260px;
+}
+
+/* main content */
+.mainContent {
+  grid-column: 2;
+  padding: 24px;
+  overflow-y: auto;
+  padding-bottom: 32px;
+}
+
+/* scrollbar styling */
+.mainContent::-webkit-scrollbar {
+  width: 8px;
+}
+
+.mainContent::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 4px;
+}
+
+.mainContent::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.28);
 }
