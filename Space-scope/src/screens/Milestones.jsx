@@ -2,8 +2,10 @@ import React, { useEffect, useMemo, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import { ChevronDown } from "lucide-react";
 
+import styles from "./Milestones.module.css";
+
 export default function Milestones() {
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
   const [events, setEvents] = useState([]);
 
   /* ---------------- FILTER STATE ---------------- */
@@ -85,7 +87,7 @@ export default function Milestones() {
   const organisations = ["All", ...new Set(events.map(e => e?.agency).filter(Boolean))];
 
   return (
-    <div className="relative min-h-screen text-white bg-black">
+    <div className="relative min-h-screen text-white bg-black overflow-hidden">
 
       {/* 🌌 BACKGROUND */}
       <div className="fixed inset-0 z-0 pointer-events-none">
@@ -102,17 +104,26 @@ export default function Milestones() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/80" />
       </div>
 
-      <div className="flex min-h-screen relative z-10">
-        <Sidebar
-          isCollapsed={isSidebarCollapsed}
-          onToggle={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
-        />
+      {/* ================= ROOT LAYOUT ================= */}
+      <div className={`relative z-10 ${styles.dashboardContainer}`}>
 
-        <main
-          className={`transition-all duration-300 flex-1 overflow-x-hidden ${
-            isSidebarCollapsed ? "ml-24" : "ml-64"
-          }`}
-        >
+        {/* ================= SIDEBAR (OVERLAY) ================= */}
+        <aside className={styles.sidebarArea}>
+          <div
+            className={`${styles.sidebarContent} ${
+              !isSidebarCollapsed ? styles.expanded : ""
+            }`}
+          >
+            <Sidebar
+              isCollapsed={isSidebarCollapsed}
+              onToggle={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+            />
+          </div>
+        </aside>
+
+        {/* ================= MAIN CONTENT ================= */}
+        <main className={styles.mainContent}>
+
           {/* ================= FILTER BAR ================= */}
           <div className="sticky top-0 z-30 bg-gradient-to-b from-[#06162A] to-[#020B17] px-10 py-4 border-b border-white/10">
             <div className="flex items-center gap-6">
@@ -160,18 +171,12 @@ export default function Milestones() {
             id="timeline-scroll"
             className="relative px-10 py-24 max-w-[1400px] mx-auto h-[calc(100vh-96px)] overflow-y-scroll overflow-x-hidden cursor-grab scrollbar-hide"
           >
-            {/* CENTER LINE — FIXED */}
-            {/* <div
-              className="absolute left-1/2 -translate-x-1/2 w-[3px] bg-gradient-to-b from-cyan-300 via-cyan-400 to-cyan-900 shadow-[0_0_40px_rgba(0,255,255,0.8)]"
-              style={{ height: `${filtered.length * 22}rem` }}
-            /> */}
-
             <div className="relative space-y-56">
-                <div
-  className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-[3px]
-  bg-gradient-to-b from-cyan-300 via-cyan-400 to-cyan-900
-  shadow-[0_0_40px_rgba(0,255,255,0.8)]"
-/>
+              <div
+                className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-[3px]
+                bg-gradient-to-b from-cyan-300 via-cyan-400 to-cyan-900
+                shadow-[0_0_40px_rgba(0,255,255,0.8)]"
+              />
 
               {filtered.map((e, i) => (
                 <div
@@ -219,7 +224,12 @@ export default function Milestones() {
                     )}
 
                     {e.source_url && (
-                      <a href={e.source_url} target="_blank" className="inline-block mt-6 text-cyan-300 underline text-sm">
+                      <a
+                        href={e.source_url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-block mt-6 text-cyan-300 underline text-sm"
+                      >
                         Learn more
                       </a>
                     )}
@@ -238,7 +248,9 @@ export default function Milestones() {
 function FilterSelect({ label, value, setValue, options }) {
   return (
     <div className="flex items-center gap-3">
-      <span className="text-xs font-semibold tracking-widest text-white/70">{label}</span>
+      <span className="text-xs font-semibold tracking-widest text-white/70">
+        {label}
+      </span>
       <div className="relative">
         <select
           value={value}
@@ -251,7 +263,10 @@ function FilterSelect({ label, value, setValue, options }) {
             </option>
           ))}
         </select>
-        <ChevronDown size={14} className="absolute right-2 top-1/2 -translate-y-1/2 text-cyan-300 pointer-events-none" />
+        <ChevronDown
+          size={14}
+          className="absolute right-2 top-1/2 -translate-y-1/2 text-cyan-300 pointer-events-none"
+        />
       </div>
     </div>
   );

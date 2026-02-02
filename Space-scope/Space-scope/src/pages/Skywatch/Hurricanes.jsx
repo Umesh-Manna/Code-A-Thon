@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import react, { useState } from 'react';
 import styles from '../../components/Hurricanes.module.css';
-import Sidebar from '../../components/Sidebar';
+// import Sidebar from '../../components/Sidebar';
+import Sidebar from '../../../../src/components/Sidebar';
 import Skywatch_nav from '../../components/Skywatch_nav';
 
 // Images
@@ -12,6 +13,7 @@ import card3 from '../../assets/SKY_WATCH/Hurricane/card3.webp';
 
 const Hurricanes = () => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
 
   return (
     <div className={styles.container}>
@@ -23,8 +25,8 @@ const Hurricanes = () => {
           }`}
         >
           <Sidebar
-            isExpanded={isExpanded}
-            onToggle={() => setIsExpanded(!isExpanded)}
+            isCollapsed={isSidebarCollapsed}
+            onToggle={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
           />
         </div>
       </aside>

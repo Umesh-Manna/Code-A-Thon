@@ -6,13 +6,15 @@ import FilterBar from "../../../components/Skyintel/live_sky/FilterBar";
 import ObjectCard from "../../../components/Skyintel/live_sky/ObjectCard";
 import objects from "../../../data/live_sky/objects.json";
 
-import Sidebar from "../../../components/Sidebar";
+// import Sidebar from "../../../components/Sidebar";
+import Sidebar from '../../../../../src/components/Sidebar';
 import Navbar from "../../../components/Skyintel/Navbar/Navbar";
 
 const Live_sky = () => {
   const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
 
   const filteredObjects = useMemo(() => {
     if (!activeFilter) return objects;
@@ -30,7 +32,10 @@ const Live_sky = () => {
             isSidebarOpen ? "expanded" : ""
           }`}
         >
-          <Sidebar />
+          <Sidebar 
+            isCollapsed={isSidebarCollapsed}
+            onToggle={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+          />
         </div>
       </aside>
 

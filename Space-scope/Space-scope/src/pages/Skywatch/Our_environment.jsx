@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styles from '../../components/Our_environment.module.css';
-import Sidebar from '../../components/Sidebar';
+//import Sidebar from '../../components/Sidebar';
+import Sidebar from '../../../../src/components/Sidebar';
 import Skywatch_nav from '../../components/Skywatch_nav';
 
 /* Climate */
@@ -36,6 +37,7 @@ import card6_weather from '../../assets/SKY_WATCH/Weather/card6.webp';
 
 const Our_environment = () => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
 
   return (
     <div className={styles.container}>
@@ -47,8 +49,8 @@ const Our_environment = () => {
           }`}
         >
           <Sidebar
-            isExpanded={isExpanded}
-            onToggle={() => setIsExpanded(!isExpanded)}
+            isCollapsed={isSidebarCollapsed}
+            onToggle={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
           />
         </div>
       </aside>

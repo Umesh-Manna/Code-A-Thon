@@ -6,7 +6,7 @@ import DayNightMap from "./DayNightMap";
 import Countdown from "./Countdown";
 
 import Navbar from "../components/Skyintel/Navbar/Navbar";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../../../src/components/Sidebar";
 
 import "./moon.css";
 
@@ -22,6 +22,7 @@ const MoonDashboard = () => {
   const [view, setView] = useState("moon");
   const [moon, setMoon] = useState(null);
   const [error, setError] = useState(null);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
 
   useEffect(() => {
     const loadMoon = (lat, lon) => {
@@ -44,7 +45,10 @@ const MoonDashboard = () => {
     <>
       {/* Sidebar */}
       <div className="fixed inset-y-0 left-0 z-50">
-        <Sidebar />
+        <Sidebar 
+          isCollapsed={isSidebarCollapsed}
+          onToggle={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+        />
       </div>
 
       {/* Navbar */}
