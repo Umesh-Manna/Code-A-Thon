@@ -16,7 +16,7 @@ const LatestUltravioletImages = () => {
   }
 
   return (
-    <SolarLayout>
+  
       <SectionLayout
         title="Latest Ultraviolet Images of the Sun"
         description="These ultraviolet images show the Sun across multiple wavelengths, revealing different layers of its atmosphere—from the lower corona to extremely hot flare regions."
@@ -44,7 +44,7 @@ const LatestUltravioletImages = () => {
           ))}
         </div>
       </SectionLayout>
-    </SolarLayout>
+
   );
 };
 

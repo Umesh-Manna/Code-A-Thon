@@ -1,5 +1,8 @@
-/* .solar-cards-page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 32px 24px 80px;
-} */
+.solar-cards-page {
+  grid-column: 2;
+  grid-row: 2;
+
+  overflow-y: auto;
+  padding-bottom: 32px;
+  position: relative;
+}
