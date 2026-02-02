@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 
 /* Sidebar */
-import Sidebar from "../../../components/Sidebar";
+// import Sidebar from "../../../components/Sidebar";
+import Sidebar from '../../../../../src/components/Sidebar';
 
 /* Navbar */
 import Navbar from "../../../components/Skyintel/Navbar/Navbar";
@@ -35,6 +36,7 @@ export default function Satellites() {
 
   const [selectedSatellites, setSelectedSatellites] = useState([]);
   const [userLocation, setUserLocation] = useState(null);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   const [mapOptions, setMapOptions] = useState({
     drawOrbits: true,
@@ -117,7 +119,10 @@ export default function Satellites() {
       {/* SIDEBAR */}
       <aside className="skyintel-sidebar-area">
         <div className="skyintel-sidebar-content">
-          <Sidebar />
+          <Sidebar 
+            isCollapsed={isSidebarCollapsed}
+            onToggle={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+          />
         </div>
       </aside>
 
