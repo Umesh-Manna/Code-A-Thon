@@ -1,0 +1,43 @@
+/* =========================================================
+   ROOT LAYOUT — SIDEBAR OVERLAY (MATCHES Live_sky)
+========================================================= */
+
+.eventsContainer {
+  display: grid;
+  height: 100vh;
+  width: 100vw;
+
+  grid-template-columns: 80px 1fr;
+  grid-template-rows: 1fr;
+
+  overflow: hidden;
+  position: relative;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebarArea {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 1000;
+}
+
+.sidebarContent {
+  height: 100%;
+  width: 80px;
+  transition: width 0.3s ease;
+}
+
+.sidebarContent.expanded {
+  width: 260px;
+}
+
+/* ================= MAIN CONTENT ================= */
+
+.mainContent {
+  grid-column: 2;
+  padding: 48px;
+  overflow-y: auto;
+}
