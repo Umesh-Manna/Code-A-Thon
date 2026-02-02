@@ -5,12 +5,14 @@ from datetime import datetime, timezone
 # Local cached solar images for hackathon demo
 # Served from frontend public/solar directory
 LOCAL_SOLAR_IMAGES = [
-    ("91 Å",  "/solar/uv_91.png"),
-    ("131 Å", "/solar/uv_131.png"),
-    ("171 Å", "/solar/uv_171.png"),
-    ("193 Å", "/solar/uv_193.png"),
-    ("211 Å", "/solar/uv_211.png"),
-    ("304 Å", "/solar/uv_304.png"),
+    # ("91 Å",  "/solar/uv_91.png"),
+    ("91 Å",  "../Space-scope/public/solar/uv_91.png"),
+# "C:\Users\umesh\Documents\Code-A-Thon\SpaceScope\Code-A-Thon\Space-scope\Space-scope\public\solar\uv_91.png"
+    ("131 Å", "../Space-scope/public/solar/uv_131.png"),
+    ("171 Å", "../Space-scope/public/solar/uv_171.png"),
+    ("193 Å", "../Space-scope/public/solar/uv_193.png"),
+    ("211 Å", "../Space-scope/public/solar/uv_211.png"),
+    ("304 Å", "../Space-scope/public/solar/uv_304.png"),
 ]
 
 def get_latest_ultraviolet_images():
