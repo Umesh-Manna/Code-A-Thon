@@ -1,6 +1,8 @@
 import React from 'react';
-import Sidebar from '../../components/Sidebar';
+// import Sidebar from '../../components/Sidebar';
+import Sidebar from '../../../../src/components/Sidebar';
 import styles from '../../components/Astrolab1.module.css';
+import { useState } from 'react';
 
 const cards = [
   {
@@ -38,10 +40,15 @@ const cards = [
 ];
 
 const Astrolab1 = () => {
+
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);  
   return (
     <div className={styles.container}>
       <aside className={styles.sidebarArea}>
-        <Sidebar />
+        <Sidebar 
+          isCollapsed={isSidebarCollapsed}
+          onToggle={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+        />
       </aside>
 
       <main className={styles.main}>
