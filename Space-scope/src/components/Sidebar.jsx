@@ -21,8 +21,8 @@ const Sidebar = ({ isCollapsed, onToggle }) => {
   const navItems = [
     { name: 'Dashboard', icon: <LayoutDashboard size={22} />, path: '/dashboard' },
     { name: 'Events', icon: <Calendar size={22} />, path: '/events' },
-    { name: 'Sky Watch', icon: <Eye size={22} />, path: '/skywatch' },
-    { name: 'Sky Intel', icon: <ShieldAlert size={22} />, path: '/skyintel' },
+    { name: 'Sky Watch', icon: <Eye size={22} />, path: '/skywatch/hurricanes' },
+    { name: 'Sky Intel', icon: <ShieldAlert size={22} />, path: '/skyintel/solar_data' },
     { name: 'Milestones', icon: <Flag size={22} />, path: '/milestones' },
     { name: 'Astro Lab', icon: <Globe size={22} />, path: '/astrolab' },
     { name: 'Settings', icon: <Settings size={22} />, path: '/settings' },
