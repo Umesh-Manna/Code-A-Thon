@@ -17,7 +17,7 @@ import r3c2 from '../../assets/SKY_WATCH/Maps/r3c2.webp';
 
 const Interactive_maps = () => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
 
   return (
     <div className={styles.container}>

@@ -36,7 +36,7 @@ export default function Satellites() {
 
   const [selectedSatellites, setSelectedSatellites] = useState([]);
   const [userLocation, setUserLocation] = useState(null);
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
 
   const [mapOptions, setMapOptions] = useState({
     drawOrbits: true,

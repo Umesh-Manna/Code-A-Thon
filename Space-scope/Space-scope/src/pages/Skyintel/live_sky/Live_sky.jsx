@@ -14,7 +14,7 @@ const Live_sky = () => {
   const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
 
   const filteredObjects = useMemo(() => {
     if (!activeFilter) return objects;

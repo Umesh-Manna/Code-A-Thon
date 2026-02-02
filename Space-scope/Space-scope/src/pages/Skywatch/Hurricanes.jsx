@@ -13,7 +13,7 @@ import card3 from '../../assets/SKY_WATCH/Hurricane/card3.webp';
 
 const Hurricanes = () => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
 
   return (
     <div className={styles.container}>

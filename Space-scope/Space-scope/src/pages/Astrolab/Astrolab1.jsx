@@ -41,7 +41,7 @@ const cards = [
 
 const Astrolab1 = () => {
 
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);  
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);  
   return (
     <div className={styles.container}>
       <aside className={styles.sidebarArea}>

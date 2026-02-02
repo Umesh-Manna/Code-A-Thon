@@ -37,7 +37,7 @@ import card6_weather from '../../assets/SKY_WATCH/Weather/card6.webp';
 
 const Our_environment = () => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
 
   return (
     <div className={styles.container}>
