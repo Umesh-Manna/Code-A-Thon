@@ -9,11 +9,15 @@ import SkyWeather from "../components/dashboard/SkyWeather";
 import InsightCard from "../components/dashboard/InsightCard";
 import EarthGlobe from "../components/dashboard/Globe";
 
+// Umesh's imports
+import styles from "./Dashboard.module.css";
+
 const Dashboard = () => {
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <div className="relative min-h-screen text-white bg-black overflow-hidden">
+    <div className={'relative min-h-screen text-white bg-black overflow-hidden'}>
 
       {/* 🌌 BACKGROUND (NO LAYOUT EFFECT) */}
       <div className="fixed inset-0 z-0 pointer-events-none">
@@ -36,19 +40,27 @@ const Dashboard = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/90" />
       </div>
 
-      <div className="relative z-10 flex min-h-screen">
+      <div className={'relative z-10 flex min-h-screen ${styles.dashboardContainer}'}>
 
         {/* SIDEBAR (SAME AS EVENTS) */}
-        <Sidebar
-          isCollapsed={isSidebarCollapsed}
-          onToggle={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
-        />
+        <aside className="live-sky-sidebar-area">
+          <div
+            className={`live-sky-sidebar-content ${
+              isSidebarOpen ? "expanded" : ""
+            }`}
+          >
+            <Sidebar 
+              isCollapsed={isSidebarCollapsed}
+              onToggle={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+            />
+          </div>
+        </aside>
 
         {/* MAIN CONTENT */}
         <main
           className={`transition-all duration-300 flex-1 p-6 space-y-6 ${
             isSidebarCollapsed ? "ml-24" : "ml-64"
-          }`}
+          } ${styles.mainContent}`}
         >
 
           {/* HEADER */}
