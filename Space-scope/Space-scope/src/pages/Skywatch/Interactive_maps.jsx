@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styles from '../../components/Interactive_maps.module.css';
-import Sidebar from '../../components/Sidebar';
+// import Sidebar from '../../components/Sidebar';
+import Sidebar from '../../../../src/components/Sidebar';
 import Skywatch_nav from '../../components/Skywatch_nav';
 
 // Images
@@ -16,6 +17,7 @@ import r3c2 from '../../assets/SKY_WATCH/Maps/r3c2.webp';
 
 const Interactive_maps = () => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   return (
     <div className={styles.container}>
@@ -27,8 +29,8 @@ const Interactive_maps = () => {
           }`}
         >
           <Sidebar
-            isExpanded={isExpanded}
-            onToggle={() => setIsExpanded(!isExpanded)}
+            isCollapsed={isSidebarCollapsed}
+            onToggle={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
           />
         </div>
       </aside>
