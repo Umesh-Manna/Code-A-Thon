@@ -65,10 +65,12 @@
 }
 
 .headerBlock strong {
+  color: black;
   font-size: 20px;
 }
 
 .headerBlock span {
+  color: black;
   font-size: 12px;
   opacity: 0.7;
 }
@@ -82,6 +84,10 @@
 .headerStat span {
   color: #2563eb;
   font-weight: bold;
+}
+
+.headerStat div {
+  color: black;
 }
 
 .divider {
