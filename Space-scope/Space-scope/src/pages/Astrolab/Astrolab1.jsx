@@ -31,7 +31,7 @@ import image5_3 from '../../assets/astrolab/quiz_section/Mix_master_quiz/image3.
 
 // ================= INFO SECTION IMAGES =================
 
-import infoImg1 from '../../assets/astrolab/info_section/image1.png';
+import infoImg1 from '../../assets/astrolab/info_section/image1.jpg';
 import infoImg2 from '../../assets/astrolab/info_section/image2.jpg';
 import infoImg3 from '../../assets/astrolab/info_section/image3.webp';
 import infoImg4 from '../../assets/astrolab/info_section/image4.jpg';
