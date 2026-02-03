@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+const API_URL = "http://localhost:8000/auth";
+
 export default function Login() {
   const navigate = useNavigate();
   
@@ -23,66 +25,30 @@ export default function Login() {
   const [loginSuccess, setLoginSuccess] = useState('');
 
   // Active panel for mobile toggle
-  const [activePanel, setActivePanel] = useState('login'); // 'login' or 'signup'
+  const [activePanel, setActivePanel] = useState('login'); 
 
-  // Load registered users from localStorage
-  const getRegisteredUsers = () => {
-    const users = localStorage.getItem('registeredUsers');
-    return users ? JSON.parse(users) : [];
-  };
-
-  // Save user to localStorage
-  const saveUser = (email, password) => {
-    const users = getRegisteredUsers();
-    users.push({ email, password });
-    localStorage.setItem('registeredUsers', JSON.stringify(users));
-  };
-
-  // Check if user exists
-  const userExists = (email) => {
-    const users = getRegisteredUsers();
-    return users.some(user => user.email.toLowerCase() === email.toLowerCase());
-  };
-
-  // Validate login credentials
-  const validateLogin = (email, password) => {
-    const users = getRegisteredUsers();
-    return users.find(user => 
-      user.email.toLowerCase() === email.toLowerCase() && 
-      user.password === password
-    );
-  };
-
-  // Email validation
+  // --- VALIDATION HELPERS ---
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
-  // Password strength checker
   const checkPasswordStrength = (password) => {
     if (password.length === 0) return '';
     if (password.length < 6) return 'weak';
     if (password.length < 10) {
       const hasNumber = /\d/.test(password);
-      const hasSpecial = /[!@#$%^&*]/.test(password);
       const hasUpper = /[A-Z]/.test(password);
-      if ((hasNumber && hasSpecial) || (hasNumber && hasUpper) || (hasSpecial && hasUpper)) {
-        return 'medium';
-      }
-      return 'weak';
+      return (hasNumber && hasUpper) ? 'medium' : 'weak';
     }
     const hasNumber = /\d/.test(password);
     const hasSpecial = /[!@#$%^&*]/.test(password);
     const hasUpper = /[A-Z]/.test(password);
     const hasLower = /[a-z]/.test(password);
-    if (hasNumber && hasSpecial && hasUpper && hasLower) {
-      return 'strong';
-    }
+    if (hasNumber && hasSpecial && hasUpper && hasLower) return 'strong';
     return 'medium';
   };
 
-  // Get strength color and text
   const getStrengthColor = (strength) => {
     if (strength === 'weak') return '#FF4444';
     if (strength === 'medium') return '#FFA500';
@@ -97,15 +63,13 @@ export default function Login() {
     return '';
   };
 
-  // SIGN UP HANDLERS
+  // --- SIGN UP HANDLERS ---
   const handleSignupEmailChange = (e) => {
     const value = e.target.value;
     setSignupEmail(value);
     setSignupSuccess('');
     if (value && !validateEmail(value)) {
       setSignupEmailError('Please enter a valid email address');
-    } else if (value && userExists(value)) {
-      setSignupEmailError('This email is already registered. Please login.');
     } else {
       setSignupEmailError('');
     }
@@ -115,178 +79,89 @@ export default function Login() {
     const value = e.target.value;
     setSignupPassword(value);
     setSignupSuccess('');
-    const strength = checkPasswordStrength(value);
-    setSignupPasswordStrength(strength);
-    
-    if (value && value.length < 6) {
-      setSignupPasswordError('Password must be at least 6 characters');
-    } else {
-      setSignupPasswordError('');
-    }
-
-    // Revalidate confirm password if it exists
-    if (signupConfirmPassword) {
-      if (value !== signupConfirmPassword) {
-        setSignupConfirmError('Passwords do not match');
-      } else {
-        setSignupConfirmError('');
-      }
-    }
+    setSignupPasswordStrength(checkPasswordStrength(value));
+    setSignupPasswordError(value && value.length < 6 ? 'Password too short' : '');
   };
 
   const handleSignupConfirmPasswordChange = (e) => {
     const value = e.target.value;
     setSignupConfirmPassword(value);
-    setSignupSuccess('');
-    
-    if (value && value !== signupPassword) {
-      setSignupConfirmError('Passwords do not match');
-    } else {
-      setSignupConfirmError('');
-    }
+    setSignupConfirmError(value && value !== signupPassword ? 'Passwords do not match' : '');
   };
 
-  const handleSignupSubmit = (e) => {
+  const handleSignupSubmit = async (e) => {
     e.preventDefault();
-    
-    // Reset messages
-    setSignupSuccess('');
-    
-    // Validation
-    if (!signupEmail) {
-      setSignupEmailError('Email is required');
-      return;
-    }
-    if (!validateEmail(signupEmail)) {
-      setSignupEmailError('Please enter a valid email address');
-      return;
-    }
-    if (userExists(signupEmail)) {
-      setSignupEmailError('This email is already registered. Please login.');
-      return;
-    }
-    if (!signupPassword) {
-      setSignupPasswordError('Password is required');
-      return;
-    }
-    if (signupPassword.length < 6) {
-      setSignupPasswordError('Password must be at least 6 characters');
-      return;
-    }
-    if (!signupConfirmPassword) {
-      setSignupConfirmError('Please confirm your password');
-      return;
-    }
-    if (signupPassword !== signupConfirmPassword) {
-      setSignupConfirmError('Passwords do not match');
-      return;
-    }
+    setSignupSuccess(""); setSignupEmailError(""); setSignupPasswordError(""); setSignupConfirmError("");
 
-    // Save user
-    saveUser(signupEmail, signupPassword);
-    
-    // Success message
-    setSignupSuccess('Account created successfully! You can now login.');
-    
-    // Clear form
-    setSignupEmail('');
-    setSignupPassword('');
-    setSignupConfirmPassword('');
-    setSignupPasswordStrength('');
-    
-    // Auto-switch to login panel after 2 seconds
-    setTimeout(() => {
-      setActivePanel('login');
-    }, 2000);
+    if (!signupEmail || !validateEmail(signupEmail)) return setSignupEmailError("Valid email required");
+    if (signupPassword.length < 6) return setSignupPasswordError("Minimum 6 characters");
+    if (signupPassword !== signupConfirmPassword) return setSignupConfirmError("Passwords must match");
+
+    try {
+      const res = await fetch(`${API_URL}/signup`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: signupEmail,
+          password: signupPassword,
+          name: signupEmail.split("@")[0] // Uses email prefix as default name
+        }),
+      });
+      const data = await res.json();
+
+      if (!res.ok) throw new Error(data.detail || "Signup failed");
+
+      setSignupSuccess("Account created! Please log in.");
+      setSignupEmail(""); setSignupPassword(""); setSignupConfirmPassword("");
+      setTimeout(() => setActivePanel("login"), 2000);
+    } catch (err) {
+      setSignupEmailError(err.message);
+    }
   };
 
-  // LOGIN HANDLERS
+  // --- LOGIN HANDLERS ---
   const handleLoginEmailChange = (e) => {
-    const value = e.target.value;
-    setLoginEmail(value);
+    setLoginEmail(e.target.value);
     setLoginError('');
-    setLoginSuccess('');
-    if (value && !validateEmail(value)) {
-      setLoginEmailError('Please enter a valid email address');
-    } else {
-      setLoginEmailError('');
-    }
+    setLoginEmailError(e.target.value && !validateEmail(e.target.value) ? 'Invalid email' : '');
   };
 
   const handleLoginPasswordChange = (e) => {
-    const value = e.target.value;
-    setLoginPassword(value);
+    setLoginPassword(e.target.value);
     setLoginError('');
-    setLoginSuccess('');
-    
-    if (value && value.length < 6) {
-      setLoginPasswordError('Password must be at least 6 characters');
-    } else {
-      setLoginPasswordError('');
-    }
   };
 
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    
-    // Reset messages
-    setLoginError('');
-    setLoginSuccess('');
-    
-    // Validation
-    if (!loginEmail) {
-      setLoginEmailError('Email is required');
-      return;
-    }
-    if (!validateEmail(loginEmail)) {
-      setLoginEmailError('Please enter a valid email address');
-      return;
-    }
-    if (!loginPassword) {
-      setLoginPasswordError('Password is required');
-      return;
-    }
-    if (loginPassword.length < 6) {
-      setLoginPasswordError('Password must be at least 6 characters');
-      return;
-    }
+    setLoginError(""); setLoginSuccess("");
 
-    // Check if user is registered
-    if (!userExists(loginEmail)) {
-      setLoginError('No account found with this email. Please sign up first.');
-      return;
-    }
+    if (!loginEmail || !loginPassword) return setLoginError("Fields cannot be empty");
 
-    // Validate credentials
-    const user = validateLogin(loginEmail, loginPassword);
-    if (!user) {
-      setLoginError('Incorrect password. Please try again.');
-      return;
-    }
+    try {
+      const res = await fetch(`${API_URL}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: loginEmail, password: loginPassword }),
+      });
 
-    // Success
-    setLoginSuccess(`Welcome back! Login successful.`);
-    
-    // Here you would typically redirect to dashboard or home
-    setTimeout(() => {
-      alert(`Login successful!\nEmail: ${loginEmail}`);
-      navigate('/Events'); // Redirect to home
-    }, 1000);
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || "Invalid credentials");
+
+      // SUCCESS: Save user data (including name) from Supabase to browser storage
+      localStorage.setItem('user', JSON.stringify(data.student));
+
+      setLoginSuccess("Login successful! Redirecting...");
+      setTimeout(() => navigate("/Dashboard"), 1000);
+    } catch (err) {
+      setLoginError(err.message);
+    }
   };
 
-  // Social Login Handlers
-  const handleGoogleAuth = (type) => {
-    alert(`${type === 'signup' ? 'Sign Up' : 'Login'} with Google - Integration would go here`);
-  };
+  const handleGoogleAuth = (type) => alert(`${type} with Google coming soon!`);
+  const handleFacebookAuth = (type) => alert(`${type} with Facebook coming soon!`);
+  const handleBack = () => navigate('/');
 
-  const handleFacebookAuth = (type) => {
-    alert(`${type === 'signup' ? 'Sign Up' : 'Login'} with Facebook - Integration would go here`);
-  };
-
-  // Back button handler
-  const handleBack = () => {
-    navigate('/');
-  };
+  // (Return starts below here...)
 
   return (
     <div 
