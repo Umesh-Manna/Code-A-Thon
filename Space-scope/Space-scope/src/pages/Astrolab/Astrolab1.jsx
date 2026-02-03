@@ -116,7 +116,7 @@ const recommendedCards = [
     title: 'NavIC Navigation',
     desc:
       'NavIC is India’s satellite navigation system offering precise positioning and timing across India and nearby regions.',
-    img: infoImg7,
+    img: infoImg6,
     color: 'yellowRec',
   },
   {
