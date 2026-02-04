@@ -1,5 +1,6 @@
 import react, { useState } from 'react';
 import styles from '../../components/Hurricanes.module.css';
+import { Link } from "react-router-dom";
 // import Sidebar from '../../components/Sidebar';
 import Sidebar from '../../../../src/components/Sidebar';
 import Skywatch_nav from '../../components/Skywatch_nav';
@@ -83,9 +84,11 @@ const Hurricanes = () => {
                 tropical activity and interact with NOAA satellite imagery while
                 accessing National Hurricane Center data.
               </p>
-              <span className={styles.cardLink}>
-                Live Hurricane Tracker →
-              </span>
+              <Link to="/skywatch/hurricanes-map">
+                <button className={styles.cardLink}>
+                  Live Hurricane Tracker →
+                </button>
+              </Link>
             </div>
 
             <div className={styles.cardItem}>
@@ -97,9 +100,9 @@ const Hurricanes = () => {
                 View paths of previous hurricanes and tropical storms from this
                 season using NOAA and NHC data.
               </p>
-              <span className={styles.cardLink}>
+              <button className={styles.cardLink}>
                 Atlantic Hurricanes →
-              </span>
+              </button>
             </div>
 
             <div className={styles.cardItem}>
@@ -111,9 +114,9 @@ const Hurricanes = () => {
                 Track Pacific hurricanes and tropical storms using satellite
                 imagery and historical data.
               </p>
-              <span className={styles.cardLink}>
+              <button className={styles.cardLink}>
                 Pacific Hurricanes →
-              </span>
+              </button>
             </div>
           </div>
         </div>

@@ -17,6 +17,7 @@ from services.missions import get_launch_missions
 # Umesh's imports
 from astro import moon_now, next_lunar_eclipse
 from solar import router as solar_router   # ✅ ADD THIS
+from api.hurricanes import router as hurricane_router
 
 app = FastAPI()
 
@@ -102,6 +103,9 @@ def eclipse_api():
 # -----------------------------
 
 app.include_router(solar_router)
+
+# hurricane map
+app.include_router(hurricane_router, prefix="/api")
 
 
 
