@@ -39,23 +39,29 @@ app = FastAPI()
 # )
 
 # ---------- CORS ----------
-origins = [
-    "http://localhost:5173"
-]
+# origins = [
+#     "http://localhost:5173"
+# ]
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,  # only allow your frontend
-    allow_credentials=True,
-    allow_methods=["*"],    # allow all HTTP methods
-    allow_headers=["*"],    # allow all headers
-)
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=origins,  # only allow your frontend
+#     allow_credentials=True,
+#     allow_methods=["*"],    # allow all HTTP methods
+#     allow_headers=["*"],    # allow all headers
+# )
 
 app.include_router(auth_router)
 
 @app.get("/")
 def root():
     return {"status": "SpaceScope backend running 🚀"}
+
+# backend
+
+@app.get("/api/health")
+def health():
+    return {"status": "OK 🚀"}
 
 # ---------- EVENTS PAGE ----------
 @app.get("/events")
