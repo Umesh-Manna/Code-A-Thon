@@ -12,6 +12,7 @@ from services.sky_weather import get_sky_weather
 from services.milestones import get_milestones
 from services.live_status import get_live_status
 from services.missions import get_launch_missions
+from services.auth import router as auth_router
 
 
 # Umesh's imports
@@ -20,21 +21,36 @@ from solar import router as solar_router   # ✅ ADD THIS
 
 app = FastAPI()
 
-# Updated CORS configuration to cover all common local origins
+# # Updated CORS configuration to cover all common local origins
+# origins = [
+#     "http://localhost:5173",
+#     "http://127.0.0.1:5173",
+#     "http://localhost:3000",
+#     "http://127.0.0.1:3000",
+# ]
+
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=origins,
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
+
+# ---------- CORS ----------
 origins = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
+    "http://localhost:5173"
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=origins,  # only allow your frontend
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["*"],    # allow all HTTP methods
+    allow_headers=["*"],    # allow all headers
 )
+
+app.include_router(auth_router)
 
 @app.get("/")
 def root():
@@ -97,11 +113,24 @@ def moon_now_api(lat: float, lon: float):
 def eclipse_api():
     return next_lunar_eclipse()
 
+@app.get("/test-db")
+def test_db():
+    try:
+        # Changed "students" to "space_scope"
+        result = supabase.table("space_scope").select("id,email").limit(1).execute()
+        return {"status": "success", "message": "Database connected", "sample": result.data}
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+
 # -----------------------------
 # Solar APIs (NEW, SAFE ADDITION)
 # -----------------------------
 
 app.include_router(solar_router)
+
+
+
 
 
 
