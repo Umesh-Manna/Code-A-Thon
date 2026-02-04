@@ -1,21 +1,4 @@
-// import { Routes, Route } from 'react-router-dom'
-// import Home from './screens/Home.jsx'
-// import Login from './components/Login.jsx'
 
-// const App = () => {
-//   return (
-//     <>
-//       {/* Removed undefined AuthProvider and Navbar to stop the crash */}
-//       <Routes>
-//         <Route path="/" element={<Home />} />
-//         <Route path="/home" element={<Home />} />
-//         <Route path="/login" element={<Login />} />
-//       </Routes>
-//     </>
-//   )
-// }
-
-// export default App
 
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Hero from './components/Hero.jsx';
@@ -40,6 +23,9 @@ import ObjectView from '../Space-scope/src/pages/Skyintel/live_sky/ObjectView.js
 import MoonDashboard from '../Space-scope/src/Lunar_moon/MoonDashboard.jsx'
 
 import SolarDataCardsPage from "../Space-scope/src/Solar_data/pages/SolarDataCardsPage.jsx";
+
+// hurricane maps imported 
+import HurricaneMap from "./screens/HurricaneMap";
 
 const App = () => {
   return (
@@ -81,6 +67,11 @@ const App = () => {
         <Route
           path="/skyintel/solar_data"
           element={<SolarDataCardsPage />}
+        />
+
+        <Route
+          path="/skywatch/hurricanes-map"
+          element={<HurricaneMap/>}
         />
     </Routes>
 
