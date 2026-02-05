@@ -20,9 +20,9 @@ export default function Navbar() {
             Live sky positions
           </NavLink>
 
-          <NavLink to="/tonights-best" className="nav-btn">
+          {/* <NavLink to="/tonights-best" className="nav-btn">
             Tonight’s Best
-          </NavLink>
+          </NavLink> */}
 
           <NavLink to="/skyintel/satellite" className="nav-btn">
             Satellites
