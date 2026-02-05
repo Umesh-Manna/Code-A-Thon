@@ -8,4 +8,4 @@ pydantic
 countryinfo
 supabase
 astropy
-sqlalchemy
+sqlalchemybcrypt
