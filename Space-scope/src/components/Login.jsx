@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const API_URL = "https://your-backend-app.onrender.com/auth/login";
+// FIX: This constructs the URL correctly. 
+// It creates "http://localhost:8000/auth" locally
+// or "https://your-site.onrender.com/auth" on Render.
+const API_URL = `${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/auth`;
 
 export default function Login() {
   const navigate = useNavigate();
@@ -160,8 +163,6 @@ export default function Login() {
   const handleGoogleAuth = (type) => alert(`${type} with Google coming soon!`);
   const handleFacebookAuth = (type) => alert(`${type} with Facebook coming soon!`);
   const handleBack = () => navigate('/');
-
-  // (Return starts below here...)
 
   return (
     <div 
