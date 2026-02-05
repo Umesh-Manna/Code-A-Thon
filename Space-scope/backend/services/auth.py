@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from supabase_client import supabase
 import bcrypt
 
-router = APIRouter(prefix="", tags=["Auth"])
+router = APIRouter(prefix="/auth", tags=["Auth"])
 
 class Signup(BaseModel):
     email: str
