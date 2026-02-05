@@ -1,3 +1,5 @@
+import { API_BASE_URL } from '../config';
+
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
@@ -22,7 +24,7 @@ const SpaceWeather = () => {
 
   useEffect(() => {
     const fetchWeather = () => {
-      fetch("http://localhost:8000/space-weather")
+      fetch("${API_BASE_URL}/space-weather")
         .then((res) => res.json())
         .then(setData)
         .catch(console.error);

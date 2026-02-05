@@ -2,7 +2,10 @@
 
 import axios from "axios";
 
+// This checks if the app is on Render (VITE_API_URL) or on your computer (localhost)
+const baseURL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+
 export default axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL: baseURL,
   timeout: 15000,
 });

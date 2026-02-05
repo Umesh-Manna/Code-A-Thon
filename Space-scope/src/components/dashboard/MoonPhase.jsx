@@ -1,3 +1,5 @@
+import { API_BASE_URL } from '../../config';
+
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import MoonVisual from "./MoonVisual";
@@ -6,7 +8,7 @@ const MoonPhaseCard = () => {
   const [moon, setMoon] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:8000/moon")
+    fetch("${API_BASE_URL}/moon")
       .then(res => res.json())
       .then(setMoon);
   }, []);
