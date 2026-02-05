@@ -1,4 +1,4 @@
-import "../../../styles/skyintel/live_sky.css";
+import "../../../styles/Skyintel/live_sky.css";
 import { useNavigate } from "react-router-dom";
 import { useState, useMemo } from "react";
 
