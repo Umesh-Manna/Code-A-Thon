@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 // It creates "http://localhost:8000/auth" locally
 // or "https://your-site.onrender.com/auth" on Render.
 
-const API_URL = `${import.meta.env.VITE_API_URL || 'https://spacescope-3sty.onrender.com'}/auth`;
+const API_URL = `${import.meta.env.VITE_API_URL}/auth`;
 
 // const API_URL = `${import.meta.env.VITE_API_URL || 'https://spacescope-3sty.onrender.com'}`;
 

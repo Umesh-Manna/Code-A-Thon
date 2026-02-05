@@ -23,20 +23,19 @@ from api.hurricanes import router as hurricane_router
 app = FastAPI()
 
 # # Updated CORS configuration to cover all common local origins
-# origins = [
-#     "http://localhost:5173",
-#     "http://127.0.0.1:5173",
-#     "http://localhost:3000",
-#     "http://127.0.0.1:3000",
-# ]
+origins = [
+    "http://localhost:5173",               # Local Development
+    "http://127.0.0.1:5173",               # Local Dev alternative
+    "https://space-scope.onrender.com"     # ⚠️ CRITICAL: Your Deployed Frontend URL
+]
 
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=origins,
-#     allow_credentials=True,
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-# )
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,    # Allows requests from these URLs
+    allow_credentials=True,   # Allows cookies and headers like Auth
+    allow_methods=["*"],      # Allows POST, GET, OPTIONS, etc.
+    allow_headers=["*"],      # Allows all headers
+)
 
 # ---------- CORS ----------
 # origins = [
