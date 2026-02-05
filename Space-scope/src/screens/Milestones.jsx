@@ -1,3 +1,5 @@
+import { API_BASE_URL } from '../config';
+
 import React, { useEffect, useMemo, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import { ChevronDown } from "lucide-react";
@@ -16,7 +18,7 @@ export default function Milestones() {
 
   /* ---------------- FETCH ---------------- */
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/milestones")
+    fetch("${API_BASE_URL}/milestones")
       .then(res => res.json())
       .then(data => setEvents(Array.isArray(data) ? data : []))
       .catch(() => setEvents([]));

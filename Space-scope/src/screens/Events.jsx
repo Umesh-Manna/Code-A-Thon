@@ -1,3 +1,5 @@
+import { API_BASE_URL } from '../config';
+
 import React, { useEffect, useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -197,7 +199,7 @@ export default function Events() {
   const [showNotifications, setShowNotifications] = useState(false);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/events")
+    fetch("${API_BASE_URL}/events")
       .then((res) => res.json())
       .then((data) => {
         const unique = Array.from(
