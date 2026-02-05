@@ -1,99 +1,5 @@
-// import { useEffect, useState } from "react";
-// import { motion, AnimatePresence } from "framer-motion";
+import { API_BASE_URL } from '../../config';
 
-// const severityGlow = {
-//   HIGH: "ring-2 ring-red-500/60 shadow-red-500/30",
-//   MEDIUM: "ring-2 ring-yellow-400/50 shadow-yellow-400/30",
-//   LOW: "ring-1 ring-emerald-400/40 shadow-emerald-400/20",
-// };
-
-// const InsightCard = () => {
-//   const [insights, setInsights] = useState([]);
-//   const [index, setIndex] = useState(0);
-
-//   useEffect(() => {
-//     fetch("http://127.0.0.1:8000/insight")
-//       .then(res => res.json())
-//       .then(setInsights)
-//       .catch(console.error);
-//   }, []);
-
-//   // 🔁 Auto slide every 6s
-//   useEffect(() => {
-//     if (insights.length <= 1) return;
-//     const id = setInterval(
-//       () => setIndex(i => (i + 1) % insights.length),
-//       6000
-//     );
-//     return () => clearInterval(id);
-//   }, [insights]);
-
-//   if (!insights.length) {
-//     return (
-//       <div className="bg-white/5 rounded-xl p-4 h-full border border-white/10 animate-pulse" />
-//     );
-//   }
-
-//   const insight = insights[index];
-
-//   return (
-//     <div
-//       className={`bg-white/5 backdrop-blur-xl rounded-xl p-4 h-full border border-white/10 shadow-lg ${severityGlow[insight.severity]}`}
-//     >
-//       <h2 className="font-semibold mb-2 flex items-center gap-2">
-//         📖 Earth Insight
-//         <span className="text-xs px-2 py-0.5 rounded-full bg-black/40 text-white/70">
-//           {insight.severity}
-//         </span>
-//       </h2>
-
-//       <AnimatePresence mode="wait">
-//         <motion.div
-//           key={index}
-//           initial={{ opacity: 0, x: 20 }}
-//           animate={{ opacity: 1, x: 0 }}
-//           exit={{ opacity: 0, x: -20 }}
-//           transition={{ duration: 0.4 }}
-//         >
-//           <img
-//             src={insight.image}
-//             alt={insight.title}
-//             className="w-full h-40 object-cover rounded-lg mb-3"
-//           />
-
-//           <h3 className="font-medium mb-1">{insight.title}</h3>
-//           <p className="text-sm text-white/70 mb-3">{insight.desc}</p>
-
-//           <div className="bg-black/30 rounded-lg p-3 text-sm text-white/80 border border-white/10">
-//             <div className="text-xs uppercase text-cyan-400 mb-1">
-//               🤖 Why this matters
-//             </div>
-//             <p>{insight.why}</p>
-//           </div>
-
-//           <div className="mt-3 text-xs text-white/50 flex justify-between">
-//             <span>📍 {insight.location}</span>
-//             <span>⏱ {insight.time}</span>
-//           </div>
-//         </motion.div>
-//       </AnimatePresence>
-
-//       {/* DOTS */}
-//       <div className="flex justify-center gap-2 mt-3">
-//         {insights.map((_, i) => (
-//           <div
-//             key={i}
-//             className={`w-2 h-2 rounded-full ${
-//               i === index ? "bg-white" : "bg-white/30"
-//             }`}
-//           />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default InsightCard;
 
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -106,7 +12,7 @@ const InsightCard = () => {
 
   const fetchInsights = () => {
     // Note: ensure this port matches your FastAPI port
-    fetch("http://127.0.0.1:8000/insight")
+    fetch("${API_BASE_URL}/insight")
       .then((res) => res.json())
       .then((data) => {
         setInsights(data);

@@ -1,3 +1,5 @@
+import { API_BASE_URL } from '../../config';
+
 import { useEffect, useState } from "react";
 
 export default function MissionControlCard() {
@@ -8,7 +10,7 @@ export default function MissionControlCard() {
 
   // Fetch missions
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/missions")
+    fetch("${API_BASE_URL}/missions")
       .then(res => res.json())
       .then(setMissions)
       .catch(console.error);

@@ -1,94 +1,4 @@
-// import { useEffect, useState } from "react";
-
-// const EventSnapshot = () => {
-//   const [events, setEvents] = useState([]);
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState(false);
-
-//   const fetchEvents = async () => {
-//     try {
-//       const res = await fetch("http://127.0.0.1:8000/events");
-//       const data = await res.json();
-
-//       // Sort by date (earliest first)
-//       const sorted = [...data].sort(
-//         (a, b) => new Date(a.date) - new Date(b.date)
-//       );
-
-//       // Pick priority events
-//       const priority = sorted.filter(
-//         (e) => e.type === "METEOR" || e.type === "ISS"
-//       );
-
-//       setEvents(priority.slice(0, 2));
-//       setError(false);
-//     } catch (err) {
-//       console.error("EventSnapshot fetch error:", err);
-//       setError(true);
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   useEffect(() => {
-//     fetchEvents();
-//     const id = setInterval(fetchEvents, 60000);
-//     return () => clearInterval(id);
-//   }, []);
-
-//   return (
-//     <div className="bg-white/5 backdrop-blur-lg rounded-xl p-4 h-full border border-white/10">
-//       <h2 className="font-semibold mb-3">🌠 Event Snapshot</h2>
-
-//       {loading && (
-//         <div className="text-sm text-white/50">
-//           Loading live events…
-//         </div>
-//       )}
-
-//       {error && (
-//         <div className="text-sm text-red-400">
-//           Failed to load events
-//         </div>
-//       )}
-
-//       {!loading && !error && events.length === 0 && (
-//         <div className="text-sm text-white/40">
-//           No upcoming events
-//         </div>
-//       )}
-
-//       <div className="space-y-3 text-sm">
-//         {events.map((event) => (
-//           <div
-//             key={event.id}
-//             className="p-3 rounded-lg bg-black/30 border border-white/5"
-//           >
-//             <div className="flex items-center justify-between">
-//               <span className="font-medium">{event.title}</span>
-//               <span
-//                 className="text-xs px-2 py-0.5 rounded"
-//                 style={{ color: event.color }}
-//               >
-//                 {event.type}
-//               </span>
-//             </div>
-
-//             <div className="text-xs text-white/60 mt-1">
-//               {new Date(event.date).toLocaleString()}
-//             </div>
-
-//             <div className="text-xs mt-1" style={{ color: event.color }}>
-//               Visibility: {event.visibility}/5 • Direction: {event.direction}
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default EventSnapshot;
+import { API_BASE_URL } from '../../config';
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -101,7 +11,7 @@ const EventSnapshot = () => {
 
   const fetchEvents = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:8000/events");
+      const res = await fetch("${API_BASE_URL}/events");
       const data = await res.json();
       const sorted = [...data].sort((a, b) => new Date(a.date) - new Date(b.date));
       const priority = sorted.filter((e) => e.type === "METEOR" || e.type === "ISS");
