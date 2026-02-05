@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const API_URL = "https://your-backend-app.onrender.com/auth";
+const API_URL = "https://your-backend-app.onrender.com/auth/login";
 
 export default function Login() {
   const navigate = useNavigate();
