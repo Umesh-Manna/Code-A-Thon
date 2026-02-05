@@ -124,7 +124,7 @@ export default function Globe() {
 
     const fetchISS = async () => {
       try {
-        const res = await fetch("${API_BASE_URL}/iss/live");
+        const res = await fetch(`${API_BASE_URL}/iss/live`);
         const data = await res.json();
         if (data?.lat) { issPrev.current = issCurr.current || data; issCurr.current = data; }
       } catch (e) {}

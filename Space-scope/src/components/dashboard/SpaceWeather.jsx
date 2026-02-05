@@ -24,7 +24,7 @@ const SpaceWeather = () => {
 
   useEffect(() => {
     const fetchWeather = () => {
-      fetch("${API_BASE_URL}/space-weather")
+      fetch(`${API_BASE_URL}/space-weather`)
         .then((res) => res.json())
         .then(setData)
         .catch(console.error);

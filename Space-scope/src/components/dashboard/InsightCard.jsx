@@ -12,7 +12,7 @@ const InsightCard = () => {
 
   const fetchInsights = () => {
     // Note: ensure this port matches your FastAPI port
-    fetch("${API_BASE_URL}/insight")
+    fetch(`${API_BASE_URL}/insight`)
       .then((res) => res.json())
       .then((data) => {
         setInsights(data);

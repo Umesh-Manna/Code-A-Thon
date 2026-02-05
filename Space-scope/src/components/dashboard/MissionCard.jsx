@@ -10,7 +10,7 @@ export default function MissionControlCard() {
 
   // Fetch missions
   useEffect(() => {
-    fetch("${API_BASE_URL}/missions")
+    fetch(`${API_BASE_URL}/missions`)
       .then(res => res.json())
       .then(setMissions)
       .catch(console.error);

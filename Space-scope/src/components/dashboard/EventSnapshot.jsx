@@ -11,7 +11,7 @@ const EventSnapshot = () => {
 
   const fetchEvents = async () => {
     try {
-      const res = await fetch("${API_BASE_URL}/events");
+      const res = await fetch(`${API_BASE_URL}/events`);
       const data = await res.json();
       const sorted = [...data].sort((a, b) => new Date(a.date) - new Date(b.date));
       const priority = sorted.filter((e) => e.type === "METEOR" || e.type === "ISS");

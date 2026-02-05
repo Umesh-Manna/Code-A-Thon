@@ -199,7 +199,7 @@ export default function Events() {
   const [showNotifications, setShowNotifications] = useState(false);
 
   useEffect(() => {
-    fetch("${API_BASE_URL}/events")
+    fetch(`${API_BASE_URL}/events`)
       .then((res) => res.json())
       .then((data) => {
         const unique = Array.from(

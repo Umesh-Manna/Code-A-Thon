@@ -8,7 +8,7 @@ const MoonPhaseCard = () => {
   const [moon, setMoon] = useState(null);
 
   useEffect(() => {
-    fetch("${API_BASE_URL}/moon")
+    fetch(`${API_BASE_URL}/moon`)
       .then(res => res.json())
       .then(setMoon);
   }, []);

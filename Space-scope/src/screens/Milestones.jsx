@@ -18,7 +18,7 @@ export default function Milestones() {
 
   /* ---------------- FETCH ---------------- */
   useEffect(() => {
-    fetch("${API_BASE_URL}/milestones")
+    fetch(`${API_BASE_URL}/milestones`)
       .then(res => res.json())
       .then(data => setEvents(Array.isArray(data) ? data : []))
       .catch(() => setEvents([]));
