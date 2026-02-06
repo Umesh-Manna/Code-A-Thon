@@ -62,28 +62,24 @@ export default function SatelliteMap({
           const footprintRadius =
             options.drawFootprint && sat.position.alt
               ? calculateFootprintRadius(sat.position.alt)
-              : null;
+              : 0;
 
           const orbitTrack =
             options.drawOrbits
-              ? [...generateOrbitTrack(
+              ? generateOrbitTrack(
                   sat.position.lat,
                   sat.position.lng
-                )]
-              : null;
+                )
+              : [];
 
           return (
-            <>
+            <div key={sat.noradId}>
               {/* Satellite Marker */}
-              <Marker
-                key={`marker-${sat.noradId}`}
-                position={position}
-              />
+              <Marker position={position} />
 
               {/* Footprint */}
-              {options.drawFootprint && footprintRadius && (
+              {options.drawFootprint && footprintRadius > 0 && (
                 <Circle
-                  key={`footprint-${sat.noradId}`}
                   center={position}
                   radius={footprintRadius}
                   className="footprint-circle"
@@ -91,14 +87,13 @@ export default function SatelliteMap({
               )}
 
               {/* Orbit Ground Track */}
-              {options.drawOrbits && orbitTrack?.length > 0 && (
+              {options.drawOrbits && orbitTrack.length > 0 && (
                 <Polyline
-                  key={`orbit-${sat.noradId}`}
                   positions={orbitTrack}
                   className="orbit-line"
                 />
               )}
-            </>
+            </div>
           );
         })}
 
@@ -111,10 +106,18 @@ export default function SatelliteMap({
       </MapContainer>
 
       <div className="map-overlay">
-        <div>LAT: {focusSatellite?.position?.lat ?? "—"}</div>
-        <div>LNG: {focusSatellite?.position?.lng ?? "—"}</div>
-        <div>ALT (km): {focusSatellite?.position?.alt ?? "—"}</div>
-        <div>SPD (km/s): {focusSatellite?.position?.speed ?? "—"}</div>
+        <div>
+          LAT: {focusSatellite?.position?.lat ?? "—"}
+        </div>
+        <div>
+          LNG: {focusSatellite?.position?.lng ?? "—"}
+        </div>
+        <div>
+          ALT (km): {focusSatellite?.position?.alt ?? "—"}
+        </div>
+        <div>
+          SPD (km/s): {focusSatellite?.position?.speed ?? "—"}
+        </div>
       </div>
     </div>
   );
