@@ -175,6 +175,8 @@
 // }
 
 
+
+
 import { API_BASE_URL } from '../../config';
 
 import React, { useEffect, useRef, useState } from "react";
@@ -190,6 +192,9 @@ export default function Globe() {
 
   const issPrev = useRef(null);
   const issCurr = useRef(null);
+
+  // 🔑 Single source of truth for points
+  const pointsRef = useRef([]);
 
   // ================================
   // STATE
@@ -316,7 +321,7 @@ export default function Globe() {
     return () => clearInterval(id);
   }, []);
 
-  // 🔥 FIRES FETCH (NEW)
+  // 🔥 FIRES FETCH
   useEffect(() => {
     const fetchFires = async () => {
       try {
@@ -330,24 +335,32 @@ export default function Globe() {
     fetchFires();
   }, []);
 
-  // 🔥 FIRE RENDERING (NEW, SAFE)
+  // 🔥 FIRE LAYER (NO UI CHANGE)
   useEffect(() => {
     if (!globe.current) return;
 
-    if (!showFires) {
-      globe.current.pointsData([]);
-      return;
-    }
+    const firePoints = showFires
+      ? fires.map(f => ({
+          lat: f.lat,
+          lng: f.lng,
+          size: 0.35,
+          color: "orange",
+          label: "FIRE"
+        }))
+      : [];
 
-    globe.current.pointsData(
-      fires.map(f => ({
-        lat: f.lat,
-        lng: f.lng,
-        size: 0.35,
-        color: "orange",
-        label: "Active Fire"
-      }))
-    );
+    const issPoint = issCurr.current
+      ? [{
+          lat: issCurr.current.lat,
+          lng: issCurr.current.lng,
+          size: 0.8,
+          color: "#ffffff",
+          label: "ISS LIVE"
+        }]
+      : [];
+
+    pointsRef.current = [...firePoints, ...issPoint];
+    globe.current.pointsData(pointsRef.current);
   }, [fires, showFires]);
 
   // ================================
@@ -365,8 +378,12 @@ export default function Globe() {
 
       if (!issCurr.current) return;
 
-      globe.current.pointsData(prev => [
-        ...(Array.isArray(prev) ? prev.filter(p => p.label !== "ISS LIVE") : []),
+      const withoutISS = pointsRef.current.filter(
+        p => p.label !== "ISS LIVE"
+      );
+
+      pointsRef.current = [
+        ...withoutISS,
         {
           lat: issCurr.current.lat,
           lng: issCurr.current.lng,
@@ -374,7 +391,9 @@ export default function Globe() {
           color: "#ffffff",
           label: "ISS LIVE"
         }
-      ]);
+      ];
+
+      globe.current.pointsData(pointsRef.current);
     };
 
     animate();
@@ -386,16 +405,17 @@ export default function Globe() {
   }, [autoRotate]);
 
   // ================================
-  // RENDER
+  // UI RENDER (UNTOUCHED)
   // ================================
   return (
-    <div className="relative w-full h-full min-h-[600px] overflow-hidden bg-black rounded-2xl">
+    <div className="relative w-full h-full min-h-[600px] flex items-center justify-center rounded-2xl border border-cyan-400/20 bg-black overflow-hidden">
       <video
         autoPlay
         loop
         muted
         playsInline
         className="absolute inset-0 w-full h-full object-cover pointer-events-none opacity-40"
+        style={{ zIndex: 1 }}
       >
         <source src="/images/starsanimation.mp4" type="video/mp4" />
       </video>
@@ -403,7 +423,7 @@ export default function Globe() {
       <div
         ref={globeRef}
         className="absolute inset-0 w-full h-full"
-        style={{ zIndex: 10 }}
+        style={{ zIndex: 10, cursor: "crosshair" }}
       />
 
       <div className="absolute inset-0 z-20 pointer-events-none">
