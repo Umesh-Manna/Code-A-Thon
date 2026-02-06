@@ -10,7 +10,8 @@ export async function getLiveSatellitePosition(noradId) {
   return {
     lat: parseFloat(data.iss_position.latitude),
     lng: parseFloat(data.iss_position.longitude),
-    alt: 420,     // Approximate ISS altitude (km)
-    speed: 7.66,  // Approximate ISS speed (km/s)
+    alt: 420,      // Approximate ISS altitude (km)
+    speed: 7.66,   // Approximate ISS speed (km/s)
+    timestamp: Date.now(), // 🔑 forces fresh object identity
   };
 }
