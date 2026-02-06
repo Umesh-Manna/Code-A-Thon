@@ -18,10 +18,6 @@ export default function GlobeControls({
         {isNight ? "☀️ Switch to Day" : "🌙 Switch to Night"}
       </button>
 
-      <button onClick={() => setShowClouds(!showClouds)} className={btnClass}>
-        {showClouds ? "☁️ Hide Clouds" : "☁️ Show Clouds"}
-      </button>
-
       <button onClick={() => setShowBoundaries(!showBoundaries)} className={btnClass}>
         {showBoundaries ? "🗺 Hide Borders" : "🗺 Show Borders"}
       </button>
