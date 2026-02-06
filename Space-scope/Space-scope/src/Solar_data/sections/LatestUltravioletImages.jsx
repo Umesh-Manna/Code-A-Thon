@@ -5,17 +5,17 @@ import SectionLayout from "../components/SectionLayout";
 import "./LatestUltravioletImages.css";
 
 // Import static images (Vite will bundle them)
-import img94 from "/solar/0094.jpg";
-import img131 from "/solar/0131.jpg";
-import img171 from "/solar/0171.jpg";
-import img193 from "/solar/0193.jpg";
-import img211 from "/solar/0211.jpg";
-import img304 from "/solar/0304.jpg";
+import img91 from "/solar/uv_91.png";
+import img131 from "/solar/uv_131.png";
+import img171 from "/solar/uv_171.png";
+import img193 from "/solar/uv_193.png";
+import img211 from "/solar/uv_211.png";
+import img304 from "/solar/uv_304.png";
 
 const UV_IMAGES = [
   {
-    wavelength: "94 Å",
-    url: img94,
+    wavelength: "91 Å",
+    url: img91,
     description: "Extremely hot plasma from intense solar flares",
   },
   {
