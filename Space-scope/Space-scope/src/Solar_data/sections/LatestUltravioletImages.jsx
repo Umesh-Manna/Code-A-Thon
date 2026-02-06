@@ -5,12 +5,12 @@ import SectionLayout from "../components/SectionLayout";
 import "./LatestUltravioletImages.css";
 
 // Import static images (Vite will bundle them)
-import img94 from "../assets/images/ultraviolet/0094.jpg";
-import img131 from "../assets/images/ultraviolet/0131.jpg";
-import img171 from "../assets/images/ultraviolet/0171.jpg";
-import img193 from "../assets/images/ultraviolet/0193.jpg";
-import img211 from "../assets/images/ultraviolet/0211.jpg";
-import img304 from "../assets/images/ultraviolet/0304.jpg";
+import img94 from "/solar/0094.jpg";
+import img131 from "/solar/0131.jpg";
+import img171 from "/solar/0171.jpg";
+import img193 from "/solar/0193.jpg";
+import img211 from "/solar/0211.jpg";
+import img304 from "/solar/0304.jpg";
 
 const UV_IMAGES = [
   {
@@ -81,4 +81,3 @@ const LatestUltravioletImages = () => {
 };
 
 export default LatestUltravioletImages;
-  
