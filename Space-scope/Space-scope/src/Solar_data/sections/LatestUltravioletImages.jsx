@@ -2,6 +2,8 @@
 
 import React from "react";
 import SectionLayout from "../components/SectionLayout";
+// import useSolarData from "../hooks/useSolarData";
+import SolarLayout from "../components/SolarLayout";
 import "./LatestUltravioletImages.css";
 
 // Import static images (Vite will bundle them)

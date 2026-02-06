@@ -4,7 +4,7 @@ export async function getLiveSatellitePosition(noradId) {
   // ISS-only public endpoint (no API key)
   if (noradId !== 25544) return null;
 
-  const response = await fetch("http://api.open-notify.org/iss-now.json");
+  const response = await fetch("https://api.open-notify.org/iss-now.json");
   const data = await response.json();
 
   return {

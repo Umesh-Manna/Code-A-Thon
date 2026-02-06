@@ -31,9 +31,9 @@ export default function Navbar() {
       </div>
 
       <div className="navbar-right">
-        <NavLink to="/notifications" className="nav-btn notification-btn">
+        {/* <NavLink to="/notifications" className="nav-btn notification-btn">
           🔔 Notification
-        </NavLink>
+        </NavLink> */}
       </div>
     </nav>
   );
